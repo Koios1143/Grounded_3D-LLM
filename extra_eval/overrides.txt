@@ -1,0 +1,2 @@
+# omegaconf 2.0.6 asks for PyYAML>=5.1.* and uv picks the 5.4.1 sdist, which no longer builds
+pyyaml==6.0.1

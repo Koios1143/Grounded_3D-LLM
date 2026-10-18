@@ -1,0 +1,6752 @@
+[
+ {
+  "question_id": 22060200102102,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200123702,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "bathroom cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200237102,
+  "response_gt": [
+   "suitcase"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200307302,
+  "response_gt": [
+   "toilet"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200555702,
+  "response_gt": [
+   "bathtub"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200589802,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "bathtub",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200642202,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200758402,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201010102,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201018602,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201247402,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201376602,
+  "response_gt": [
+   "shoes"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201595402,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201729402,
+  "response_gt": [
+   "curtains"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201861202,
+  "response_gt": [
+   "light switch"
+  ],
+  "response_pred": "mirror",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060201872002,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060202389302,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060202596602,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "in front of bed",
+  "question_type": "direction",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060202694202,
+  "response_gt": [
+   "straight ahead"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060202778702,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060202797002,
+  "response_gt": [
+   "sink"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060203028402,
+  "response_gt": [
+   "wardrobe"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060203190402,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060203334502,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0046_00"
+ },
+ {
+  "question_id": 22060200223502,
+  "response_gt": [
+   "dresser"
+  ],
+  "response_pred": "lamp",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060200369002,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "mini fridge",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060200501802,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060200813202,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "direction",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060201042302,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "direction",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060201487202,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060201717102,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202250102,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202403902,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202572002,
+  "response_gt": [
+   "cushion"
+  ],
+  "response_pred": "closet",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202588002,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202839402,
+  "response_gt": [
+   "two"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202856102,
+  "response_gt": [
+   "cushion"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202895702,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060202984802,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060203285302,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0222_00"
+ },
+ {
+  "question_id": 22060200277602,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060200502502,
+  "response_gt": [
+   "picture"
+  ],
+  "response_pred": "bed",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060200516802,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "mirror",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060200579702,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060200589402,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060200630502,
+  "response_gt": [
+   "stool"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201021102,
+  "response_gt": [
+   "to my left"
+  ],
+  "response_pred": "next to bed",
+  "question_type": "direction",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201187102,
+  "response_gt": [
+   "sink"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201212402,
+  "response_gt": [
+   "picture"
+  ],
+  "response_pred": "mirror",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201287702,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "bathroom vanity",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201337602,
+  "response_gt": [
+   "light"
+  ],
+  "response_pred": "bed",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201356102,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201378302,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201510202,
+  "response_gt": [
+   "wardrobe closet"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201514202,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201664702,
+  "response_gt": [
+   "light"
+  ],
+  "response_pred": "bed",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201712202,
+  "response_gt": [
+   "mirror"
+  ],
+  "response_pred": "mirror",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060201768702,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202050602,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "on right side of room",
+  "question_type": "direction",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202149602,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202160402,
+  "response_gt": [
+   "nightstand"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202248802,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202388102,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202416902,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202588802,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202818302,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202825102,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060202932302,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "bathtub",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060203159602,
+  "response_gt": [
+   "stool"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060203256702,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "mirror",
+  "question_type": "distance",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060203317402,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "counting",
+  "scene_id": "scene0246_00"
+ },
+ {
+  "question_id": 22060200003502,
+  "response_gt": [
+   "bookshelf"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200090202,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200132102,
+  "response_gt": [
+   "bookshelf"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200284302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200380302,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200472402,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200606702,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200750402,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200835602,
+  "response_gt": [
+   "a wall"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200945902,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2 pictures",
+  "question_type": "counting",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060201226402,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060201672902,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060201700602,
+  "response_gt": [
+   "monitor"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060201848102,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060202061002,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060202245002,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060202488002,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060202743002,
+  "response_gt": [
+   "monitor"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060202776102,
+  "response_gt": [
+   "behind"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060203030402,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "wall",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060203272402,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060203313402,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0300_00"
+ },
+ {
+  "question_id": 22060200222202,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060200875702,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060201082402,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060201285602,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060201463402,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060201742202,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060201934902,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060202271202,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060202737802,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "whiteboard",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060202778502,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060202999602,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060203108502,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060203147202,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060203329602,
+  "response_gt": [
+   "telephone"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0351_00"
+ },
+ {
+  "question_id": 22060200195402,
+  "response_gt": [
+   "furnace"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060200373402,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060200473102,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060200509902,
+  "response_gt": [
+   "a wall"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060200523602,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060200807302,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "battery disposal jar",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060200809102,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201324202,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201515402,
+  "response_gt": [
+   "furnace"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201523902,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201531402,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201680202,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201821902,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201824502,
+  "response_gt": [
+   "furnace"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201836502,
+  "response_gt": [
+   "furnace"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201849602,
+  "response_gt": [
+   "bucket"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201868002,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060201960902,
+  "response_gt": [
+   "furnace"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060202126002,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060202514102,
+  "response_gt": [
+   "board"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060202572602,
+  "response_gt": [
+   "towel"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060202574902,
+  "response_gt": [
+   "rack"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060202764602,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060202978402,
+  "response_gt": [
+   "buckets"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0377_00"
+ },
+ {
+  "question_id": 22060200044202,
+  "response_gt": [
+   "bookshelf"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060200055102,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060200627302,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060200756702,
+  "response_gt": [
+   "jacket"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060200809802,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060201216602,
+  "response_gt": [
+   "windows"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060201498702,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060201607702,
+  "response_gt": [
+   "to my left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060201800402,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "box",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060201907102,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060202133002,
+  "response_gt": [
+   "jacket"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060202378902,
+  "response_gt": [
+   "mat"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060202469002,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060202517202,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060202976902,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060202979802,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060203259702,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060203290702,
+  "response_gt": [
+   "odd"
+  ],
+  "response_pred": "even",
+  "question_type": "counting",
+  "scene_id": "scene0535_00"
+ },
+ {
+  "question_id": 22060200179502,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060200201302,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "towards right",
+  "question_type": "direction",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060200257402,
+  "response_gt": [
+   "refrigerator"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201269002,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201270802,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "table",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201384302,
+  "response_gt": [
+   "bag"
+  ],
+  "response_pred": "table",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201422902,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201714202,
+  "response_gt": [
+   "chairs and sofa chairs"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201853902,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201883102,
+  "response_gt": [
+   "yes"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201945302,
+  "response_gt": [
+   "cabinets"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060201958902,
+  "response_gt": [
+   "storage bin"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060202267802,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060202269202,
+  "response_gt": [
+   "sofa chair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060202284902,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060202713002,
+  "response_gt": [
+   "back"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "direction",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060202777602,
+  "response_gt": [
+   "plant"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060202846202,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060202869702,
+  "response_gt": [
+   "storage bin"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060203226702,
+  "response_gt": [
+   "bag"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060203328102,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0606_00"
+ },
+ {
+  "question_id": 22060200008202,
+  "response_gt": [
+   "fireplace"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060200072402,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060200564802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060200704902,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060200967202,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201063702,
+  "response_gt": [
+   "fireplace"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201166402,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201260102,
+  "response_gt": [
+   "armchairs"
+  ],
+  "response_pred": "table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201261902,
+  "response_gt": [
+   "armchairs"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201394702,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "armchair",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201448802,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201734002,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060201908302,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "direction",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202312802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202315402,
+  "response_gt": [
+   "one"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202326702,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202474402,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202491202,
+  "response_gt": [
+   "picture"
+  ],
+  "response_pred": "vacuum cleaner",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202806402,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "picture",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202833402,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060202909402,
+  "response_gt": [
+   "yes"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060203121502,
+  "response_gt": [
+   "fireplace"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060203149702,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060203162902,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060203185702,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060203252802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0616_00"
+ },
+ {
+  "question_id": 22060200448502,
+  "response_gt": [
+   "behind"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060201041802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060201279702,
+  "response_gt": [
+   "a tall shelf"
+  ],
+  "response_pred": "computer tower",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060201425002,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060201739102,
+  "response_gt": [
+   "window and radiator"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060201969602,
+  "response_gt": [
+   "monitors"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060202121302,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060202373402,
+  "response_gt": [
+   "whiteboard"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060202385902,
+  "response_gt": [
+   "keyboard"
+  ],
+  "response_pred": "shelf",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060202476902,
+  "response_gt": [
+   "in front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060202787502,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "whiteboard",
+  "question_type": "distance",
+  "scene_id": "scene0644_00"
+ },
+ {
+  "question_id": 22060200138302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060200390302,
+  "response_gt": [
+   "kitchen counter"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060200588902,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "to right of dining table",
+  "question_type": "direction",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060200967802,
+  "response_gt": [
+   "none"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060201225102,
+  "response_gt": [
+   "refrigerator"
+  ],
+  "response_pred": "kitchen cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060201236702,
+  "response_gt": [
+   "dining table"
+  ],
+  "response_pred": "kitchen cabinets",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060201347802,
+  "response_gt": [
+   "dining table"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060201400002,
+  "response_gt": [
+   "dining table"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060201954002,
+  "response_gt": [
+   "dining table"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060202145702,
+  "response_gt": [
+   "recycling bin"
+  ],
+  "response_pred": "dishwasher",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060202198702,
+  "response_gt": [
+   "kitchen cabinets"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060202448502,
+  "response_gt": [
+   "kitchen cabinet"
+  ],
+  "response_pred": "kitchen cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060202577902,
+  "response_gt": [
+   "refrigerator"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060203222602,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0651_00"
+ },
+ {
+  "question_id": 22060200150402,
+  "response_gt": [
+   "backward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060200410202,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060200450802,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060200487002,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060200715402,
+  "response_gt": [
+   "radiator"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060201223502,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060201241902,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060201420202,
+  "response_gt": [
+   "whiteboard"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060201641802,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060201679702,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060201860902,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060202210902,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060202351902,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060202355802,
+  "response_gt": [
+   "monitors"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060202389702,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060202811402,
+  "response_gt": [
+   "telephone"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060202825602,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060203155402,
+  "response_gt": [
+   "container"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0700_00"
+ },
+ {
+  "question_id": 22060200058102,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200085602,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "wall",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200129302,
+  "response_gt": [
+   "file cabinet"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200149302,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200183802,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200211202,
+  "response_gt": [
+   "monitors"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200228002,
+  "response_gt": [
+   "file cabinet"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200257602,
+  "response_gt": [
+   "backward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200264202,
+  "response_gt": [
+   "monitor"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200304502,
+  "response_gt": [
+   "blinds"
+  ],
+  "response_pred": "backpack",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200440802,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200967502,
+  "response_gt": [
+   "straight ahead"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201031902,
+  "response_gt": [
+   "back"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201175102,
+  "response_gt": [
+   "trash can"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201194502,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "end table",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201220002,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "to right of couch",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201296702,
+  "response_gt": [
+   "file cabinet"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201355302,
+  "response_gt": [
+   "in front"
+  ],
+  "response_pred": "on desk",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201439202,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201840102,
+  "response_gt": [
+   "file cabinet"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201874202,
+  "response_gt": [
+   "fan"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060201938102,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202001202,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202030102,
+  "response_gt": [
+   "backward"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202188702,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202282902,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202333502,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202470402,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202484702,
+  "response_gt": [
+   "the entrance door"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202831002,
+  "response_gt": [
+   "trash can"
+  ],
+  "response_pred": "fan",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202952402,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060202966302,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060203159402,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060203332402,
+  "response_gt": [
+   "fan"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0025_00"
+ },
+ {
+  "question_id": 22060200055802,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200099802,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200178502,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "tv",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200247402,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "piano",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200321702,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "piano",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200394702,
+  "response_gt": [
+   "behind me"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200417902,
+  "response_gt": [
+   "stool"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200434102,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200463402,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "piano",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200539202,
+  "response_gt": [
+   "piano bench"
+  ],
+  "response_pred": "end table",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200698202,
+  "response_gt": [
+   "clock"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201161902,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201231702,
+  "response_gt": [
+   "ottoman"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201291402,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201308902,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "piano",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201365202,
+  "response_gt": [
+   "roomba"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201557902,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201639002,
+  "response_gt": [
+   "door frame"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060201683502,
+  "response_gt": [
+   "piano bench"
+  ],
+  "response_pred": "end table",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060202016802,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060202071502,
+  "response_gt": [
+   "none"
+  ],
+  "response_pred": "2 backpacks",
+  "question_type": "counting",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060202306902,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060202463002,
+  "response_gt": [
+   "to my left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060202501602,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060202847602,
+  "response_gt": [
+   "doors"
+  ],
+  "response_pred": "piano",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060202901202,
+  "response_gt": [
+   "clock"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060203025202,
+  "response_gt": [
+   "roomba"
+  ],
+  "response_pred": "piano",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060203238402,
+  "response_gt": [
+   "piano bench"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0050_00"
+ },
+ {
+  "question_id": 22060200041502,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200044902,
+  "response_gt": [
+   "doors"
+  ],
+  "response_pred": "shoes",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200099502,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200225602,
+  "response_gt": [
+   "shoes"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200235202,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200238702,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200255102,
+  "response_gt": [
+   "none"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200384002,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "bag",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200491902,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200714902,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200899102,
+  "response_gt": [
+   "doors"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200974602,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060201056402,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060201095802,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060201611702,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "end table",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060201888502,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "direction",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060201995402,
+  "response_gt": [
+   "0"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202055002,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202243202,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "shoes",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202298802,
+  "response_gt": [
+   "blanket"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202341702,
+  "response_gt": [
+   "shoe rack"
+  ],
+  "response_pred": "tv",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202476702,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202529702,
+  "response_gt": [
+   "shoes"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202675102,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202693702,
+  "response_gt": [
+   "bag"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202696702,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202861902,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060202944402,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060203043702,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060203079502,
+  "response_gt": [
+   "curtains"
+  ],
+  "response_pred": "shoes",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060203316702,
+  "response_gt": [
+   "curtains"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0203_00"
+ },
+ {
+  "question_id": 22060200037102,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "mirror",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060200149802,
+  "response_gt": [
+   "nightstand"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060200536702,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "bed",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060200540802,
+  "response_gt": [
+   "vanity"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060200834102,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "bed",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060201251502,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060201384802,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060201398502,
+  "response_gt": [
+   "three"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060201579202,
+  "response_gt": [
+   "closet"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060201686202,
+  "response_gt": [
+   "entrance door"
+  ],
+  "response_pred": "bathtub",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060201817102,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060201930602,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "lamp",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202057302,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202128002,
+  "response_gt": [
+   "closet walls"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202169102,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202187702,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202227402,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202282502,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202343202,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202419502,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "telephone",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202430202,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202441402,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202441802,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202589902,
+  "response_gt": [
+   "bathroom vanity"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202710902,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202722902,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202795302,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060202872302,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060203019502,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060203156102,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060203218702,
+  "response_gt": [
+   "bathroom vanity"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060203297802,
+  "response_gt": [
+   "bathroom vanity"
+  ],
+  "response_pred": "bathtub",
+  "question_type": "distance",
+  "scene_id": "scene0221_00"
+ },
+ {
+  "question_id": 22060200050702,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200092902,
+  "response_gt": [
+   "kitchen island"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200114302,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200184502,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "kitchen counter",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200223902,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200225802,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "to right of couch",
+  "question_type": "direction",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200233102,
+  "response_gt": [
+   "back"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200240402,
+  "response_gt": [
+   "kitchen cabinet"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200262402,
+  "response_gt": [
+   "microwave"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200554902,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200660202,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200748702,
+  "response_gt": [
+   "kitchen island"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200816702,
+  "response_gt": [
+   "stove"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201071602,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201087402,
+  "response_gt": [
+   "doorframe"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201157602,
+  "response_gt": [
+   "refrigerator"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201233002,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201235402,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201245802,
+  "response_gt": [
+   "stove"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201421802,
+  "response_gt": [
+   "doorframe"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201491802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201617602,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "end table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201630602,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201633002,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201646102,
+  "response_gt": [
+   "to my left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201835302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "end table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060201929502,
+  "response_gt": [
+   "kitchen cabinet"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202109502,
+  "response_gt": [
+   "closet door"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202212302,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202258402,
+  "response_gt": [
+   "a picture on the wall"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202389402,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202495502,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202692302,
+  "response_gt": [
+   "book"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202705202,
+  "response_gt": [
+   "stove"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202793502,
+  "response_gt": [
+   "kitchen island"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060202914802,
+  "response_gt": [
+   "kitchen cabinet"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060203144502,
+  "response_gt": [
+   "doorframe"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060203181702,
+  "response_gt": [
+   "bag"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060203261202,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0231_00"
+ },
+ {
+  "question_id": 22060200009102,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060200116402,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060200327602,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "tv",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060200457302,
+  "response_gt": [
+   "stand"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060200844402,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "clothes dryer",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060201005402,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060201752402,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060201768302,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "table",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060201855102,
+  "response_gt": [
+   "clothing rack"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060202082402,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060202487402,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060202604902,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060202647602,
+  "response_gt": [
+   "equipment stand"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060202662002,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060202684102,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060202792602,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060203299502,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060203304802,
+  "response_gt": [
+   "stand"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060203317302,
+  "response_gt": [
+   "clothing rack"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0256_00"
+ },
+ {
+  "question_id": 22060200301402,
+  "response_gt": [
+   "copier"
+  ],
+  "response_pred": "copier",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200364202,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200471902,
+  "response_gt": [
+   "trash can"
+  ],
+  "response_pred": "copier",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200566502,
+  "response_gt": [
+   "copier"
+  ],
+  "response_pred": "copier",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200628102,
+  "response_gt": [
+   "paper cutter"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200639502,
+  "response_gt": [
+   "file cabinet"
+  ],
+  "response_pred": "counter",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200679802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "recycling bin",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200821502,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200940902,
+  "response_gt": [
+   "chairs"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201108102,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201224402,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "copier",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201264902,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "towards right",
+  "question_type": "direction",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201303102,
+  "response_gt": [
+   "boxes"
+  ],
+  "response_pred": "paper cutter",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201375902,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201595602,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201651302,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "clockwise",
+  "question_type": "direction",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201684402,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201746302,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "copier",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201748702,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060201932602,
+  "response_gt": [
+   "boxes"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060202137802,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060202396202,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "copier",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060202565902,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060202823202,
+  "response_gt": [
+   "paper cutter"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060202827102,
+  "response_gt": [
+   "cabinets"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060203209302,
+  "response_gt": [
+   "cabinets"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060203314102,
+  "response_gt": [
+   "counter"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0278_00"
+ },
+ {
+  "question_id": 22060200158602,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060200524402,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060200602702,
+  "response_gt": [
+   "dresser"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060200859002,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060200863102,
+  "response_gt": [
+   "wardrobe cabinet"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060201062802,
+  "response_gt": [
+   "back"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060201928502,
+  "response_gt": [
+   "laptop"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202013202,
+  "response_gt": [
+   "blanket"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202068502,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202117602,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "mini fridge",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202129902,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202185502,
+  "response_gt": [
+   "straight ahead"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202334802,
+  "response_gt": [
+   "wardrobe cabinet"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202372402,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "direction",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060202485302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "shoes",
+  "question_type": "distance",
+  "scene_id": "scene0353_00"
+ },
+ {
+  "question_id": 22060200145102,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060200193402,
+  "response_gt": [
+   "clock"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060200314702,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "blackboard",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060200576302,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060200816302,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201188302,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201214902,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201218002,
+  "response_gt": [
+   "papers"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201341202,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "blackboard",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201350502,
+  "response_gt": [
+   "blackboard"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201398402,
+  "response_gt": [
+   "desk with monitor"
+  ],
+  "response_pred": "blackboard",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201442802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201458802,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201560702,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201577302,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201632502,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201643702,
+  "response_gt": [
+   "behind"
+  ],
+  "response_pred": "to right",
+  "question_type": "direction",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201644302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "blackboard",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201665502,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060201894502,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060202125302,
+  "response_gt": [
+   "a board"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060202360302,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060202361602,
+  "response_gt": [
+   "blackboard"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060202482102,
+  "response_gt": [
+   "chair and a coat"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060202713102,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060202763002,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060202872602,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060203050602,
+  "response_gt": [
+   "bookshelf"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0378_00"
+ },
+ {
+  "question_id": 22060200430102,
+  "response_gt": [
+   "back"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060200460302,
+  "response_gt": [
+   "nightstand"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060200569702,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060200604602,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060200664502,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "tv",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060200717102,
+  "response_gt": [
+   "bag"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060200943402,
+  "response_gt": [
+   "directly behind me"
+  ],
+  "response_pred": "next to bed",
+  "question_type": "direction",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060201725702,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "bed",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202007502,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202094002,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202094702,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202116002,
+  "response_gt": [
+   "to my left"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202133302,
+  "response_gt": [
+   "even"
+  ],
+  "response_pred": "even",
+  "question_type": "counting",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202219002,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202585802,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202730602,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060202976702,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060203142802,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0389_00"
+ },
+ {
+  "question_id": 22060200066302,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "closet doors",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200268802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200297702,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200433702,
+  "response_gt": [
+   "monitor"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200604502,
+  "response_gt": [
+   "instrument case"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200616202,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200737102,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200836502,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200944002,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201013702,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201038702,
+  "response_gt": [
+   "even"
+  ],
+  "response_pred": "even",
+  "question_type": "counting",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201171002,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201272602,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201289302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201293902,
+  "response_gt": [
+   "monitor"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201473002,
+  "response_gt": [
+   "jacket"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201648702,
+  "response_gt": [
+   "in front and to my left"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201903902,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201921002,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060201939202,
+  "response_gt": [
+   "jacket"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060202675902,
+  "response_gt": [
+   "jacket"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060202907202,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "to right of door",
+  "question_type": "direction",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060203088302,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "piano",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060203221202,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060203230502,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0426_00"
+ },
+ {
+  "question_id": 22060200043202,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200048702,
+  "response_gt": [
+   "bathtub"
+  ],
+  "response_pred": "mirror",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200133202,
+  "response_gt": [
+   "vanity"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200164602,
+  "response_gt": [
+   "bathroom door"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200357502,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200403802,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200506702,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "mini fridge",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200837402,
+  "response_gt": [
+   "bathtub with shower curtain"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060201057402,
+  "response_gt": [
+   "sofa chair"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060201057702,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060201122902,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060201587002,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060201939802,
+  "response_gt": [
+   "toilet"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060202090602,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060202355402,
+  "response_gt": [
+   "mini fridge"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060202369402,
+  "response_gt": [
+   "on my right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060202520002,
+  "response_gt": [
+   "lamp"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060202570302,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060202664602,
+  "response_gt": [
+   "shoes"
+  ],
+  "response_pred": "shower curtain",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060202909102,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060203118502,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0435_00"
+ },
+ {
+  "question_id": 22060200054902,
+  "response_gt": [
+   "cart"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200318002,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200683602,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200871502,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200894602,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200924902,
+  "response_gt": [
+   "monitor"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200966202,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200981102,
+  "response_gt": [
+   "in front"
+  ],
+  "response_pred": "on right side of shelf",
+  "question_type": "direction",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060201085302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060201152702,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060201155202,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060201535802,
+  "response_gt": [
+   "recycling bin"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060201681802,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060201728402,
+  "response_gt": [
+   "cart"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060201902202,
+  "response_gt": [
+   "recycling bin"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060202285002,
+  "response_gt": [
+   "boxes"
+  ],
+  "response_pred": "printer",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060202463902,
+  "response_gt": [
+   "statue"
+  ],
+  "response_pred": "printer",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060202750502,
+  "response_gt": [
+   "two"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060202869302,
+  "response_gt": [
+   "two"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060203113502,
+  "response_gt": [
+   "printer"
+  ],
+  "response_pred": "whiteboard",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060203138502,
+  "response_gt": [
+   "three"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060203160902,
+  "response_gt": [
+   "a statue and several boxes"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0565_00"
+ },
+ {
+  "question_id": 22060200766302,
+  "response_gt": [
+   "trash can"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060200337102,
+  "response_gt": [
+   "behind"
+  ],
+  "response_pred": "to left of table",
+  "question_type": "direction",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060200386802,
+  "response_gt": [
+   "in front"
+  ],
+  "response_pred": "in front of trash can",
+  "question_type": "direction",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060201195802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060201378902,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060201787602,
+  "response_gt": [
+   "whiteboard and monitor"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060202438002,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060202575802,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060202827802,
+  "response_gt": [
+   "window"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060203015402,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060203098902,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060203328802,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0578_00"
+ },
+ {
+  "question_id": 22060200092202,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060200383302,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060200474202,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060200476002,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "to right",
+  "question_type": "direction",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060200528602,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060200662202,
+  "response_gt": [
+   "trash can"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060201188102,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060201335102,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060201674802,
+  "response_gt": [
+   "whiteboard and couch"
+  ],
+  "response_pred": "bookshelf",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060201779602,
+  "response_gt": [
+   "trash can"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060201956202,
+  "response_gt": [
+   "door"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060202083302,
+  "response_gt": [
+   "monitors"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060202421902,
+  "response_gt": [
+   "file cabinet"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060202485602,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060202668302,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060203137602,
+  "response_gt": [
+   "bookshelf"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060203315802,
+  "response_gt": [
+   "backward"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0591_00"
+ },
+ {
+  "question_id": 22060200204702,
+  "response_gt": [
+   "bulletin board"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060200217302,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060200219602,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "facing window",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060200344802,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060200433502,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060200656802,
+  "response_gt": [
+   "fan"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060200697702,
+  "response_gt": [
+   "bulletin board"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060201247202,
+  "response_gt": [
+   "copier"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060201265302,
+  "response_gt": [
+   "bulletin board"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060201438802,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060201487102,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060201493302,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060201646402,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060201910502,
+  "response_gt": [
+   "copier"
+  ],
+  "response_pred": "box",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202020902,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "mailbox",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202061702,
+  "response_gt": [
+   "fan"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202239802,
+  "response_gt": [
+   "paper cutter"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202265002,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202422202,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202525602,
+  "response_gt": [
+   "mailbox"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202756102,
+  "response_gt": [
+   "mailbox"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202774102,
+  "response_gt": [
+   "trash can"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202804802,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "left",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202886002,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060202907502,
+  "response_gt": [
+   "backward"
+  ],
+  "response_pred": "in front of couch",
+  "question_type": "direction",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060203212102,
+  "response_gt": [
+   "bulletin board"
+  ],
+  "response_pred": "bulletin board",
+  "question_type": "distance",
+  "scene_id": "scene0593_00"
+ },
+ {
+  "question_id": 22060200018202,
+  "response_gt": [
+   "refrigerator"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060200261302,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060200286902,
+  "response_gt": [
+   "sink"
+  ],
+  "response_pred": "kitchen cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060200399102,
+  "response_gt": [
+   "long wall"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060200438302,
+  "response_gt": [
+   "yes"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060200933002,
+  "response_gt": [
+   "refrigerator"
+  ],
+  "response_pred": "refrigerator",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060201710402,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "table",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060201785002,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060201983802,
+  "response_gt": [
+   "dining table"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202072202,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202111202,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202181302,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202259302,
+  "response_gt": [
+   "sink"
+  ],
+  "response_pred": "kitchen counter",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202428502,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202613502,
+  "response_gt": [
+   "kitchen counter"
+  ],
+  "response_pred": "kitchen counter",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202651502,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202683102,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "table",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060202900202,
+  "response_gt": [
+   "wall"
+  ],
+  "response_pred": "microwave",
+  "question_type": "distance",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060203127202,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060203136402,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "towards right",
+  "question_type": "direction",
+  "scene_id": "scene0607_00"
+ },
+ {
+  "question_id": 22060200012102,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060200351402,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201198402,
+  "response_gt": [
+   "wardrobe closet"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201423802,
+  "response_gt": [
+   "crib"
+  ],
+  "response_pred": "lamp",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201694902,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "<empty>",
+  "question_type": "direction",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201735402,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201780202,
+  "response_gt": [
+   "crib"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201827302,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201863402,
+  "response_gt": [
+   "crib"
+  ],
+  "response_pred": "lamp",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201885502,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201890702,
+  "response_gt": [
+   "crib"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201908602,
+  "response_gt": [
+   "crib and diaper bin"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201951002,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060201968502,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060202015402,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060202154002,
+  "response_gt": [
+   "behind"
+  ],
+  "response_pred": "to right of window",
+  "question_type": "direction",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060202471002,
+  "response_gt": [
+   "crib"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060202663002,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "lamp",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060202699202,
+  "response_gt": [
+   "table"
+  ],
+  "response_pred": "dresser",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060202801202,
+  "response_gt": [
+   "shelf"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060203006702,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060203209102,
+  "response_gt": [
+   "pictures"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060203210902,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0633_00"
+ },
+ {
+  "question_id": 22060200045802,
+  "response_gt": [
+   "ottoman"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200088602,
+  "response_gt": [
+   "suitcase"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200129802,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "couch",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200146402,
+  "response_gt": [
+   "curtain"
+  ],
+  "response_pred": "pillows",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200205802,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200266502,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200276502,
+  "response_gt": [
+   "nightstand"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200294702,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "couch",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200427702,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "radiator",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200535902,
+  "response_gt": [
+   "ottoman"
+  ],
+  "response_pred": "ottoman",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200714302,
+  "response_gt": [
+   "suitcase"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200727002,
+  "response_gt": [
+   "beds"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200736602,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200877702,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "lamp",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200939202,
+  "response_gt": [
+   "one"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060201005202,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "bathtub",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060201008202,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060201090502,
+  "response_gt": [
+   "zero"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060201319802,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "lamp",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060201582002,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060201664602,
+  "response_gt": [
+   "desk and chair"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060201781802,
+  "response_gt": [
+   "toilet"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202224102,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "curtain",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202245602,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202310002,
+  "response_gt": [
+   "end table"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202386702,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202387302,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202391502,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202540802,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202566302,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202611902,
+  "response_gt": [
+   "toilet"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202777502,
+  "response_gt": [
+   "pillow"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060202859502,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203007802,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203027702,
+  "response_gt": [
+   "forward"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203037502,
+  "response_gt": [
+   "backpack"
+  ],
+  "response_pred": "door",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203094502,
+  "response_gt": [
+   "ottoman"
+  ],
+  "response_pred": "pillow",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203099702,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203129502,
+  "response_gt": [
+   "toilet"
+  ],
+  "response_pred": "toilet",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203253902,
+  "response_gt": [
+   "bed"
+  ],
+  "response_pred": "nightstand",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060203279202,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "couch",
+  "question_type": "distance",
+  "scene_id": "scene0645_00"
+ },
+ {
+  "question_id": 22060200360902,
+  "response_gt": [
+   "keyboard"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060200367902,
+  "response_gt": [
+   "one"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060200593602,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060200628902,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060200689702,
+  "response_gt": [
+   "no"
+  ],
+  "response_pred": "yes",
+  "question_type": "existence",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060200934902,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "desk",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060201074002,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "chair",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060201293102,
+  "response_gt": [
+   "keyboard"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060201806302,
+  "response_gt": [
+   "whiteboard"
+  ],
+  "response_pred": "window",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060201904902,
+  "response_gt": [
+   "left"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060202044502,
+  "response_gt": [
+   "office chair"
+  ],
+  "response_pred": "office chair",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060202399202,
+  "response_gt": [
+   "an office chair and a wall"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060202442302,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "recycling bin",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060202505902,
+  "response_gt": [
+   "front"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060202767102,
+  "response_gt": [
+   "desk"
+  ],
+  "response_pred": "file cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060202902102,
+  "response_gt": [
+   "box"
+  ],
+  "response_pred": "monitor",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060203171602,
+  "response_gt": [
+   "file cabinet"
+  ],
+  "response_pred": "trash can",
+  "question_type": "distance",
+  "scene_id": "scene0653_00"
+ },
+ {
+  "question_id": 22060200034502,
+  "response_gt": [
+   "couch"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060200123902,
+  "response_gt": [
+   "four"
+  ],
+  "response_pred": "2",
+  "question_type": "counting",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060200966002,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "armchair",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201278102,
+  "response_gt": [
+   "cabinet"
+  ],
+  "response_pred": "end table",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201390302,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201574502,
+  "response_gt": [
+   "straight ahead"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201606502,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "armchair",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201639702,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201665102,
+  "response_gt": [
+   "right"
+  ],
+  "response_pred": "right",
+  "question_type": "direction",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201786602,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201889802,
+  "response_gt": [
+   "armchairs"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060201998602,
+  "response_gt": [
+   "chair"
+  ],
+  "response_pred": "armchair",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060202075402,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060202154902,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "coffee table",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060202644902,
+  "response_gt": [
+   "armchair"
+  ],
+  "response_pred": "cabinet",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ },
+ {
+  "question_id": 22060203097002,
+  "response_gt": [
+   "coffee table"
+  ],
+  "response_pred": "armchair",
+  "question_type": "distance",
+  "scene_id": "scene0690_00"
+ }
+]

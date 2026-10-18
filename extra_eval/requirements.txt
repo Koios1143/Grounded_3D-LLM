@@ -1,0 +1,43 @@
+# Runtime deps for inference with torch 2.7 (the repo's requirements.txt targets torch 1.12).
+# Versions follow the release where they still work; mmcv-full 1.5 -> mmcv-lite (pure python).
+numpy==1.26.4
+setuptools<70
+ninja
+hydra-core==1.0.5
+omegaconf==2.0.6
+pyyaml==6.0.1
+pytorch-lightning==1.9.5
+torchmetrics==0.11.4
+transformers==4.36.1
+tokenizers==0.15.0
+accelerate==0.26.1
+safetensors
+sentencepiece==0.1.99
+huggingface-hub==0.20.3
+mmengine==0.10.7  # 0.10.2 re-registers Adafactor, which torch>=2.5 already has
+mmcv-lite==2.1.0
+albumentations==1.2.1
+opencv-python-headless==4.8.1.78
+volumentations==0.1.8
+plyfile==1.0.2
+trimesh==4.0.4
+open3d
+scipy==1.11.3
+scikit-learn==1.3.2
+scikit-image==0.22.0
+pandas==2.1.3
+natsort
+loguru==0.6.0
+fire
+python-dotenv
+pyviz3d==0.2.32
+timm==0.9.11
+nltk==3.8.1
+pycocoevalcap==1.2
+matplotlib
+seaborn
+plotly
+tensorboard
+joblib
+tqdm
+openai

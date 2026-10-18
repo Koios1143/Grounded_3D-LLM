@@ -1,0 +1,80 @@
+diff --git a/src/3rdparty/concurrent_unordered_map.cuh b/src/3rdparty/concurrent_unordered_map.cuh
+index ed8e1b2..7a38ab4 100644
+--- a/src/3rdparty/concurrent_unordered_map.cuh
++++ b/src/3rdparty/concurrent_unordered_map.cuh
+@@ -1,3 +1,4 @@
++#include <thrust/execution_policy.h>
+ /*
+  * Copyright (c) 2017-2018, NVIDIA CORPORATION.  All rights reserved.
+  *
+diff --git a/src/3rdparty/cudf/detail/nvtx/ranges.hpp b/src/3rdparty/cudf/detail/nvtx/ranges.hpp
+index 10f5916..e1cf27c 100644
+--- a/src/3rdparty/cudf/detail/nvtx/ranges.hpp
++++ b/src/3rdparty/cudf/detail/nvtx/ranges.hpp
+@@ -16,7 +16,7 @@
+ 
+ #pragma once
+ 
+-#include "nvtx3.hpp"
++#include <nvtx3/nvtx3.hpp>
+ 
+ namespace cudf {
+ /**
+@@ -31,7 +31,7 @@ struct libcudf_domain {
+  * @brief Alias for an NVTX range in the libcudf domain.
+  *
+  */
+-using thread_range = ::nvtx3::domain_thread_range<libcudf_domain>;
++using thread_range = ::nvtx3::scoped_range_in<libcudf_domain>;
+ 
+ }  // namespace cudf
+ 
+diff --git a/src/convolution_kernel.cuh b/src/convolution_kernel.cuh
+index aed7227..6e040d4 100644
+--- a/src/convolution_kernel.cuh
++++ b/src/convolution_kernel.cuh
+@@ -1,3 +1,4 @@
++#include <thrust/execution_policy.h>
+ /*  Copyright (c) Chris Choy (chrischoy@ai.stanford.edu).
+  *
+  *  Permission is hereby granted, free of charge, to any person obtaining a copy
+diff --git a/src/coordinate_map_gpu.cu b/src/coordinate_map_gpu.cu
+index fb7325d..0c0a202 100644
+--- a/src/coordinate_map_gpu.cu
++++ b/src/coordinate_map_gpu.cu
+@@ -1,3 +1,5 @@
++#include <thrust/unique.h>
++#include <thrust/remove.h>
+ /*
+  * Copyright (c) 2020 NVIDIA CORPORATION.
+  * Copyright (c) 2018-2020 Chris Choy (chrischoy@ai.stanford.edu)
+diff --git a/src/coordinate_map_gpu.cuh b/src/coordinate_map_gpu.cuh
+index 15228c4..5d7d8a6 100644
+--- a/src/coordinate_map_gpu.cuh
++++ b/src/coordinate_map_gpu.cuh
+@@ -136,9 +136,13 @@ public:
+       LOG_DEBUG("Reserve map of",
+                 compute_hash_table_size(size, m_hashtable_occupancy),
+                 "for concurrent_unordered_map of size", size);
+-      m_map = map_type::create(
++      // unique_ptr -> shared_ptr through the raw pointer: the converting constructor
++      // calls std::__to_address, ambiguous with cuda::std::__to_address (GCC >= 12).
++      auto map_ptr = map_type::create(
+           compute_hash_table_size(size, m_hashtable_occupancy),
+           m_unused_element, m_unused_key, m_hasher, m_equal, m_map_allocator);
++      auto map_deleter = map_ptr.get_deleter();
++      m_map = std::shared_ptr<map_type>(map_ptr.release(), std::move(map_deleter));
+       LOG_DEBUG("Done concurrent_unordered_map creation");
+       CUDA_TRY(cudaStreamSynchronize(0));
+       m_capacity = size;
+diff --git a/src/spmm.cu b/src/spmm.cu
+index 8891a56..33df080 100644
+--- a/src/spmm.cu
++++ b/src/spmm.cu
+@@ -1,3 +1,6 @@
++#include <thrust/execution_policy.h>
++#include <thrust/reduce.h>
++#include <thrust/sort.h>
+ /*
+  * Copyright (c) 2020 NVIDIA Corporation.
+  * Copyright (c) 2018-2020 Chris Choy (chrischoy@ai.stanford.edu).
