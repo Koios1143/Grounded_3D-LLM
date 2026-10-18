@@ -6,7 +6,7 @@ on benchmarks the paper does not report**, under one reproducible setup, so its 
 be compared with other models on equal footing. Wired in so far:
 [SQA3D](https://sqa3d.github.io/) (ICLR 2023), [Real-3DQA](https://real-3dqa.github.io/)
 (ICLR 2026, a debiased SQA3D subset with viewpoint rotations) and
-[Beacon3D](https://beacon-3d.github.io/) (CVPR 2025, ScanNet). The upstream model,
+[Beacon3D](https://beacon-3d.github.io/) (CVPR 2025; ScanNet, 3RScan, MultiScan). The upstream model,
 training and data code are untouched apart from a torch-2 compatibility fix in the
 pointnet2 ops; everything this fork adds lives under [`extra_eval/`](extra_eval/), and
 the per-question outputs behind the numbers below are committed in
@@ -38,20 +38,44 @@ questions answered (relaxed match) correctly under at least 1…4 of the viewpoi
 their mean. Per viewpoint (EM / Refined EM): 0° 9.73 / 13.47, 90° 8.93 / 10.53,
 180° 10.00 / 12.80, 270° 6.80 / 8.80.
 
-### Beacon3D, ScanNet
+### Beacon3D
 
-*Case* = per-question accuracy; *Obj* = all questions about an object answered correctly.
+All three domains (ScanNet, 3RScan, MultiScan). *Case* = per-question accuracy; *Chain* =
+grounding chains with every step correct; *Obj* = object counted correct only if all its
+grounding chains (grounding) or all its questions (QA) are. Beacon3D defines no
+cross-domain score, so two overall rows are given: **pooled** = every case / chain /
+object of the three domains together; **mean** = average of the three domain scores. The
+*ScanNet control* row is not part of the overall: it reruns ScanNet under the 3RScan /
+MultiScan input conditions (see below).
 
-| Grounding variant | Case | Class | App. | Geo. | Spa. | Func. | Chain | Obj |
+**Grounding** (proposal → best-IoU GT object; in parentheses: also requiring IoU ≥ 0.25)
+
+| | Case | Class | App. | Geo. | Spa. | Func. | Chain | Obj |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| proposal → best-IoU GT object | 57.37 | 57.37 | 50.92 | 49.32 | 52.05 | 11.11 | 50.22 | 44.42 |
-| … and IoU ≥ 0.25 | 56.35 | 56.35 | 49.69 | 47.49 | 51.03 | 11.11 | 49.35 | 43.64 |
+| **Overall, pooled** | 45.26 (43.17) | 45.26 | 39.70 | 39.24 | 39.85 | 11.11 | 37.70 (36.07) | 34.31 (32.72) |
+| **Overall, mean** | 42.09 (39.52) | 42.09 | 37.38 | 33.99 | 37.29 | 11.11 | 34.18 (32.17) | 31.21 (29.29) |
+| ScanNet | 57.37 (56.35) | 57.37 | 50.92 | 49.32 | 52.05 | 11.11 | 50.22 (49.35) | 44.42 (43.64) |
+| 3RScan | 36.79 (34.67) | 36.79 | 30.04 | 30.77 | 30.96 | – | 27.57 (25.98) | 27.21 (25.37) |
+| MultiScan | 32.12 (27.55) | 32.12 | 31.17 | 21.88 | 28.86 | – | 24.74 (21.17) | 22.01 (18.87) |
+| *ScanNet control* | *54.75 (52.58)* | *54.75* | *48.47* | *46.58* | *49.18* | *11.11* | *47.62 (46.23)* | *42.08 (40.26)* |
 
-| QA (judge gpt-4o-mini-2024-07-18) | EM | EM-R | Case (GPT) | Obj | Class | App. | Geo. | Spa. | Exist. | Func. |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| | 41.21 | 43.90 | 44.57 | 8.05 | 18.24 | 40.69 | 46.99 | 51.07 | 52.24 | 33.33 |
+**QA** (GPT columns judged by gpt-4o-mini-2024-07-18)
 
-Grounding→QA chain (against the first grounding row): R1 37.85, R2 54.10.
+| | EM | EM-R | Case (GPT) | Obj | Class | App. | Geo. | Spa. | Exist. | Func. | R1 ↑ | R2 ↓ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Overall, pooled** | 36.76 | 39.62 | 39.78 | 4.17 | 17.58 | 36.96 | 44.09 | 43.51 | 45.12 | 33.33 | 31.31 | 63.02 |
+| **Overall, mean** | 34.19 | 37.00 | 37.11 | 3.23 | 18.09 | 34.63 | 42.22 | 40.24 | 42.84 | 33.33 | 27.22 | 67.38 |
+| ScanNet | 41.21 | 43.90 | 44.57 | 8.05 | 18.24 | 40.69 | 46.99 | 51.07 | 52.24 | 33.33 | 37.85 | 54.10 |
+| 3RScan | 38.73 | 42.16 | 41.45 | 0.37 | 25.54 | 39.66 | 41.14 | 44.10 | 44.08 | – | 24.39 | 72.37 |
+| MultiScan | 22.64 | 24.95 | 25.31 | 1.26 | 10.48 | 23.54 | 38.54 | 25.55 | 32.20 | – | 19.42 | 75.65 |
+| *ScanNet control* | *41.39* | *43.72* | *44.61* | *8.05* | *18.92* | *40.62* | *47.94* | *50.49* | *52.35* | *33.33* | *37.97* | *56.53* |
+
+R1 / R2 are Beacon3D's grounding→QA chain metrics against the first grounding variant
+(R1 = among wrong answers without extra knowledge, the share whose object was grounded
+correctly; R2 = among correct answers, the share whose object was not grounded); against the IoU ≥ 0.25 variant see
+`results/*/scores.json`. 3RScan and MultiScan have no *functionality* questions, so that
+column of the overall rows is ScanNet's. Per-domain files:
+`extra_eval/results/beacon3d_<domain>/`, overall: `extra_eval/results/beacon3d_overall/`.
 
 ### Read this before quoting the numbers
 
@@ -67,9 +91,18 @@ Grounding→QA chain (against the first grounding row): R1 37.85, R2 54.10.
 - **Beacon3D QA is judged by GPT-4o-mini** (`gpt-4o-mini-2024-07-18`), not the upstream
   default `gpt-4o-2024-11-20`, so the GPT-scored columns are not comparable with numbers
   judged by GPT-4o (e.g. the Beacon3D leaderboard). EM / EM-R and grounding do not involve
-  GPT. The judge is stochastic: two passes over the same predictions gave 44.57 and 44.74.
-- **Beacon3D 3RScan / MultiScan are not run.** The released detector is trained on ScanNet
-  meshes and pools over mesh superpoints, which those point-cloud releases do not provide.
+  GPT. The judge is stochastic: two passes over the same ScanNet predictions gave 44.57
+  and 44.74.
+- **3RScan / MultiScan run under different input conditions than ScanNet.** They come as
+  SceneVerse point clouds without meshes, so (a) the superpoints the detector pools over
+  are rebuilt with ScanNet Segmentator's algorithm on a kNN graph instead of mesh edges
+  (0.9–1.2k per scene; 93–96% instance-pure on ScanNet scene0011_00, vs 1,611 official
+  ones), with estimated normals for MultiScan,
+  and (b) the detector's text input is the ScanNet200 class names only, since no
+  ScanRefer / Multi3DRefer sentences exist for those scenes. The *ScanNet control* applies
+  exactly (a) + (b) to ScanNet: grounding drops by 2.6 points (57.37 → 54.75) and QA is
+  unchanged, so most of the gap to 3RScan / MultiScan is the domain shift itself (the
+  detector is trained on ScanNet only), not the substitutes.
 
 ## Repository layout
 
@@ -78,7 +111,8 @@ Grounding→QA chain (against the first grounding row): R1 37.85, R2 54.10.
 | `extra_eval/build_env.sh`, `requirements.txt`, `overrides.txt`, `minkowski_cuda12.patch` | Builds the runtime as a uv venv for current GPUs (see [Environment](#environment)). |
 | `extra_eval/download.sh` | Checkpoint, BERT, CLIP label features and ScanRefer / Multi3DRefer / ScanQA language data from the HF release, plus Tiny-Vicuna-1B; links them to `./saved`, `./pretrained`, `./data/langdata`. |
 | `extra_eval/preprocess_scannet.py`, `.sh` | ScanNet val scans → the Mask3D-style `data/processed/scannet200` the code reads; links `data/rawscannet` for the axis-alignment matrices. |
-| `extra_eval/infer.py`, `run_infer.sh` | Inference on all three benchmarks (one process per GPU, scenes sharded). |
+| `extra_eval/preprocess_pointcloud.py`, `.sh` | 3RScan / MultiScan point clouds (and the ScanNet control) → the same layout, with kNN superpoints; see the 3RScan / MultiScan caveat above. |
+| `extra_eval/infer.py`, `run_infer.sh` | Inference on all three benchmarks (one process per GPU, scenes sharded); `DOMAIN=3rscan|multiscan|scannet_pcseg` for the other Beacon3D domains. |
 | `extra_eval/score.py`, `score.sh` | Scoring with the official scripts; writes `extra_eval/results/`. |
 | `extra_eval/real3dqa/` | The two official Real-3DQA evaluators, vendored unmodified (CC BY-SA 4.0, see `VENDORED.md`). |
 | `extra_eval/beacon3d/Beacon3D/` | Vendored Beacon3D repo at `bda1203` (Apache-2.0): evaluators, `utils.py`, annotations, metadata and GPT system prompt. Unmodified; see `VENDORED.md`. `beacon_grounding_shim.py` only skips knowledge tags with zero cases. |
@@ -96,6 +130,7 @@ Grounding→QA chain (against the first grounding row): R1 37.85, R2 54.10.
 | inference | `scannetv2-labels.combined.tsv` | ScanNet | `SCANNET_LABEL_TSV` |
 | SQA3D | `balanced/v1_balanced_{questions,sqa_annotations}_test_scannetv2.json` | `sqa_task.zip` on [Zenodo 7792397](https://zenodo.org/record/7792397) | `SQA3D_DIR` |
 | Real-3DQA | `debiased_test.jsonl`, `rotation_{0,90,180,270}.jsonl` | [HF `Oliver-Ma/Real-3DQA`](https://huggingface.co/datasets/Oliver-Ma/Real-3DQA) `data/test/` | `REAL3DQA_DIR` |
+| Beacon3D 3RScan / MultiScan | SceneVerse `scan_data/{3RScan,MultiScan}/`: `pcd_with_global_alignment/<scene>.pth` (+ `normal/<scene>.npy` for 3RScan) | [SceneVerse](https://scene-verse.github.io/) release | `SCENEVERSE_DIR` |
 | Beacon3D QA scoring | an OpenAI API key | | `OPENAI_API_KEY` |
 
 The **official** `.segs.json` is required: the aggregation's object masks are lists of its
@@ -125,6 +160,7 @@ cp env.sh.example env.sh        # fill in paths (+ OPENAI_API_KEY); env.sh is gi
 bash extra_eval/build_env.sh    # GPU node with internet access; -> $G3D_ENV
 bash extra_eval/download.sh
 bash extra_eval/preprocess_scannet.sh
+bash extra_eval/preprocess_pointcloud.sh   # Beacon3D 3RScan / MultiScan + ScanNet control
 ```
 
 Every script in `extra_eval/*.sh` sources `env.sh` from the repo root and reads its paths
@@ -137,11 +173,13 @@ in your own job script.
 ```shell
 # 1. inference, all three benchmarks; one process per visible GPU (~5 min on 2 GPUs)
 OUT=outputs/extra_eval bash extra_eval/run_infer.sh
+for d in 3rscan multiscan scannet_pcseg; do DOMAIN=$d OUT=outputs/extra_eval bash extra_eval/run_infer.sh; done
 #    OUT=outputs/debug MAX_SCENES=2 BENCHES=sqa3d bash extra_eval/run_infer.sh   # smoke test
 
 # 2. score; Beacon3D QA calls the GPT judge (QA_MODEL, default gpt-4o-mini-2024-07-18)
 PREDS_DIR=outputs/extra_eval bash extra_eval/score.sh
-#    -> extra_eval/results/{sqa3d,real3dqa,beacon3d_scannet}/, summary.json; RESULT_DIR to write elsewhere
+#    -> extra_eval/results/{sqa3d,real3dqa,beacon3d_<domain>,beacon3d_overall}/, summary.json
+#    RESULT_DIR to write elsewhere; BEACON_DOMAINS / --beacon_domains to rescore a subset
 ```
 
 ## How the evaluation is wired, and what to be careful about
@@ -172,6 +210,10 @@ PREDS_DIR=outputs/extra_eval bash extra_eval/score.sh
   released string ids no question would intersect.
 - **`evaluate_qa.py` caches.** Beacon3D's QA evaluator silently reuses an existing
   processed output instead of re-judging; `score.py` deletes it before every call.
+- **Beacon3D metrics are re-derived.** `score.py` runs the official evaluators and then
+  recomputes every number from their processed files (to pool domains and to get the chain
+  analysis for the IoU ≥ 0.25 variant without a second GPT pass); it asserts that its
+  per-domain case scores equal the official printout. QA is judged once per domain.
 - **Colour normalisation.** `data/processed/scannet200/color_mean_std.yaml` must hold the
   ScanNet200 *train*-split statistics; they are taken from Mask3D's inference code
   (`cvg/Mask3D`, `mask3d/__init__.py`), so the train scans are not needed.
@@ -208,6 +250,14 @@ using the data and evaluators of
   booktitle={International Conference on Learning Representations},
   year={2023},
   url={https://openreview.net/forum?id=IDJx97BC38}
+}
+
+@inproceedings{ma2026real3dqa,
+  title={Do 3D Large Language Models Really Understand 3D Spatial Relationships?},
+  author={Xianzheng Ma and Tao Sun and Shuai Chen and Yash Bhalgat and Jindong Gu and Angel X Chang and Iro Armeni and Iro Laina and Songyou Peng and Victor Adrian Prisacariu},
+  booktitle={The Fourteenth International Conference on Learning Representations},
+  year={2026},
+  url={https://arxiv.org/abs/2603.23523}
 }
 ```
 

@@ -7,6 +7,8 @@
 #   OUT        output dir           (default outputs/extra_eval_<timestamp>)
 #   NGPU       processes / GPUs     (default: all visible)
 #   BENCHES    comma list           (default sqa3d,real3dqa,beacon3d)
+#   DOMAIN     scannet | scannet_pcseg | 3rscan | multiscan (default scannet); the others run
+#              Beacon3D only, on preprocess_pointcloud.sh output in $G3D_ROOT/pointcloud/<domain>
 set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 [ -f env.sh ] && source env.sh
@@ -18,14 +20,16 @@ OUT="${OUT:-outputs/extra_eval_$(date +%Y%m%d_%H%M%S)}"
 mkdir -p "$OUT"
 EXTRA=()
 [ -n "${MAX_SCENES:-}" ] && EXTRA+=(--max_scenes "$MAX_SCENES")
+DOMAIN="${DOMAIN:-scannet}"
+[ "$DOMAIN" != scannet ] && EXTRA+=(--domain "$DOMAIN" --processed_dir "${G3D_ROOT:?set G3D_ROOT}/pointcloud/$DOMAIN/scannet200")
 pids=()
 for ((i = 0; i < NGPU; i++)); do
     CUDA_VISIBLE_DEVICES=$i $PY extra_eval/infer.py --out_dir "$OUT" \
         --benches "${BENCHES:-sqa3d,real3dqa,beacon3d}" --shard "$i/$NGPU" "${EXTRA[@]}" \
-        > "$OUT/infer_shard$i.log" 2>&1 &
+        > "$OUT/infer_${DOMAIN}_shard$i.log" 2>&1 &
     pids+=($!)
 done
 rc=0
 for p in "${pids[@]}"; do wait "$p" || rc=1; done
-tail -n 3 "$OUT"/infer_shard*.log
+tail -n 3 "$OUT"/infer_${DOMAIN}_shard*.log
 echo "INFER_EXIT=$rc out=$OUT"

@@ -21,6 +21,8 @@ import json
 import os
 import subprocess
 import sys
+
+import numpy as np
 from collections import defaultdict
 from pathlib import Path
 
@@ -121,65 +123,149 @@ def score_real3dqa(pred_dir, out):
     return res
 
 
+KNOWLEDGE = ["class", "appearance", "geometry", "spatial", "functionality"]
+QA_TAGS = ["class", "appearance", "geometry", "spatial", "existence", "functionality"]
+BEACON_DOMAINS = ["scannet", "3rscan", "multiscan"]
+# G3D-LLM grounds to its own proposals: the proposal is mapped to the GT object of highest
+# point IoU. "" accepts any overlap (closest to picking an object, as GT-mask models do);
+# "_iou25" also needs IoU >= 0.25 (ScanRefer Acc@0.25 style).
+VARIANTS = {"": 0.0, "_iou25": 0.25}
+
+
+def beacon_units(bdir, src_g, variant=""):
+    """Per-unit outcomes behind Beacon3D's numbers, re-derived from the evaluators' own
+    inputs/outputs so domains can be pooled: grounding cases (deduplicated by
+    (scene, utterance) as in ``build_results_mapping``), chains, objects, and QA cases
+    (GPT score 1-5) with the grounding->QA chain flag of ``eval_chain``."""
+    infer = json.load(open(bdir / f"infer_grounding{variant}.json"))
+    cases = {}
+    for s, r in zip(src_g, infer):
+        tag = frozenset(s["item_id"].split("_")[-1].lower().split("-"))
+        cases[(s["scan_id"], s["utterance"].lower())] = (bool(r["correct"]), tag)
+    pg = json.load(open(bdir / f"infer_grounding{variant}_processed.json"))
+    chains = [all(c["correct"]) for c in pg]
+    objects = [all(c["correct"][-1] for c in pg[i:i + 3]) for i in range(0, len(pg), 3)]
+    pq = json.load(open(bdir / "infer_qa_processed.json"))
+    qa = [(it["score"], it["tag"].lower(), bool(it["extra_knowledge"]), objects[i // 3])
+          for i, it in enumerate(pq)]
+    return {"cases": list(cases.values()), "chains": chains, "objects": objects, "qa": qa}
+
+
+def beacon_metrics(u):
+    pct = lambda xs: 100 * float(np.mean(xs)) if len(xs) else None  # noqa: E731
+    gpt = lambda xs: (float(np.mean(xs)) - 1) / 4 * 100 if len(xs) else None  # noqa: E731
+    g = {"case": pct([c for c, _ in u["cases"]])}
+    g.update({k: pct([c for c, t in u["cases"] if k in t]) for k in KNOWLEDGE})
+    g.update(chain=pct(u["chains"]), object=pct(u["objects"]), n_cases=len(u["cases"]),
+             n_objects=len(u["objects"]))
+    sc = [q[0] for q in u["qa"]]
+    q = {"case": gpt(sc), "object": pct([all(x >= 4 for x in sc[i:i + 3]) for i in range(0, len(sc), 3)])}
+    q.update({k: gpt([x[0] for x in u["qa"] if x[1] == k]) for k in QA_TAGS})
+    t_all, t_wo = np.zeros(4), np.zeros(4)
+    for score, _, extra, gok in u["qa"]:
+        k = (0 if gok else 2) + (0 if score >= 4 else 1)
+        t_all[k] += 1
+        t_wo[k] += not extra
+    q["chain_overall"] = [round(100 * x / t_all.sum(), 2) for x in t_all]  # G1Q1, G1Q0, G0Q1, G0Q0
+    q["chain_wo_extra"] = [round(100 * x / t_wo.sum(), 2) for x in t_wo]
+    q["R1"] = 100 * t_wo[1] / (t_wo[1] + t_wo[3])
+    q["R2"] = 100 * t_all[2] / (t_all[0] + t_all[2])
+    q["n_cases"] = len(sc)
+    return {"grounding": g, "qa": q}
+
+
+def run_eval(name, cmd, beacon_root, bdir):
+    print(f"$ {' '.join(cmd)}", flush=True)
+    p = subprocess.run(cmd, cwd=beacon_root, capture_output=True, text=True)
+    (bdir / f"score_{name}.txt").write_text(rel(p.stdout + ("" if p.returncode == 0 else "\n[stderr]\n" + p.stderr)))
+    print(p.stdout[-3000:])
+    if p.returncode != 0:
+        print(p.stderr[-3000:])
+        raise SystemExit(f"{bdir.name} {name} evaluator failed")
+
+
 def score_beacon3d(pred_dir, out, beacon_root, qa_model, domain="scannet"):
-    res = {}
+    """One domain: infer files, the official evaluators (grounding for both variants, QA
+    once with the GPT judge), then our re-derived metrics (checked against the official
+    printout) incl. the chain analysis for the IoU >= 0.25 variant.
+    ``scannet_pcseg`` is the ScanNet control run under the point-cloud conditions."""
+    data_domain = "scannet" if domain == "scannet_pcseg" else domain
     bdir = out / f"beacon3d_{domain}"
-    # G3D-LLM grounds to its own proposals: the proposal is mapped to the GT object of
-    # highest point IoU. "" accepts any overlap (closest to picking an object, as GT-mask
-    # models do); "_iou25" also needs IoU >= 0.25 (ScanRefer Acc@0.25 style).
-    variants = {"": 0.0, "_iou25": 0.25}
+    bdir.mkdir(parents=True, exist_ok=True)
+    res = {}
+    src = {}
     for task in ["grounding", "qa"]:
         rows = load(pred_dir, f"beacon3d_{domain}_{task}")
         if not rows:
             return None
-        src = json.load(open(os.path.join(beacon_root, "data", domain, f"{domain}_{task}.json")))
+        src[task] = json.load(open(os.path.join(beacon_root, "data", data_domain, f"{data_domain}_{task}.json")))
         rows = sorted(rows, key=lambda r: r["idx"])
-        assert [r["idx"] for r in rows] == list(range(len(src))), f"{task}: {len(rows)} vs {len(src)}"
+        assert [r["idx"] for r in rows] == list(range(len(src[task]))), f"{domain}/{task}: {len(rows)} vs {len(src[task])}"
         if task == "grounding":
-            for tag, thr in variants.items():
+            for tag, thr in VARIANTS.items():
                 infer = [{"item_id": s["item_id"], "scan_id": s["scan_id"], "pred": r["pred"],
                           "pred_object_id": r["pred_object_id"], "pred_iou": r["pred_iou"],
                           "target_id": s["target_id"],
                           "correct": (r["pred_object_id"] is not None and r["pred_object_id"] in s["target_id"]
                                       and r["pred_iou"] >= thr)}
-                         for s, r in zip(src, rows)]
-                res[f"grounding_case_acc{tag or '_best'}"] = 100 * sum(x["correct"] for x in infer) / len(infer)
+                         for s, r in zip(src[task], rows)]
                 json.dump(infer, open(bdir / f"infer_grounding{tag}.json", "w"), indent=1)
+                run_eval(f"grounding{tag}", [sys.executable, str(HERE / "beacon3d" / "beacon_grounding_shim.py"),
+                                             "--infer", str(bdir / f"infer_grounding{tag}.json"),
+                                             "--domain", data_domain], beacon_root, bdir)
             res["grounding_no_ref_token"] = sum(r["pred_query"] is None for r in rows)
         else:
             infer = [{"question_id": s["question_id"], "scene_id": s["scene_id"],
                       "question": s["question"], "pred": r["pred"], "answers": s["answers"]}
-                     for s, r in zip(src, rows)]
-            res["qa_local"] = em_scores(rows)
+                     for s, r in zip(src[task], rows)]
             path = bdir / "infer_qa.json"
             json.dump(infer, open(path, "w"), indent=1)
-        jobs = []
-        if task == "grounding":
-            for tag in variants:
-                jobs.append((f"grounding{tag}", [
-                    sys.executable, str(HERE / "beacon3d" / "beacon_grounding_shim.py"),
-                    "--infer", str(bdir / f"infer_grounding{tag}.json"), "--domain", domain]))
-        elif os.environ.get("OPENAI_API_KEY"):
-            for tag in variants:  # chain analysis against each grounding variant
-                jobs.append((f"qa{tag}", [
-                    sys.executable, "evaluate_qa.py", "--infer", str(path), "--domain", domain,
-                    "--model", qa_model, "--output", str(bdir / f"infer_qa{tag}_processed.json"),
-                    "--grounding", str(bdir / f"infer_grounding{tag}_processed.json")]))
-        else:
-            print(f"[beacon3d_{domain}] qa: OPENAI_API_KEY unset, GPT-scored evaluation skipped")
-        for name, cmd in jobs:
-            if name.startswith("qa"):
-                # evaluate_qa.py silently reuses an existing --output instead of re-judging
-                Path(cmd[cmd.index("--output") + 1]).unlink(missing_ok=True)
-            print(f"$ {' '.join(cmd)}", flush=True)
-            p = subprocess.run(cmd, cwd=beacon_root, capture_output=True, text=True)
-            (bdir / f"score_{name}.txt").write_text(rel(p.stdout + ("" if p.returncode == 0 else "\n[stderr]\n" + p.stderr)))
-            print(p.stdout[-3000:])
-            if p.returncode != 0:
-                print(p.stderr[-3000:])
-                raise SystemExit(f"beacon3d {name} evaluator failed")
-    res["qa_judge"] = qa_model if os.environ.get("OPENAI_API_KEY") else None
-    json.dump(res, open(bdir / "scores_local.json", "w"), indent=1)
+            res["qa_em"] = em_scores(rows)
+            if not os.environ.get("OPENAI_API_KEY"):
+                print(f"[beacon3d_{domain}] qa: OPENAI_API_KEY unset, GPT-judged evaluation skipped")
+                json.dump(res, open(bdir / "scores.json", "w"), indent=1)
+                return res
+            processed = bdir / "infer_qa_processed.json"
+            processed.unlink(missing_ok=True)  # evaluate_qa.py silently reuses an existing one
+            run_eval("qa", [sys.executable, "evaluate_qa.py", "--infer", str(path), "--domain", data_domain,
+                            "--model", qa_model, "--output", str(processed),
+                            "--grounding", str(bdir / "infer_grounding_processed.json")], beacon_root, bdir)
+    res["qa_judge"] = qa_model
+    for tag in VARIANTS:
+        res[f"metrics{tag or '_best'}"] = beacon_metrics(beacon_units(bdir, src["grounding"], tag))
+    # our re-derivation must agree with the official printout
+    txt = (bdir / "score_grounding.txt").read_text()
+    official = float(txt.split("[overall]:")[1].split()[0])
+    assert abs(official - res["metrics_best"]["grounding"]["case"]) < 0.01, (official, res["metrics_best"])
+    txt = (bdir / "score_qa.txt").read_text()
+    official = float(txt.split("GPT-Score =")[1].split()[0])
+    assert abs(official - res["metrics_best"]["qa"]["case"]) < 0.01, (official, res["metrics_best"])
+    json.dump(res, open(bdir / "scores.json", "w"), indent=1)
+    return res
+
+
+def beacon3d_overall(out, beacon_root, pred_dir):
+    """Beacon3D defines no cross-domain score; two are reported: ``pooled`` (every case /
+    chain / object of ScanNet, 3RScan and MultiScan together) and ``mean`` (average of the
+    three per-domain numbers)."""
+    res = {}
+    for tag in VARIANTS:
+        units = {}
+        for d in BEACON_DOMAINS:
+            src = json.load(open(os.path.join(beacon_root, "data", d, f"{d}_grounding.json")))
+            units[d] = beacon_units(out / f"beacon3d_{d}", src, tag)
+        pooled = {k: sum((units[d][k] for d in BEACON_DOMAINS), []) for k in units["scannet"]}
+        per = {d: beacon_metrics(units[d]) for d in BEACON_DOMAINS}
+        mean = {t: {k: float(np.mean([per[d][t][k] for d in BEACON_DOMAINS if per[d][t][k] is not None]))
+                    for k in per["scannet"][t] if isinstance(per["scannet"][t][k], float)}
+                for t in ["grounding", "qa"]}
+        res[f"pooled{tag or '_best'}"] = beacon_metrics(pooled)
+        res[f"mean{tag or '_best'}"] = mean
+    rows = {d: load(pred_dir, f"beacon3d_{d}_qa") for d in BEACON_DOMAINS}
+    res["qa_em_pooled"] = em_scores(sum(rows.values(), []))
+    res["qa_em_mean"] = {k: float(np.mean([em_scores(rows[d])[k] for d in BEACON_DOMAINS])) for k in ["EM", "EM-R"]}
+    (out / "beacon3d_overall").mkdir(exist_ok=True)
+    json.dump(res, open(out / "beacon3d_overall" / "scores.json", "w"), indent=1)
     return res
 
 
@@ -191,17 +277,23 @@ def main():
     ap.add_argument("--benches", default="sqa3d,real3dqa,beacon3d")
     ap.add_argument("--qa_model", default="gpt-4o-mini-2024-07-18",
                     help="Beacon3D QA judge (upstream default is gpt-4o-2024-11-20)")
+    ap.add_argument("--beacon_domains", default="scannet,3rscan,multiscan,scannet_pcseg",
+                    help="Beacon3D domains to (re)score; the overall score reads all three from result_dir")
     args = ap.parse_args()
     out = Path(args.result_dir).resolve()
-    for d in ["sqa3d", "real3dqa", "beacon3d_scannet"]:
+    for d in ["sqa3d", "real3dqa"]:
         (out / d).mkdir(parents=True, exist_ok=True)
-    summary = {}
+    summary_path = out / "summary.json"
+    summary = json.load(open(summary_path)) if summary_path.exists() else {}
     if "sqa3d" in args.benches:
         summary["sqa3d"] = score_sqa3d(args.pred_dir, out)
     if "real3dqa" in args.benches:
         summary["real3dqa"] = score_real3dqa(args.pred_dir, out)
     if "beacon3d" in args.benches:
-        summary["beacon3d_scannet"] = score_beacon3d(args.pred_dir, out, args.beacon_root, args.qa_model)
+        for d in [d for d in args.beacon_domains.split(",") if d]:
+            summary[f"beacon3d_{d}"] = score_beacon3d(args.pred_dir, out, args.beacon_root, args.qa_model, d)
+        if all((out / f"beacon3d_{d}" / "infer_qa_processed.json").exists() for d in BEACON_DOMAINS):
+            summary["beacon3d_overall"] = beacon3d_overall(out, args.beacon_root, args.pred_dir)
     json.dump(summary, open(out / "summary.json", "w"), indent=1)
     print(json.dumps(summary, indent=1))
 

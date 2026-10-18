@@ -75,7 +75,7 @@ def load_beacon3d(d, domain="scannet"):
 
 
 # ----------------------------------------------------------------------------- model
-def build_model(ckpt, save_dir):
+def build_model(ckpt, save_dir, domain="scannet", processed_dir=None):
     from hydra.experimental import compose, initialize_config_dir
     overrides = [
         "general.experiment_name=step3_mask3d_lang_4GPUS", "general.project_name=scannet200",
@@ -91,6 +91,16 @@ def build_model(ckpt, save_dir):
         # which we replace with our questions
         "data.lang_data_conf=scanrefer+m3dref",
     ]
+    if domain != "scannet":
+        # point-cloud domains (preprocess_pointcloud.py): no ScanRefer / Multi3DRefer text
+        # exists for 3RScan / MultiScan, so the detector reads the class names only; the
+        # ScanNet control drops the sentences too, to isolate the same conditions
+        overrides += [f"data.test_dataset.data_dir={processed_dir}",
+                      f"data.test_dataset.label_db_filepath={processed_dir}/label_database.yaml",
+                      f"data.test_dataset.color_mean_std={processed_dir}/color_mean_std.yaml",
+                      "data.lang_query=0"]
+    if domain in ("3rscan", "multiscan"):
+        overrides.append("model.axis_align_coord=false")  # SceneVerse clouds are aligned already
     with initialize_config_dir(config_dir=str(REPO / "conf")):
         cfg = compose(config_name="config_base.yaml", overrides=overrides)
     from trainer.trainer import ModelingGrounded3DLLM
@@ -166,6 +176,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--benches", default="sqa3d,real3dqa,beacon3d")
+    ap.add_argument("--domain", default="scannet", choices=["scannet", "scannet_pcseg", "3rscan", "multiscan"],
+                    help="scene source; anything but scannet runs Beacon3D only, on "
+                         "preprocess_pointcloud.py output given by --processed_dir")
+    ap.add_argument("--processed_dir", default=None)
     ap.add_argument("--ckpt", default="saved/step3_mask3d_lang_4GPUS/last-epoch.ckpt")
     ap.add_argument("--sqa3d_dir", default=os.environ.get("SQA3D_DIR"))
     ap.add_argument("--real3dqa_dir", default=os.environ.get("REAL3DQA_DIR"))
@@ -182,13 +196,19 @@ def main():
         items += list(load_sqa3d(args.sqa3d_dir))
     if "real3dqa" in benches:
         items += list(load_real3dqa(args.real3dqa_dir))
-    if "beacon3d" in benches:
+    if args.domain != "scannet":
+        items = []
+        for it in load_beacon3d(args.beacon3d_dir, "scannet" if args.domain == "scannet_pcseg" else args.domain):
+            it["bench"] = it["bench"].replace("beacon3d_scannet_", f"beacon3d_{args.domain}_")
+            items.append(it)
+    elif "beacon3d" in benches:
         items += list(load_beacon3d(args.beacon3d_dir, "scannet"))
     by_scene = defaultdict(list)
     for it in items:
         by_scene[it["scene_id"]].append(it)
 
-    cfg, model = build_model(args.ckpt, str(out_dir / "g3d_save"))
+    cfg, model = build_model(args.ckpt, str(out_dir / f"g3d_save_{args.domain}"), args.domain,
+                             args.processed_dir and str(Path(args.processed_dir).resolve()))
     import hydra
     ds = model.test_dataset
     scene_of = [d["raw_filepath"].split("/")[-2] for d in ds.data]
