@@ -168,6 +168,9 @@ def score_beacon3d(pred_dir, out, beacon_root, qa_model, domain="scannet"):
         else:
             print(f"[beacon3d_{domain}] qa: OPENAI_API_KEY unset, GPT-scored evaluation skipped")
         for name, cmd in jobs:
+            if name.startswith("qa"):
+                # evaluate_qa.py silently reuses an existing --output instead of re-judging
+                Path(cmd[cmd.index("--output") + 1]).unlink(missing_ok=True)
             print(f"$ {' '.join(cmd)}", flush=True)
             p = subprocess.run(cmd, cwd=beacon_root, capture_output=True, text=True)
             (bdir / f"score_{name}.txt").write_text(rel(p.stdout + ("" if p.returncode == 0 else "\n[stderr]\n" + p.stderr)))
