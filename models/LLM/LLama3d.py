@@ -329,6 +329,38 @@ class LLama3dForCausalLM(LlamaForCausalLM):
             return super().forward(**kwargs)
         return self.model_forward(**kwargs)
 
+    def _use_scene_prefix_cache(self, gen_params):
+        '''
+        Evaluation speed-up (config.eval_prefix_cache): every question on a scene starts with
+        the same [100 instance tokens, eos, system prompt, "<s> USER:"] prefix, so its KV cache
+        is computed once per scene and reused; only the rest of each prompt is fed to generate.
+        The layout, attention mask and position ids stay those of the full right-padded batch.
+        Rewrites gen_params in place and returns the last-layer hidden state of the first
+        prompt position (extract_decoder_hidden_states reads it), or None if the batch does
+        not share the prefix.
+        '''
+        inputs_embeds, attention_mask = gen_params['inputs_embeds'], gen_params['attention_mask']
+        prefix_len = 101 + self.prompts["rules"]["user"]["ids"].shape[0]
+        if self.config.use_system_prompt:
+            prefix_len += self.prompts["system_prompt"]["ids"].shape[0]
+        prefix = inputs_embeds[:1, :prefix_len]
+        if inputs_embeds.shape[1] <= prefix_len + 1 or not attention_mask[:, :prefix_len].all() or \
+                not (inputs_embeds[:, :prefix_len] == prefix).all():
+            return None
+        cached = getattr(self, "_prefix_cache", None)
+        if cached is None or not torch.equal(cached[0], prefix):
+            self._prefix_cache = None  # free the previous scene's cache first
+            with torch.autocast("cuda"):
+                out = super().forward(inputs_embeds=prefix, use_cache=True,
+                                      output_hidden_states=True, return_dict=True)
+            cached = self._prefix_cache = (prefix, out.past_key_values, out.hidden_states[-1][0, 0])
+        num_rows = inputs_embeds.shape[0] * gen_params['num_beams']
+        gen_params['past_key_values'] = tuple(tuple(t.expand(num_rows, -1, -1, -1) for t in layer)
+                                              for layer in cached[1])
+        gen_params['inputs_embeds'] = inputs_embeds[:, prefix_len:]
+        gen_params['use_cache'] = True
+        return cached[2]
+
     def calculate_grounding_loss(self, batch, use_single_ref_token):
         test_feature = None
         loss = torch.tensor(0.0)
@@ -721,6 +753,10 @@ class LLama3dForCausalLM(LlamaForCausalLM):
                     if self.config.vicuna_version in ["TinyLlama-1.1B-intermediate-step-1195k-token-2.5T", "Tiny-Vicuna-1B"]:
                         common_params['pad_token_id'] = self.llama_tokenizer.eos_token_id
 
+                    prefix_hidden = None
+                    if getattr(self.config, "eval_prefix_cache", False):
+                        prefix_hidden = self._use_scene_prefix_cache(common_params)
+
                     with torch.autocast("cuda"):
                         outputs = self.generate(**common_params)
                         output_ids = outputs.sequences
@@ -732,6 +768,9 @@ class LLama3dForCausalLM(LlamaForCausalLM):
                     embed()
 
                 last_hidden_states = extract_decoder_hidden_states(outputs)
+                if prefix_hidden is not None and last_hidden_states.shape[1] > 1:
+                    # slot 1 is the first prompt position's hidden state, which is in the prefix
+                    last_hidden_states[:, 1] = prefix_hidden.to(last_hidden_states.dtype)
                 if use_mini_batch:
                     assert len(instance.batch) == output_ids.shape[0]
                     for _instance, ids, lash_hidden_state in zip(instance.batch, output_ids, last_hidden_states):

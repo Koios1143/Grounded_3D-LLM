@@ -3,12 +3,14 @@
 This is a fork of [Grounded 3D-LLM](https://github.com/OpenRobotLab/Grounded_3D-LLM)
 (arXiv 2405.10370) whose purpose is to **evaluate the released Grounded 3D-LLM checkpoint
 on benchmarks the paper does not report**, under one reproducible setup, so its scores can
-be compared with other models on equal footing. Wired in so far:
-[SQA3D](https://sqa3d.github.io/) (ICLR 2023), [Real-3DQA](https://real-3dqa.github.io/)
+be compared with other models on equal footing. Wired in so far: the paper's own
+ScanNet benchmarks ScanRefer, Multi3DRefer, Scan2Cap and ScanQA (re-run as a check on the
+setup), [SQA3D](https://sqa3d.github.io/) (ICLR 2023), [Real-3DQA](https://real-3dqa.github.io/)
 (ICLR 2026, a debiased SQA3D subset with viewpoint rotations) and
 [Beacon3D](https://beacon-3d.github.io/) (CVPR 2025; ScanNet, 3RScan, MultiScan). The upstream model,
 training and data code are untouched apart from a torch-2 compatibility fix in the
-pointnet2 ops; everything this fork adds lives under [`extra_eval/`](extra_eval/), and
+pointnet2 ops and an optional per-scene prefix cache for decoding (`PREFIX_CACHE=1`, off by
+default; see [Running](#running)); everything this fork adds lives under [`extra_eval/`](extra_eval/), and
 the per-question outputs behind the numbers below are committed in
 [`extra_eval/results/`](extra_eval/results/).
 
@@ -18,6 +20,34 @@ Upstream Grounded 3D-LLM's own README is in the git history (`git show 9de50f1:R
 
 Released checkpoint `saved/step3_mask3d_lang_4GPUS/last-epoch.ckpt`, ScanNet val, no
 training or fine-tuning of any kind. All numbers are percentages.
+
+### ScanRefer, Multi3DRefer, Scan2Cap, ScanQA (val; the paper's benchmarks)
+
+These run the repository's own test pass (`eval_step` → `llama_model.evaluate` →
+`eval_llm_iou_score`, the instructions built by the release's `langdata/`) and are scored
+with the metric code of `models/metrics/evaluate_LLM.py` and the official Multi3DRefer
+evaluator. They reproduce the paper's Table III (generalist model) to within 0.3:
+
+| | ScanRefer Acc@0.25 | Acc@0.5 | M3DRef F1@0.25 | F1@0.5 | ScanQA B-4 | CIDEr | Scan2Cap B-4@0.5 | C@0.5 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| paper | 48.6 | 44.0 | 44.7 | 40.8 | 13.2 | 75.9 | 35.0 | 70.2 |
+| this run | 48.62 | 44.31 | 44.58 | 40.92 | 13.29 | 75.98 | 35.24 | 70.39 |
+| this run, `PREFIX_CACHE=1` | 48.63 | 44.32 | 44.61 | 40.96 | 13.29 | 75.99 | 35.22 | 70.44 |
+
+- **ScanRefer** (9,257 of the 9,503 val sentences asked, see below): unique 84.34 / 76.80,
+  multiple 39.73 / 36.23. Counting the 246 unasked sentences as misses: 47.36 / 43.17.
+- **Multi3DRefer** (10,855 of 11,113 asked), F1@0.25 / @0.5 per type: single target with /
+  without distractors 43.50 / 40.00 and 80.85 / 73.85, multiple targets 34.01 / 31.45, zero
+  target 0 / 0 (the model always outputs at least one object). Unasked queries as F1 = 0:
+  43.54 / 39.97.
+- **ScanQA** (4,675 questions): BLEU-1 39.38, METEOR 15.33, ROUGE-L 37.06, EM 19.94, EM-R
+  35.51.
+- **Scan2Cap** (2,068 objects): @0.25 BLEU-4 37.36, METEOR 27.18, ROUGE-L 59.25, CIDEr
+  74.36; @0.5 METEOR 26.26, ROUGE-L 56.82. The best proposal reaches IoU ≥ 0.25 / 0.5 for
+  93.5 / 86.8% of the objects.
+
+Per-question outputs: `extra_eval/results/{scanrefer,m3dref,scan2cap,scanqa}/predictions.jsonl`;
+the Multi3DRefer evaluator's printout is in `results/m3dref/official_evaluator.txt`.
 
 ### SQA3D (test, 3,519 questions)
 
@@ -79,6 +109,19 @@ column of the overall rows is ScanNet's. Per-domain files:
 
 ### Read this before quoting the numbers
 
+- **The four paper benchmarks follow the repository's test pass, including its quirks.**
+  Questions are drawn from the release's instruction templates (`random.choice`, seeded per
+  scene here so runs repeat). Not every val item is asked: the detector's text input holds
+  the scene's ScanRefer / Multi3DRefer sentences up to 48 × 256 tokens, and items whose
+  target is a wall or floor are skipped; the tables count asked items, as the paper's code
+  does. Mini-batches are right-padded, so an item's answer can depend on its batch-mates;
+  batches are formed exactly as upstream. The detection prompts of the test pass (198 per
+  scene, not a benchmark asked for here) are left out. SPICE is not computed. Scan2Cap is
+  scored as `evaluate_LLM.py` does (one caption per object, box IoU of the object's
+  best-matching proposal); `evaluate_LLM.py` keys objects by `scene0011`, not
+  `scene0011_00`, which could merge two scans of one scene, so `score_native.py` also scores
+  with full scene ids. On ScanRefer val the two are identical.
+
 - **SQA3D and Real-3DQA are zero-shot for this model.** Grounded 3D-LLM was never trained
   on SQA3D (its instruction data includes ScanQA, not SQA3D), whereas most models in SQA3D
   tables were. Questions are asked with the model's own ScanQA prompt, with the situation
@@ -112,8 +155,9 @@ column of the overall rows is ScanNet's. Per-domain files:
 | `extra_eval/download.sh` | Checkpoint, BERT, CLIP label features and ScanRefer / Multi3DRefer / ScanQA language data from the HF release, plus Tiny-Vicuna-1B; links them to `./saved`, `./pretrained`, `./data/langdata`. |
 | `extra_eval/preprocess_scannet.py`, `.sh` | ScanNet val scans → the Mask3D-style `data/processed/scannet200` the code reads; links `data/rawscannet` for the axis-alignment matrices. |
 | `extra_eval/preprocess_pointcloud.py`, `.sh` | 3RScan / MultiScan point clouds (and the ScanNet control) → the same layout, with kNN superpoints; see the 3RScan / MultiScan caveat above. |
-| `extra_eval/infer.py`, `run_infer.sh` | Inference on all three benchmarks (one process per GPU, scenes sharded); `DOMAIN=3rscan|multiscan|scannet_pcseg` for the other Beacon3D domains. |
-| `extra_eval/score.py`, `score.sh` | Scoring with the official scripts; writes `extra_eval/results/`. |
+| `extra_eval/infer.py`, `run_infer.sh` | Inference on all seven benchmarks, one scene at a time (one process per GPU, scenes sharded); `DOMAIN=3rscan|multiscan|scannet_pcseg` for the other Beacon3D domains. |
+| `extra_eval/score.py`, `score_native.py`, `score.sh` | Scoring with the official scripts / the repository's metric code; writes `extra_eval/results/`. |
+| `models/LLM/LLama3d.py`, `modeling_llama.py` | Upstream, plus the opt-in per-scene prefix cache (`_use_scene_prefix_cache` and the first-step branch of `prepare_inputs_for_generation`). |
 | `extra_eval/real3dqa/` | The two official Real-3DQA evaluators, vendored unmodified (CC BY-SA 4.0, see `VENDORED.md`). |
 | `extra_eval/beacon3d/Beacon3D/` | Vendored Beacon3D repo at `bda1203` (Apache-2.0): evaluators, `utils.py`, annotations, metadata and GPT system prompt. Unmodified; see `VENDORED.md`. `beacon_grounding_shim.py` only skips knowledge tags with zero cases. |
 | `extra_eval/results/` | Per-question predictions, the official evaluators' reports and `summary.json` for the run in the tables. |
@@ -132,6 +176,11 @@ column of the overall rows is ScanNet's. Per-domain files:
 | Real-3DQA | `debiased_test.jsonl`, `rotation_{0,90,180,270}.jsonl` | [HF `Oliver-Ma/Real-3DQA`](https://huggingface.co/datasets/Oliver-Ma/Real-3DQA) `data/test/` | `REAL3DQA_DIR` |
 | Beacon3D 3RScan / MultiScan | SceneVerse `scan_data/{3RScan,MultiScan}/`: `pcd_with_global_alignment/<scene>.pth` (+ `normal/<scene>.npy` for 3RScan) | [SceneVerse](https://scene-verse.github.io/) release | `SCENEVERSE_DIR` |
 | Beacon3D QA scoring | an OpenAI API key | | `OPENAI_API_KEY` |
+| Scan2Cap / ScanQA scoring | Java ≥ 8 on `PATH` (pycocoevalcap's PTB tokenizer and METEOR) | | `JAVA_HOME` |
+
+Keep a private copy of all of these: `env.sh.example` points every variable into a
+gitignored `deps/` in the repo (symlinks into storage only this checkout uses, hard links or
+copies otherwise), so cleaning up a shared data directory cannot break a re-run.
 
 The **official** `.segs.json` is required: the aggregation's object masks are lists of its
 segment ids, and re-running ScanNet's Segmentator with the same parameters does not
@@ -171,27 +220,45 @@ in your own job script.
 ## Running
 
 ```shell
-# 1. inference, all three benchmarks; one process per visible GPU (~5 min on 2 GPUs)
+# 1. inference, all seven benchmarks; one process per visible GPU (~20 min on 2 GPUs)
 OUT=outputs/extra_eval bash extra_eval/run_infer.sh
+#    PREFIX_CACHE=1 to reuse each scene's prompt prefix across its questions (below)
+#    BENCHES=scanrefer,m3dref,scan2cap,scanqa,sqa3d,real3dqa,beacon3d to pick a subset
 for d in 3rscan multiscan scannet_pcseg; do DOMAIN=$d OUT=outputs/extra_eval bash extra_eval/run_infer.sh; done
 #    OUT=outputs/debug MAX_SCENES=2 BENCHES=sqa3d bash extra_eval/run_infer.sh   # smoke test
 
 # 2. score; Beacon3D QA calls the GPT judge (QA_MODEL, default gpt-4o-mini-2024-07-18)
 PREDS_DIR=outputs/extra_eval bash extra_eval/score.sh
-#    -> extra_eval/results/{sqa3d,real3dqa,beacon3d_<domain>,beacon3d_overall}/, summary.json
-#    RESULT_DIR to write elsewhere; BEACON_DOMAINS / --beacon_domains to rescore a subset
+#    -> extra_eval/results/{scanrefer,m3dref,scan2cap,scanqa,sqa3d,real3dqa,beacon3d_<domain>,beacon3d_overall}/
+#       and summary.json (merged: benchmarks not rescored keep their entry)
+#    RESULT_DIR to write elsewhere; BENCHES / BEACON_DOMAINS to rescore a subset
 ```
+
+**Prefix cache (`PREFIX_CACHE=1`).** All questions about a scene are asked in one pass over
+that scene, and every prompt starts with the same 140 tokens: the 100 object queries, the
+system prompt and `USER:`. With the cache, that prefix is encoded once per scene and its
+keys / values are reused by every mini-batch; batches, padding, attention mask and
+position ids stay those of upstream. Results differ from the default only through
+floating-point noise (the prefix is computed at batch size 1). In the run above, 95% of the
+paper-benchmark answers were identical, and 99.5% of SQA3D / Real-3DQA / Beacon3D answers.
+Scores moved by ≤ 0.05 (table above). The gain is modest, 1.18× on the LLM part (1,752 →
+1,479 GPU-s on the four paper benchmarks), because 3-beam decoding of up to 150 tokens
+dominates. The committed results are from the default path.
 
 ## How the evaluation is wired, and what to be careful about
 
+- **One pass per scene.** For each scene the detector runs once, then the scene's
+  paper-benchmark items (the upstream test pass) and the items of the other benchmarks are
+  answered from the same 100 object queries.
 - **Same scene features as the paper's test pass.** Per scene, the frozen Mask3D-CLASP
   detector runs exactly as in the TEST block of `final_scripts/step3_train_grounded3dllm.sh`
   (`data=indoor_dialog`, `model=mask3d_lang`, `conf/llm/tiny_vicuna_len512.json`,
   axis-aligned scans). Its BiFormer also reads text — the ScanNet200 class names and the
   scene's ScanRefer / Multi3DRefer sentences — and that input is kept identical, so the
   100 object queries the LLM sees are those behind the paper's ScanQA numbers. Only the
-  LLM-side instruction lists (ScanQA, object descriptions, …) are replaced by our
-  questions (`data.lang_data_conf=scanrefer+m3dref`).
+  LLM-side instruction lists differ: `data.lang_data_conf=scanrefer+m3dref` (+`scanqa`,
+  `scan2cap` when those benchmarks are asked), which changes only what the LLM is asked,
+  not the detector's text; SQA3D / Real-3DQA / Beacon3D questions are added on top.
 - **Decoding** is the official `llama_model.evaluate`: beam 3, repetition penalty 1.2,
   ≤ 150 new tokens, mini-batches of 50. Identical (task, text) pairs within a scene are
   generated once (the Real-3DQA splits overlap with each other and with SQA3D).

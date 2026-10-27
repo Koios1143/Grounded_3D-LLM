@@ -1250,6 +1250,20 @@ class LlamaForCausalLM(LlamaPreTrainedModel):
     def prepare_inputs_for_generation(
         self, input_ids, past_key_values=None, attention_mask=None, inputs_embeds=None, **kwargs
     ):
+        # First step on top of a precomputed prefix cache (LLama3dForCausalLM._use_scene_prefix_cache):
+        # the cache holds the prefix and inputs_embeds the rest of the prompt (it stays in the kwargs
+        # on later steps, where the mask is only one longer than the cache).
+        if inputs_embeds is not None and isinstance(past_key_values, tuple) and attention_mask is not None and \
+                past_key_values[0][0].shape[2] + inputs_embeds.shape[1] == attention_mask.shape[1]:
+            position_ids = attention_mask.long().cumsum(-1) - 1
+            position_ids.masked_fill_(attention_mask == 0, 1)
+            return {
+                "inputs_embeds": inputs_embeds,
+                "position_ids": position_ids[:, -inputs_embeds.shape[1]:],
+                "past_key_values": past_key_values,
+                "use_cache": kwargs.get("use_cache"),
+                "attention_mask": attention_mask,
+            }
         if past_key_values is not None:
             if isinstance(past_key_values, Cache):
                 cache_length = past_key_values.get_seq_length()

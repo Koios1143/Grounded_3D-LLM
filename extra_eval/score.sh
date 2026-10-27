@@ -8,6 +8,7 @@ set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 [ -f env.sh ] && source env.sh
 PY="${G3D_ENV:-.venv}/bin/python"
+export PYTHONPATH=.:${PYTHONPATH:-}
 $PY extra_eval/score.py --pred_dir "${PREDS_DIR:?set PREDS_DIR}" \
-    --result_dir "${RESULT_DIR:-extra_eval/results}" --benches "${BENCHES:-sqa3d,real3dqa,beacon3d}" --qa_model "${QA_MODEL:-gpt-4o-mini-2024-07-18}" \
+    --result_dir "${RESULT_DIR:-extra_eval/results}" --benches "${BENCHES:-scanrefer,m3dref,scan2cap,scanqa,sqa3d,real3dqa,beacon3d}" --qa_model "${QA_MODEL:-gpt-4o-mini-2024-07-18}" \
     --beacon_domains "${BEACON_DOMAINS:-scannet,3rscan,multiscan,scannet_pcseg}"

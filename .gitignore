@@ -175,6 +175,7 @@ cython_debug/
 # symlinks to the downloaded release (see extra_eval/download.sh)
 /pretrained
 /saved
+/deps
 # local cluster launchers, local paths/secrets and run logs (see env.sh.example)
 *.sbatch
 env.sh

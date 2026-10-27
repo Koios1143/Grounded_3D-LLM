@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Score ``extra_eval/infer.py`` outputs: SQA3D EM / EM-R, Real-3DQA (official scripts),
-Beacon3D (official evaluators). CPU only.
+"""Score ``extra_eval/infer.py`` outputs: ScanRefer / Multi3DRefer / Scan2Cap / ScanQA (upstream
+metrics, see score_native.py), SQA3D EM / EM-R, Real-3DQA (official scripts), Beacon3D
+(official evaluators). CPU only; METEOR and the PTB tokenizer need Java (JAVA_HOME).
 
 * SQA3D: EM and EM-R (refined EM) with LEO's ``clean_answer`` / ``answer_match`` (the copy
   vendored with the Real-3DQA scorers), overall and per question type (first word:
@@ -35,6 +36,10 @@ def rel(text):
     return text.replace(str(REPO) + "/", "")
 sys.path.insert(0, str(HERE / "real3dqa"))
 from evaluate_debiased_exact_match import answer_match, clean_answer  # noqa: E402
+sys.path.insert(0, str(REPO))
+from extra_eval.score_native import load_native, score_native  # noqa: E402
+
+NATIVE = ["scanrefer", "m3dref", "scan2cap", "scanqa"]
 
 
 EMPTY = "<empty>"  # stands in for an empty generation, so it cannot substring-match
@@ -269,12 +274,29 @@ def beacon3d_overall(out, beacon_root, pred_dir):
     return res
 
 
+def export_native(pred_dir, out, benches):
+    """Per-question rows of the native benchmarks (from native/<scene>.json), one jsonl each."""
+    keep = ["type", "input_language", "output_language", "gt", "grounding_result", "score",
+            "top_1_bbox_iou", "bbox_iou_25_f1_score", "bbox_iou_50_f1_score", "gt_predicted_iou"]
+    files = {}
+    for b in benches:
+        (out / b).mkdir(parents=True, exist_ok=True)
+        files[b] = open(out / b / "predictions.jsonl", "w")
+    for scene, preds in load_native(pred_dir).items():
+        for p in preds:
+            b = p["type"].split(":")[0]
+            if b in files:
+                files[b].write(json.dumps({"scene_id": scene, **{k: p[k] for k in keep if k in p}}) + "\n")
+    for f in files.values():
+        f.close()
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--pred_dir", required=True, help="infer.py --out_dir")
     ap.add_argument("--result_dir", default="extra_eval/results")
     ap.add_argument("--beacon_root", default=str(HERE / "beacon3d" / "Beacon3D"))
-    ap.add_argument("--benches", default="sqa3d,real3dqa,beacon3d")
+    ap.add_argument("--benches", default="scanrefer,m3dref,scan2cap,scanqa,sqa3d,real3dqa,beacon3d")
     ap.add_argument("--qa_model", default="gpt-4o-mini-2024-07-18",
                     help="Beacon3D QA judge (upstream default is gpt-4o-2024-11-20)")
     ap.add_argument("--beacon_domains", default="scannet,3rscan,multiscan,scannet_pcseg",
@@ -285,6 +307,12 @@ def main():
         (out / d).mkdir(parents=True, exist_ok=True)
     summary_path = out / "summary.json"
     summary = json.load(open(summary_path)) if summary_path.exists() else {}
+    native = [b for b in NATIVE if b in args.benches.split(",")]
+    if native:
+        val_scenes = open(REPO / "data" / "processed" / "scannet200" / "validation_database.yaml").read()
+        val_scenes = set(l.split("/")[-2] for l in val_scenes.splitlines() if "raw_filepath:" in l)
+        summary.update(score_native(args.pred_dir, out, val_scenes, str(REPO / "data" / "langdata"), native))
+        export_native(args.pred_dir, out, native)
     if "sqa3d" in args.benches:
         summary["sqa3d"] = score_sqa3d(args.pred_dir, out)
     if "real3dqa" in args.benches:
