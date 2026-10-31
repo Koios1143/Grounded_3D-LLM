@@ -11,7 +11,9 @@
 #   PREFIX_CACHE 1: encode the LLM prefix shared by a scene's questions once and reuse its
 #              KV cache (same outputs up to floating-point noise, faster) (default 0)
 #   DOMAIN     scannet | scannet_pcseg | 3rscan | multiscan (default scannet); the others run
-#              Beacon3D only, on preprocess_pointcloud.sh output in $G3D_ROOT/pointcloud/<domain>
+#              Beacon3D only, on preprocess_pointcloud.sh output in $G3D_ROOT/pointcloud/<domain>;
+#              xr_rc | xr_glb: XR-QA / XR-SceneCaption, see extra_eval/xr/run_xr.sh
+#              (PROCESSED_DIR, XR_ITEMS)
 set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 [ -f env.sh ] && source env.sh
@@ -24,7 +26,8 @@ mkdir -p "$OUT"
 EXTRA=()
 [ -n "${MAX_SCENES:-}" ] && EXTRA+=(--max_scenes "$MAX_SCENES")
 DOMAIN="${DOMAIN:-scannet}"
-[ "$DOMAIN" != scannet ] && EXTRA+=(--domain "$DOMAIN" --processed_dir "${G3D_ROOT:?set G3D_ROOT}/pointcloud/$DOMAIN/scannet200")
+[ "$DOMAIN" != scannet ] && EXTRA+=(--domain "$DOMAIN" --processed_dir "${PROCESSED_DIR:-${G3D_ROOT:?set G3D_ROOT}/pointcloud/$DOMAIN/scannet200}")
+[ -n "${XR_ITEMS:-}" ] && EXTRA+=(--xr_items "$XR_ITEMS")
 pids=()
 for ((i = 0; i < NGPU; i++)); do
     CUDA_VISIBLE_DEVICES=$i $PY extra_eval/infer.py --out_dir "$OUT" \

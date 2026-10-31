@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the released Grounded 3D-LLM on ScanRefer / Multi3DRefer / Scan2Cap / ScanQA / SQA3D / Real-3DQA / Beacon3D.
+"""Run the released Grounded 3D-LLM on ScanRefer / Multi3DRefer / Scan2Cap / ScanQA / SQA3D / Real-3DQA / Beacon3D / XR-QA / XR-SceneCaption.
 
 Per scene, the frozen Mask3D-CLASP detector is run exactly as in the official test pass
 (``final_scripts/step3_train_grounded3dllm.sh`` TEST: ``data=indoor_dialog``,
@@ -13,6 +13,9 @@ through ``llama_model.evaluate`` with the official decoding (beam 3, repetition 
   ScanQA prompt ``<question> Please answer with a single word or phrase.``; situated
   benchmarks put the situation in front of the question (``<situation> <question>``).
   Grounded 3D-LLM is not trained on SQA3D, so these numbers are zero-shot.
+* XR-QA / XR-SceneCaption (``--domain xr_rc|xr_glb``, scenes from ``extra_eval/xr/preprocess_xr.py``):
+  XR-QA as QA above (ScanQA prompt); XR-SceneCaption asks its question ("Describe the
+  room.") as is, with ``lang_type="globalscenecap:extra:text_only"`` (no suffix).
 * Grounding (Beacon3D grounding): ``lang_type="scanrefer:...:with_grounding"`` with the
   first ScanRefer template + `` (with grounding)``; the first ``<ref>`` token is matched
   to a proposal as in ``LLama3d.evaluate`` and the proposal mask is mapped to the ScanNet
@@ -90,6 +93,13 @@ def load_beacon3d(d, domain="scannet"):
                    scene_id=x["scene_id"], text=x["question"], answers=x["answers"])
 
 
+def load_xr(items_file, placement):
+    for it in json.load(open(items_file)):
+        yield dict(bench=f"xr{it['task']}_{placement}", task=it["task"], id=it["key"], idx=it["idx"],
+                   scene_id=it["scene_id"], text=it["question"], answers=it["answers"], key=it["key"],
+                   **({"type": it["type"]} if "type" in it else {}))
+
+
 NATIVE = ["scanrefer", "m3dref", "scan2cap", "scanqa"]  # lang_type prefixes in data/langdata
 
 
@@ -118,7 +128,7 @@ def build_model(ckpt, save_dir, domain="scannet", processed_dir=None, native=())
                       f"data.test_dataset.label_db_filepath={processed_dir}/label_database.yaml",
                       f"data.test_dataset.color_mean_std={processed_dir}/color_mean_std.yaml",
                       "data.lang_query=0"]
-    if domain in ("3rscan", "multiscan"):
+    if domain in ("3rscan", "multiscan") or domain.startswith("xr_"):
         overrides.append("model.axis_align_coord=false")  # SceneVerse clouds are aligned already
     with initialize_config_dir(config_dir=str(REPO / "conf")):
         cfg = compose(config_name="config_base.yaml", overrides=overrides)
@@ -160,6 +170,9 @@ def ask(model, items, hidden, embed):
         if it["task"] == "qa":
             info = lang_info_data(question=it["text"], answer="NONE",
                                   lang_type="scanqa:extra:text_only")
+        elif it["task"] == "cap":
+            info = lang_info_data(question=it["text"], answer="NONE",
+                                  lang_type="globalscenecap:extra:text_only")
         else:
             q = lang_template["grounding"]["questions"][0].format(grounding_text=it["text"])
             info = lang_info_data(question=q, answer="NONE",
@@ -245,14 +258,17 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--benches", default=",".join(NATIVE + ["sqa3d", "real3dqa", "beacon3d"]))
-    ap.add_argument("--domain", default="scannet", choices=["scannet", "scannet_pcseg", "3rscan", "multiscan"],
-                    help="scene source; anything but scannet runs Beacon3D only, on "
-                         "preprocess_pointcloud.py output given by --processed_dir")
+    ap.add_argument("--domain", default="scannet",
+                    choices=["scannet", "scannet_pcseg", "3rscan", "multiscan", "xr_rc", "xr_glb"],
+                    help="scene source; scannet_pcseg / 3rscan / multiscan run Beacon3D only, on "
+                         "preprocess_pointcloud.py output, xr_* runs XR-QA / XR-SceneCaption on "
+                         "xr/preprocess_xr.py output (--processed_dir, --xr_items)")
     ap.add_argument("--processed_dir", default=None)
     ap.add_argument("--ckpt", default="saved/step3_mask3d_lang_4GPUS/last-epoch.ckpt")
     ap.add_argument("--sqa3d_dir", default=os.environ.get("SQA3D_DIR"))
     ap.add_argument("--real3dqa_dir", default=os.environ.get("REAL3DQA_DIR"))
     ap.add_argument("--beacon3d_dir", default="extra_eval/beacon3d/Beacon3D/data")
+    ap.add_argument("--xr_items", default=None, help="xr_<split>_items.json of preprocess_xr.py (xr_* domains)")
     ap.add_argument("--prefix_cache", type=int, default=0,
                     help="1: reuse the KV cache of the scene prefix shared by all its questions")
     ap.add_argument("--max_scenes", type=int, default=None, help="debug: first N scenes only")
@@ -264,7 +280,9 @@ def main():
     items = []
     benches = args.benches.split(",")
     native = [b for b in NATIVE if b in benches] if args.domain == "scannet" else []
-    if args.domain != "scannet":
+    if args.domain.startswith("xr_"):
+        items += list(load_xr(args.xr_items, args.domain[3:]))
+    elif args.domain != "scannet":
         for it in load_beacon3d(args.beacon3d_dir, "scannet" if args.domain == "scannet_pcseg" else args.domain):
             it["bench"] = it["bench"].replace("beacon3d_scannet_", f"beacon3d_{args.domain}_")
             items.append(it)

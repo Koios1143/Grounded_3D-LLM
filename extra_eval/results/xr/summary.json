@@ -1,0 +1,370 @@
+{
+ "zeroshot/xrcap_glb": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 7.11,
+   "BLEU-4": 2.02,
+   "METEOR": 8.46,
+   "ROUGE-L": 18.87
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 1.81,
+   "BLEU-4": 1.79,
+   "METEOR": 8.63,
+   "ROUGE-L": 17.46
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 1.53,
+   "BLEU-4": 1.41,
+   "METEOR": 9.69,
+   "ROUGE-L": 14.55
+  }
+ },
+ "zeroshot/xrcap_rc": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 8.33,
+   "BLEU-4": 2.12,
+   "METEOR": 8.61,
+   "ROUGE-L": 18.91
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 1.81,
+   "BLEU-4": 1.73,
+   "METEOR": 8.63,
+   "ROUGE-L": 17.33
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 1.45,
+   "BLEU-4": 1.37,
+   "METEOR": 9.74,
+   "ROUGE-L": 14.3
+  }
+ },
+ "zeroshot/xrqa_glb": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 77.67,
+   "BLEU-4": 5.16,
+   "METEOR": 9.42,
+   "ROUGE-L": 27.89
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 77.67,
+   "BLEU-4": 5.15,
+   "METEOR": 9.42,
+   "ROUGE-L": 27.89
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 36.61,
+   "BLEU-4": 0.0,
+   "METEOR": 7.75,
+   "ROUGE-L": 16.49
+  }
+ },
+ "zeroshot/xrqa_rc": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 78.44,
+   "BLEU-4": 5.21,
+   "METEOR": 9.56,
+   "ROUGE-L": 28.2
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 78.44,
+   "BLEU-4": 5.19,
+   "METEOR": 9.56,
+   "ROUGE-L": 28.2
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 37.12,
+   "BLEU-4": 0.0,
+   "METEOR": 7.87,
+   "ROUGE-L": 16.66
+  }
+ },
+ "finetune_rc/epoch1/xrcap_rc": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 25.04,
+   "BLEU-4": 5.59,
+   "METEOR": 13.1,
+   "ROUGE-L": 26.46
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 5.43,
+   "BLEU-4": 4.66,
+   "METEOR": 12.92,
+   "ROUGE-L": 23.57
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 4.44,
+   "BLEU-4": 3.96,
+   "METEOR": 14.41,
+   "ROUGE-L": 20.96
+  }
+ },
+ "finetune_rc/epoch1/xrqa_rc": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 122.18,
+   "BLEU-4": 12.44,
+   "METEOR": 14.32,
+   "ROUGE-L": 37.2
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 122.18,
+   "BLEU-4": 12.44,
+   "METEOR": 14.32,
+   "ROUGE-L": 37.2
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 110.63,
+   "BLEU-4": 16.7,
+   "METEOR": 18.3,
+   "ROUGE-L": 36.26
+  }
+ },
+ "finetune_rc/epoch2/xrcap_rc": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 28.1,
+   "BLEU-4": 5.81,
+   "METEOR": 13.98,
+   "ROUGE-L": 27.71
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 6.24,
+   "BLEU-4": 5.35,
+   "METEOR": 14.24,
+   "ROUGE-L": 24.81
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 5.3,
+   "BLEU-4": 4.7,
+   "METEOR": 15.85,
+   "ROUGE-L": 22.85
+  }
+ },
+ "finetune_rc/epoch2/xrqa_rc": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 126.12,
+   "BLEU-4": 12.81,
+   "METEOR": 14.89,
+   "ROUGE-L": 38.38
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 126.12,
+   "BLEU-4": 12.81,
+   "METEOR": 14.89,
+   "ROUGE-L": 38.38
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 115.96,
+   "BLEU-4": 16.61,
+   "METEOR": 18.72,
+   "ROUGE-L": 37.45
+  }
+ },
+ "finetune_rc/epoch3/xrcap_rc": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 25.71,
+   "BLEU-4": 5.7,
+   "METEOR": 13.21,
+   "ROUGE-L": 27.27
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 5.03,
+   "BLEU-4": 5.15,
+   "METEOR": 13.74,
+   "ROUGE-L": 24.36
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 4.07,
+   "BLEU-4": 4.35,
+   "METEOR": 15.33,
+   "ROUGE-L": 22.03
+  }
+ },
+ "finetune_rc/epoch3/xrqa_rc": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 126.94,
+   "BLEU-4": 12.7,
+   "METEOR": 14.96,
+   "ROUGE-L": 38.41
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 126.94,
+   "BLEU-4": 12.7,
+   "METEOR": 14.96,
+   "ROUGE-L": 38.41
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 116.91,
+   "BLEU-4": 16.38,
+   "METEOR": 18.75,
+   "ROUGE-L": 37.55
+  }
+ },
+ "finetune_glb/epoch1/xrcap_glb": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 23.88,
+   "BLEU-4": 5.32,
+   "METEOR": 12.75,
+   "ROUGE-L": 25.81
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 4.11,
+   "BLEU-4": 4.57,
+   "METEOR": 12.63,
+   "ROUGE-L": 23.3
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 3.43,
+   "BLEU-4": 3.82,
+   "METEOR": 14.22,
+   "ROUGE-L": 20.65
+  }
+ },
+ "finetune_glb/epoch1/xrqa_glb": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 120.6,
+   "BLEU-4": 12.36,
+   "METEOR": 14.28,
+   "ROUGE-L": 36.92
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 120.6,
+   "BLEU-4": 12.36,
+   "METEOR": 14.28,
+   "ROUGE-L": 36.92
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 109.1,
+   "BLEU-4": 16.54,
+   "METEOR": 18.21,
+   "ROUGE-L": 36.01
+  }
+ },
+ "finetune_glb/epoch2/xrcap_glb": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 27.68,
+   "BLEU-4": 5.84,
+   "METEOR": 13.9,
+   "ROUGE-L": 27.66
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 5.56,
+   "BLEU-4": 5.18,
+   "METEOR": 14.18,
+   "ROUGE-L": 24.66
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 4.47,
+   "BLEU-4": 4.52,
+   "METEOR": 15.72,
+   "ROUGE-L": 22.7
+  }
+ },
+ "finetune_glb/epoch2/xrqa_glb": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 124.85,
+   "BLEU-4": 12.24,
+   "METEOR": 14.67,
+   "ROUGE-L": 38.02
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 124.85,
+   "BLEU-4": 12.24,
+   "METEOR": 14.67,
+   "ROUGE-L": 38.02
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 114.65,
+   "BLEU-4": 16.1,
+   "METEOR": 18.47,
+   "ROUGE-L": 37.01
+  }
+ },
+ "finetune_glb/epoch3/xrcap_glb": {
+  "g3d": {
+   "n": 283,
+   "CIDEr": 26.97,
+   "BLEU-4": 5.84,
+   "METEOR": 13.44,
+   "ROUGE-L": 27.14
+  },
+  "g3d_full": {
+   "n": 283,
+   "CIDEr": 6.27,
+   "BLEU-4": 5.19,
+   "METEOR": 13.91,
+   "ROUGE-L": 24.48
+  },
+  "raw": {
+   "n": 283,
+   "CIDEr": 4.94,
+   "BLEU-4": 4.45,
+   "METEOR": 15.47,
+   "ROUGE-L": 22.19
+  }
+ },
+ "finetune_glb/epoch3/xrqa_glb": {
+  "g3d": {
+   "n": 2981,
+   "CIDEr": 125.21,
+   "BLEU-4": 11.99,
+   "METEOR": 14.73,
+   "ROUGE-L": 38.19
+  },
+  "g3d_full": {
+   "n": 2981,
+   "CIDEr": 125.21,
+   "BLEU-4": 11.99,
+   "METEOR": 14.73,
+   "ROUGE-L": 38.19
+  },
+  "raw": {
+   "n": 2981,
+   "CIDEr": 115.42,
+   "BLEU-4": 15.81,
+   "METEOR": 18.47,
+   "ROUGE-L": 37.26
+  }
+ }
+}

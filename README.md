@@ -107,6 +107,49 @@ correctly; R2 = among correct answers, the share whose object was not grounded);
 column of the overall rows is ScanNet's. Per-domain files:
 `extra_eval/results/beacon3d_<domain>/`, overall: `extra_eval/results/beacon3d_overall/`.
 
+### XR-QA / XR-SceneCaption (LSceneLLM, val)
+
+[LSceneLLM](https://arxiv.org/abs/2412.01292)'s large-scene benchmarks: an XR scene is the
+union of several SceneVerse HM3D regions (3 for QA, 5 for captions; ~924k points). Grounded
+3D-LLM is not in LSceneLLM's Table 1, so there is no paper number to match; the setup
+mirrors our Chat-Scene run (same items, same XR-only finetuning, 3 epochs). The detector's
+100 queries look at the whole point cloud, so there is no choice of which >100 objects to
+keep. Two placements of the regions: **rc** as LSceneLLM's loader (region +
+`room_center`; rooms ~0.3–0.9 m off each other) and **glb** the real house layout (offsets
+registered against the HM3D v0.2 meshes, ~1 cm). Scores are CIDEr / ROUGE-L / METEOR with
+LSceneLLM's capeval, keyed by its episode ids (2,981 QA keys, 283 captions), on text
+normalised as the repository does (`special_token_filter`, + LEO's `clean_answer` for QA,
+PTB tokenizer).
+
+| Setting | XR-QA | XR-SceneCaption | Caption, `g3d` (256-char cut) |
+| --- | --- | --- | --- |
+| zero-shot, rc | 78.44 / 28.20 / 9.56 | 1.81 / 17.33 / 8.63 | 8.33 / 18.91 / 8.61 |
+| zero-shot, glb | 77.67 / 27.89 / 9.42 | 1.81 / 17.46 / 8.63 | 7.11 / 18.87 / 8.46 |
+| finetuned, rc, epoch 3 | **126.94 / 38.41 / 14.96** | 5.03 / 24.36 / 13.74 | 25.71 / 27.27 / 13.21 |
+| finetuned, glb, epoch 3 | 125.21 / 38.19 / 14.73 | 6.27 / 24.48 / 13.91 | 26.97 / 27.14 / 13.44 |
+
+- **Captions: quote the `g3d_full` column (the middle one).** `special_token_filter` cuts
+  predictions *and* references to 256 characters. Harmless for ScanQA / Scan2Cap, but XR
+  captions average 87 words and the cut keeps only their formulaic openings ("This
+  multi-room scene consists of …"), inflating CIDEr ~5×. `score_xr.py` reports both
+  (`g3d`, `g3d_full`; identical for QA) and LSceneLLM's raw-text scoring (`raw`).
+- **Finetuning** (`finetune_xr.py`) follows the released step-3 recipe where it can:
+  detector frozen, the `train_layer_list` parameters trained (LoRA r64 on q/v, query
+  projections, embeddings, lm_head; 157.7 M), its loss, AdamW (wd 1e-4), OneCycle, gradient
+  clipping 0.1. Data: XR-QA train (17,881) + XR-SceneCaption train (1,559 captions), one
+  item per answer; batch 32, peak lr 2e-4 (not tuned), 3 epochs (~7 min each on one GPU).
+  The detector's queries are computed once per scene without training augmentations.
+- **Text normalisation moves QA scores a lot**: under LSceneLLM's raw-text scoring the
+  finetuned rc model gets 116.91 CIDEr, about what our Chat-Scene finetune gets (116.11),
+  while each model's own normalisation gives 126.94 vs ~98.
+- Placement barely matters: rc vs glb differ by ≤ 1.7 CIDEr on QA, with no consistent
+  order on captions. Finetuned QA on scenes with > 100 SceneVerse objects is 2–9 CIDEr
+  lower than on the rest.
+
+Per-epoch predictions and scores (all, ≤ 100 / > 100 objects, three normalisations):
+`extra_eval/results/xr/{zeroshot,finetune_rc/epoch<k>,finetune_glb/epoch<k>}/`, summary in
+`extra_eval/results/xr/summary.json`.
+
 ### Read this before quoting the numbers
 
 - **The four paper benchmarks follow the repository's test pass, including its quirks.**
@@ -160,6 +203,7 @@ column of the overall rows is ScanNet's. Per-domain files:
 | `models/LLM/LLama3d.py`, `modeling_llama.py` | Upstream, plus the opt-in per-scene prefix cache (`_use_scene_prefix_cache` and the first-step branch of `prepare_inputs_for_generation`). |
 | `extra_eval/real3dqa/` | The two official Real-3DQA evaluators, vendored unmodified (CC BY-SA 4.0, see `VENDORED.md`). |
 | `extra_eval/beacon3d/Beacon3D/` | Vendored Beacon3D repo at `bda1203` (Apache-2.0): evaluators, `utils.py`, annotations, metadata and GPT system prompt. Unmodified; see `VENDORED.md`. `beacon_grounding_shim.py` only skips knowledge tags with zero cases. |
+| `extra_eval/xr/` | XR-QA / XR-SceneCaption: `preprocess_xr.py` (SceneVerse HM3D regions → scenes, both placements; `region_offsets.json` = glb offsets), `run_xr.sh` (zero-shot), `finetune_xr.py` + `run_xr_finetune.sh`, `score_xr.py`; `capeval/` vendored from LSceneLLM (see `VENDORED.md`). |
 | `extra_eval/results/` | Per-question predictions, the official evaluators' reports and `summary.json` for the run in the tables. |
 
 ## Setup
@@ -175,6 +219,8 @@ column of the overall rows is ScanNet's. Per-domain files:
 | SQA3D | `balanced/v1_balanced_{questions,sqa_annotations}_test_scannetv2.json` | `sqa_task.zip` on [Zenodo 7792397](https://zenodo.org/record/7792397) | `SQA3D_DIR` |
 | Real-3DQA | `debiased_test.jsonl`, `rotation_{0,90,180,270}.jsonl` | [HF `Oliver-Ma/Real-3DQA`](https://huggingface.co/datasets/Oliver-Ma/Real-3DQA) `data/test/` | `REAL3DQA_DIR` |
 | Beacon3D 3RScan / MultiScan | SceneVerse `scan_data/{3RScan,MultiScan}/`: `pcd_with_global_alignment/<scene>.pth` (+ `normal/<scene>.npy` for 3RScan) | [SceneVerse](https://scene-verse.github.io/) release | `SCENEVERSE_DIR` |
+| XR-QA / XR-SceneCaption | `XR-QA/`, `XR-SceneCaption/` | [HF `Hoyard/XR-Scene`](https://huggingface.co/datasets/Hoyard/XR-Scene) | `XR_DIR` |
+| XR-QA / XR-SceneCaption | SceneVerse HM3D `scan_data/` (`pcd_with_global_alignment/`, `instance_id_to_label/`) + `room_center/` | [SceneVerse](https://scene-verse.github.io/), [HF `Hoyard/HM3D_SceneVerse_RoomCenter`](https://huggingface.co/datasets/Hoyard/HM3D_SceneVerse_RoomCenter) | `XR_SCAN_DATA` |
 | Beacon3D QA scoring | an OpenAI API key | | `OPENAI_API_KEY` |
 | Scan2Cap / ScanQA scoring | Java ≥ 8 on `PATH` (pycocoevalcap's PTB tokenizer and METEOR) | | `JAVA_HOME` |
 
@@ -232,6 +278,14 @@ PREDS_DIR=outputs/extra_eval bash extra_eval/score.sh
 #    -> extra_eval/results/{scanrefer,m3dref,scan2cap,scanqa,sqa3d,real3dqa,beacon3d_<domain>,beacon3d_overall}/
 #       and summary.json (merged: benchmarks not rescored keep their entry)
 #    RESULT_DIR to write elsewhere; BENCHES / BEACON_DOMAINS to rescore a subset
+```
+
+XR-QA / XR-SceneCaption (CPU preprocessing ~45 min for train + val, then GPU):
+
+```shell
+SPLITS="train val" bash extra_eval/xr/preprocess_xr.sh   # -> $G3D_ROOT/pointcloud/xr/
+bash extra_eval/xr/run_xr.sh                              # zero-shot, rc + glb, scored (~13 min on 2 GPUs)
+PLACEMENT=rc bash extra_eval/xr/run_xr_finetune.sh        # cache detector queries, finetune, score every epoch (~1 h)
 ```
 
 **Prefix cache (`PREFIX_CACHE=1`).** All questions about a scene are asked in one pass over
