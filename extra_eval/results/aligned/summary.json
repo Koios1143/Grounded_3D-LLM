@@ -104,6 +104,17 @@
     "BLEU-4": 3.6481744648779006,
     "METEOR": 14.693890127827444,
     "ROUGE-L": 20.72121452491479
+   },
+   "spice": {
+    "SPICE": 14.491519001290778,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 29.341959268520696,
+    "SPICE_Attribute": 7.899179018342627,
+    "SPICE_Relation": 2.4812134549065963,
+    "SPICE_Color": 2.9411764705882355,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 6.393613000755859
    }
   },
   "source": "extra_eval/results/xr/finetune_glb/epoch1/xrcap_glb.jsonl",
@@ -160,6 +171,17 @@
     "BLEU-4": 4.652543831802397,
     "METEOR": 16.736917909606696,
     "ROUGE-L": 23.00131613622265
+   },
+   "spice": {
+    "SPICE": 14.97498391386906,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 30.842131916284107,
+    "SPICE_Attribute": 7.616793892460271,
+    "SPICE_Relation": 2.0915113640008474,
+    "SPICE_Color": 5.882352941176471,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 4.398148148148148
    }
   },
   "source": "extra_eval/results/xr/finetune_glb/epoch2/xrcap_glb.jsonl",
@@ -216,6 +238,17 @@
     "BLEU-4": 4.56552475983575,
     "METEOR": 16.21579393468775,
     "ROUGE-L": 22.31196345853503
+   },
+   "spice": {
+    "SPICE": 14.80258135555051,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 30.17411111673311,
+    "SPICE_Attribute": 7.78662670697241,
+    "SPICE_Relation": 1.9083410200247808,
+    "SPICE_Color": 5.882352941176471,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 5.324074074074075
    }
   },
   "source": "extra_eval/results/xr/finetune_glb/epoch3/xrcap_glb.jsonl",
@@ -272,6 +305,17 @@
     "BLEU-4": 3.8119909147484052,
     "METEOR": 15.091893551797032,
     "ROUGE-L": 20.87136391372445
+   },
+   "spice": {
+    "SPICE": 14.73154492160232,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 29.710766258918817,
+    "SPICE_Attribute": 8.50314466424757,
+    "SPICE_Relation": 2.2421379224484537,
+    "SPICE_Color": 2.9411764705882355,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 6.169690098261529
    }
   },
   "source": "extra_eval/results/xr/finetune_rc/epoch1/xrcap_rc.jsonl",
@@ -328,6 +372,17 @@
     "BLEU-4": 4.439849086755323,
     "METEOR": 16.538923282617283,
     "ROUGE-L": 22.84579535501266
+   },
+   "spice": {
+    "SPICE": 14.495648034255696,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 29.971934108969858,
+    "SPICE_Attribute": 7.812147077562602,
+    "SPICE_Relation": 1.6328048610127075,
+    "SPICE_Color": 5.882352941176471,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 3.4292328042328046
    }
   },
   "source": "extra_eval/results/xr/finetune_rc/epoch2/xrcap_rc.jsonl",
@@ -384,6 +439,17 @@
     "BLEU-4": 4.243204524908,
     "METEOR": 16.290929877003922,
     "ROUGE-L": 22.21157877476866
+   },
+   "spice": {
+    "SPICE": 14.871741194817963,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 30.511188515644065,
+    "SPICE_Attribute": 7.56676597396316,
+    "SPICE_Relation": 2.280467413989335,
+    "SPICE_Color": 5.882352941176471,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 4.421150939008082
    }
   },
   "source": "extra_eval/results/xr/finetune_rc/epoch3/xrcap_rc.jsonl",
@@ -440,6 +506,17 @@
     "BLEU-4": 1.5831857928221238,
     "METEOR": 10.70874977194172,
     "ROUGE-L": 15.013704971602449
+   },
+   "spice": {
+    "SPICE": 8.52445545721515,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 18.818246401014115,
+    "SPICE_Attribute": 1.8766604565802572,
+    "SPICE_Relation": 0.296359443028913,
+    "SPICE_Color": 3.4313725490196076,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 0.0
    }
   },
   "source": "extra_eval/results/xr/zeroshot/xrcap_glb.jsonl",
@@ -464,6 +541,17 @@
     "BLEU-4": 1.4377158539222428,
     "METEOR": 10.840815757799696,
     "ROUGE-L": 14.882864887553307
+   },
+   "spice": {
+    "SPICE": 8.51204272385312,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 18.666173755637942,
+    "SPICE_Attribute": 1.8693582384897038,
+    "SPICE_Relation": 0.25248413342352244,
+    "SPICE_Color": 4.411764705882353,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 0.34013605442176875
    }
   },
   "source": "extra_eval/results/xr/zeroshot/xrcap_rc.jsonl",

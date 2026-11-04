@@ -200,6 +200,13 @@ they are; the aligned ones are additional.
   kept too.
 - Real-3DQA and Beacon3D are unchanged.
 
+**SPICE (XR-SceneCaption)**, computed as in just3d: SPICE 1.0 (CoreNLP 3.6.0 + nashorn) on JDK 17;
+captions are split into sentences of at most 40 words (whitespace-free or initial-like run-ons over
+120 tokens are re-chunked so CoreNLP's parser does not run out of memory); score = mean per-item
+All-F x100, an empty prediction scores 0. Needs `deps/spice/` (`spice-1.0.jar` + `lib/`) and
+`deps/jdk17/` (gitignored); without them the script warns and skips SPICE. Headline: zero-shot 8.52,
+finetune 14.80 (the `"spice"` block in each XR-SceneCaption JSON; parse cache in `deps/spice_cache/`).
+
 | | Scan2Cap C@0.5 | ScanQA CIDEr | EM | EM-R | SQA3D EM | XR-QA CIDEr | XR-QA EM | XR-Cap CIDEr |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | tables above | 70.39 | 75.98 | 19.94 | 35.51 | 33.70 | | – | |

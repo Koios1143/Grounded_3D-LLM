@@ -16,6 +16,17 @@
    "BLEU-4": 3.8119909147484052,
    "METEOR": 15.091893551797032,
    "ROUGE-L": 20.87136391372445
+  },
+  "spice": {
+   "SPICE": 14.73154492160232,
+   "n": 283,
+   "n_empty_pred": 0,
+   "SPICE_Object": 29.710766258918817,
+   "SPICE_Attribute": 8.50314466424757,
+   "SPICE_Relation": 2.2421379224484537,
+   "SPICE_Color": 2.9411764705882355,
+   "SPICE_Size": 0.0,
+   "SPICE_Cardinality": 6.169690098261529
   }
  },
  "source": "extra_eval/results/xr/finetune_rc/epoch1/xrcap_rc.jsonl",
