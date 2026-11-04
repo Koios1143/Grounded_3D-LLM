@@ -2,369 +2,369 @@
  "zeroshot/xrcap_glb": {
   "g3d": {
    "n": 283,
-   "CIDEr": 7.11,
-   "BLEU-4": 2.02,
-   "METEOR": 8.46,
-   "ROUGE-L": 18.87
+   "CIDEr": 8.16,
+   "BLEU-4": 2.22,
+   "METEOR": 8.63,
+   "ROUGE-L": 19.43
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 1.81,
-   "BLEU-4": 1.79,
-   "METEOR": 8.63,
-   "ROUGE-L": 17.46
+   "CIDEr": 2.22,
+   "BLEU-4": 1.91,
+   "METEOR": 8.77,
+   "ROUGE-L": 17.91
   },
   "raw": {
    "n": 283,
-   "CIDEr": 1.53,
-   "BLEU-4": 1.41,
-   "METEOR": 9.69,
-   "ROUGE-L": 14.55
+   "CIDEr": 1.67,
+   "BLEU-4": 1.58,
+   "METEOR": 9.87,
+   "ROUGE-L": 15.01
   }
  },
  "zeroshot/xrcap_rc": {
   "g3d": {
    "n": 283,
-   "CIDEr": 8.33,
-   "BLEU-4": 2.12,
-   "METEOR": 8.61,
-   "ROUGE-L": 18.91
+   "CIDEr": 8.12,
+   "BLEU-4": 2.08,
+   "METEOR": 8.72,
+   "ROUGE-L": 19.16
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 1.81,
-   "BLEU-4": 1.73,
-   "METEOR": 8.63,
-   "ROUGE-L": 17.33
+   "CIDEr": 1.86,
+   "BLEU-4": 1.75,
+   "METEOR": 8.9,
+   "ROUGE-L": 17.7
   },
   "raw": {
    "n": 283,
-   "CIDEr": 1.45,
-   "BLEU-4": 1.37,
-   "METEOR": 9.74,
-   "ROUGE-L": 14.3
+   "CIDEr": 1.35,
+   "BLEU-4": 1.44,
+   "METEOR": 9.99,
+   "ROUGE-L": 14.88
   }
  },
  "zeroshot/xrqa_glb": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 77.67,
-   "BLEU-4": 5.16,
-   "METEOR": 9.42,
-   "ROUGE-L": 27.89
+   "CIDEr": 77.61,
+   "BLEU-4": 4.87,
+   "METEOR": 9.43,
+   "ROUGE-L": 27.91
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 77.67,
-   "BLEU-4": 5.15,
-   "METEOR": 9.42,
-   "ROUGE-L": 27.89
+   "CIDEr": 77.61,
+   "BLEU-4": 4.85,
+   "METEOR": 9.43,
+   "ROUGE-L": 27.91
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 36.61,
+   "CIDEr": 36.84,
    "BLEU-4": 0.0,
    "METEOR": 7.75,
-   "ROUGE-L": 16.49
+   "ROUGE-L": 16.56
   }
  },
  "zeroshot/xrqa_rc": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 78.44,
-   "BLEU-4": 5.21,
-   "METEOR": 9.56,
-   "ROUGE-L": 28.2
+   "CIDEr": 79.08,
+   "BLEU-4": 5.3,
+   "METEOR": 9.63,
+   "ROUGE-L": 28.25
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 78.44,
-   "BLEU-4": 5.19,
-   "METEOR": 9.56,
-   "ROUGE-L": 28.2
+   "CIDEr": 79.08,
+   "BLEU-4": 5.28,
+   "METEOR": 9.63,
+   "ROUGE-L": 28.25
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 37.12,
+   "CIDEr": 37.03,
    "BLEU-4": 0.0,
-   "METEOR": 7.87,
-   "ROUGE-L": 16.66
+   "METEOR": 7.92,
+   "ROUGE-L": 16.61
   }
  },
  "finetune_rc/epoch1/xrcap_rc": {
   "g3d": {
    "n": 283,
-   "CIDEr": 25.04,
-   "BLEU-4": 5.59,
-   "METEOR": 13.1,
-   "ROUGE-L": 26.46
+   "CIDEr": 23.33,
+   "BLEU-4": 5.22,
+   "METEOR": 12.92,
+   "ROUGE-L": 26.23
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 5.43,
-   "BLEU-4": 4.66,
-   "METEOR": 12.92,
-   "ROUGE-L": 23.57
+   "CIDEr": 5.03,
+   "BLEU-4": 4.56,
+   "METEOR": 12.83,
+   "ROUGE-L": 23.48
   },
   "raw": {
    "n": 283,
-   "CIDEr": 4.44,
-   "BLEU-4": 3.96,
-   "METEOR": 14.41,
-   "ROUGE-L": 20.96
+   "CIDEr": 4.2,
+   "BLEU-4": 3.81,
+   "METEOR": 14.42,
+   "ROUGE-L": 20.86
   }
  },
  "finetune_rc/epoch1/xrqa_rc": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 122.18,
-   "BLEU-4": 12.44,
-   "METEOR": 14.32,
-   "ROUGE-L": 37.2
+   "CIDEr": 119.95,
+   "BLEU-4": 12.08,
+   "METEOR": 14.16,
+   "ROUGE-L": 36.85
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 122.18,
-   "BLEU-4": 12.44,
-   "METEOR": 14.32,
-   "ROUGE-L": 37.2
+   "CIDEr": 119.95,
+   "BLEU-4": 12.08,
+   "METEOR": 14.16,
+   "ROUGE-L": 36.85
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 110.63,
-   "BLEU-4": 16.7,
-   "METEOR": 18.3,
-   "ROUGE-L": 36.26
+   "CIDEr": 108.26,
+   "BLEU-4": 16.23,
+   "METEOR": 18.13,
+   "ROUGE-L": 35.84
   }
  },
  "finetune_rc/epoch2/xrcap_rc": {
   "g3d": {
    "n": 283,
-   "CIDEr": 28.1,
-   "BLEU-4": 5.81,
-   "METEOR": 13.98,
-   "ROUGE-L": 27.71
+   "CIDEr": 26.91,
+   "BLEU-4": 5.73,
+   "METEOR": 13.93,
+   "ROUGE-L": 27.84
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 6.24,
-   "BLEU-4": 5.35,
-   "METEOR": 14.24,
-   "ROUGE-L": 24.81
+   "CIDEr": 5.31,
+   "BLEU-4": 5.01,
+   "METEOR": 14.17,
+   "ROUGE-L": 24.79
   },
   "raw": {
    "n": 283,
-   "CIDEr": 5.3,
-   "BLEU-4": 4.7,
-   "METEOR": 15.85,
-   "ROUGE-L": 22.85
+   "CIDEr": 4.44,
+   "BLEU-4": 4.44,
+   "METEOR": 15.76,
+   "ROUGE-L": 22.84
   }
  },
  "finetune_rc/epoch2/xrqa_rc": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 126.12,
-   "BLEU-4": 12.81,
-   "METEOR": 14.89,
-   "ROUGE-L": 38.38
+   "CIDEr": 125.7,
+   "BLEU-4": 12.67,
+   "METEOR": 14.85,
+   "ROUGE-L": 38.33
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 126.12,
-   "BLEU-4": 12.81,
-   "METEOR": 14.89,
-   "ROUGE-L": 38.38
+   "CIDEr": 125.7,
+   "BLEU-4": 12.67,
+   "METEOR": 14.85,
+   "ROUGE-L": 38.33
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 115.96,
-   "BLEU-4": 16.61,
+   "CIDEr": 116.1,
+   "BLEU-4": 16.6,
    "METEOR": 18.72,
-   "ROUGE-L": 37.45
+   "ROUGE-L": 37.44
   }
  },
  "finetune_rc/epoch3/xrcap_rc": {
   "g3d": {
    "n": 283,
-   "CIDEr": 25.71,
-   "BLEU-4": 5.7,
-   "METEOR": 13.21,
-   "ROUGE-L": 27.27
+   "CIDEr": 27.27,
+   "BLEU-4": 5.61,
+   "METEOR": 13.39,
+   "ROUGE-L": 27.39
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 5.03,
-   "BLEU-4": 5.15,
-   "METEOR": 13.74,
-   "ROUGE-L": 24.36
+   "CIDEr": 6.2,
+   "BLEU-4": 5.14,
+   "METEOR": 14.0,
+   "ROUGE-L": 24.62
   },
   "raw": {
    "n": 283,
-   "CIDEr": 4.07,
-   "BLEU-4": 4.35,
-   "METEOR": 15.33,
-   "ROUGE-L": 22.03
+   "CIDEr": 4.9,
+   "BLEU-4": 4.24,
+   "METEOR": 15.62,
+   "ROUGE-L": 22.2
   }
  },
  "finetune_rc/epoch3/xrqa_rc": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 126.94,
-   "BLEU-4": 12.7,
-   "METEOR": 14.96,
-   "ROUGE-L": 38.41
+   "CIDEr": 126.27,
+   "BLEU-4": 12.56,
+   "METEOR": 14.92,
+   "ROUGE-L": 38.49
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 126.94,
-   "BLEU-4": 12.7,
-   "METEOR": 14.96,
-   "ROUGE-L": 38.41
+   "CIDEr": 126.27,
+   "BLEU-4": 12.52,
+   "METEOR": 14.91,
+   "ROUGE-L": 38.49
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 116.91,
-   "BLEU-4": 16.38,
-   "METEOR": 18.75,
-   "ROUGE-L": 37.55
+   "CIDEr": 115.82,
+   "BLEU-4": 16.22,
+   "METEOR": 18.7,
+   "ROUGE-L": 37.57
   }
  },
  "finetune_glb/epoch1/xrcap_glb": {
   "g3d": {
    "n": 283,
-   "CIDEr": 23.88,
-   "BLEU-4": 5.32,
+   "CIDEr": 23.0,
+   "BLEU-4": 5.17,
    "METEOR": 12.75,
-   "ROUGE-L": 25.81
+   "ROUGE-L": 26.11
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 4.11,
-   "BLEU-4": 4.57,
-   "METEOR": 12.63,
-   "ROUGE-L": 23.3
+   "CIDEr": 3.74,
+   "BLEU-4": 4.36,
+   "METEOR": 12.46,
+   "ROUGE-L": 23.22
   },
   "raw": {
    "n": 283,
-   "CIDEr": 3.43,
-   "BLEU-4": 3.82,
-   "METEOR": 14.22,
-   "ROUGE-L": 20.65
+   "CIDEr": 3.08,
+   "BLEU-4": 3.65,
+   "METEOR": 14.0,
+   "ROUGE-L": 20.71
   }
  },
  "finetune_glb/epoch1/xrqa_glb": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 120.6,
-   "BLEU-4": 12.36,
-   "METEOR": 14.28,
-   "ROUGE-L": 36.92
+   "CIDEr": 120.77,
+   "BLEU-4": 12.4,
+   "METEOR": 14.26,
+   "ROUGE-L": 36.94
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 120.6,
-   "BLEU-4": 12.36,
-   "METEOR": 14.28,
-   "ROUGE-L": 36.92
+   "CIDEr": 120.77,
+   "BLEU-4": 12.4,
+   "METEOR": 14.26,
+   "ROUGE-L": 36.94
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 109.1,
+   "CIDEr": 108.54,
    "BLEU-4": 16.54,
-   "METEOR": 18.21,
-   "ROUGE-L": 36.01
+   "METEOR": 18.22,
+   "ROUGE-L": 35.77
   }
  },
  "finetune_glb/epoch2/xrcap_glb": {
   "g3d": {
    "n": 283,
-   "CIDEr": 27.68,
-   "BLEU-4": 5.84,
-   "METEOR": 13.9,
-   "ROUGE-L": 27.66
+   "CIDEr": 28.71,
+   "BLEU-4": 6.16,
+   "METEOR": 14.11,
+   "ROUGE-L": 27.98
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 5.56,
-   "BLEU-4": 5.18,
-   "METEOR": 14.18,
-   "ROUGE-L": 24.66
+   "CIDEr": 5.75,
+   "BLEU-4": 5.38,
+   "METEOR": 14.38,
+   "ROUGE-L": 24.97
   },
   "raw": {
    "n": 283,
-   "CIDEr": 4.47,
-   "BLEU-4": 4.52,
-   "METEOR": 15.72,
-   "ROUGE-L": 22.7
+   "CIDEr": 4.49,
+   "BLEU-4": 4.65,
+   "METEOR": 15.95,
+   "ROUGE-L": 22.99
   }
  },
  "finetune_glb/epoch2/xrqa_glb": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 124.85,
-   "BLEU-4": 12.24,
-   "METEOR": 14.67,
-   "ROUGE-L": 38.02
+   "CIDEr": 124.48,
+   "BLEU-4": 12.18,
+   "METEOR": 14.69,
+   "ROUGE-L": 38.28
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 124.85,
-   "BLEU-4": 12.24,
-   "METEOR": 14.67,
-   "ROUGE-L": 38.02
+   "CIDEr": 124.48,
+   "BLEU-4": 12.14,
+   "METEOR": 14.68,
+   "ROUGE-L": 38.28
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 114.65,
-   "BLEU-4": 16.1,
-   "METEOR": 18.47,
-   "ROUGE-L": 37.01
+   "CIDEr": 114.35,
+   "BLEU-4": 16.05,
+   "METEOR": 18.53,
+   "ROUGE-L": 37.37
   }
  },
  "finetune_glb/epoch3/xrcap_glb": {
   "g3d": {
    "n": 283,
-   "CIDEr": 26.97,
-   "BLEU-4": 5.84,
-   "METEOR": 13.44,
-   "ROUGE-L": 27.14
+   "CIDEr": 26.49,
+   "BLEU-4": 5.88,
+   "METEOR": 13.45,
+   "ROUGE-L": 27.06
   },
   "g3d_full": {
    "n": 283,
-   "CIDEr": 6.27,
-   "BLEU-4": 5.19,
-   "METEOR": 13.91,
-   "ROUGE-L": 24.48
+   "CIDEr": 5.53,
+   "BLEU-4": 5.36,
+   "METEOR": 13.89,
+   "ROUGE-L": 24.52
   },
   "raw": {
    "n": 283,
-   "CIDEr": 4.94,
-   "BLEU-4": 4.45,
-   "METEOR": 15.47,
-   "ROUGE-L": 22.19
+   "CIDEr": 4.51,
+   "BLEU-4": 4.57,
+   "METEOR": 15.45,
+   "ROUGE-L": 22.3
   }
  },
  "finetune_glb/epoch3/xrqa_glb": {
   "g3d": {
    "n": 2981,
-   "CIDEr": 125.21,
-   "BLEU-4": 11.99,
-   "METEOR": 14.73,
-   "ROUGE-L": 38.19
+   "CIDEr": 125.94,
+   "BLEU-4": 12.38,
+   "METEOR": 14.82,
+   "ROUGE-L": 38.31
   },
   "g3d_full": {
    "n": 2981,
-   "CIDEr": 125.21,
-   "BLEU-4": 11.99,
-   "METEOR": 14.73,
-   "ROUGE-L": 38.19
+   "CIDEr": 125.94,
+   "BLEU-4": 12.35,
+   "METEOR": 14.81,
+   "ROUGE-L": 38.31
   },
   "raw": {
    "n": 2981,
-   "CIDEr": 115.42,
-   "BLEU-4": 15.81,
-   "METEOR": 18.47,
-   "ROUGE-L": 37.26
+   "CIDEr": 116.15,
+   "BLEU-4": 16.22,
+   "METEOR": 18.6,
+   "ROUGE-L": 37.4
   }
  }
 }

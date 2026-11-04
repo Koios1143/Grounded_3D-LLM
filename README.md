@@ -121,12 +121,15 @@ LSceneLLM's capeval, keyed by its episode ids (2,981 QA keys, 283 captions), on 
 normalised as the repository does (`special_token_filter`, + LEO's `clean_answer` for QA,
 PTB tokenizer).
 
+Region normals come from the HM3D meshes (see **Normals** below); QA CIDEr of the first run
+(PCA normals) in brackets.
+
 | Setting | XR-QA | XR-SceneCaption | Caption, `g3d` (256-char cut) |
 | --- | --- | --- | --- |
-| zero-shot, rc | 78.44 / 28.20 / 9.56 | 1.81 / 17.33 / 8.63 | 8.33 / 18.91 / 8.61 |
-| zero-shot, glb | 77.67 / 27.89 / 9.42 | 1.81 / 17.46 / 8.63 | 7.11 / 18.87 / 8.46 |
-| finetuned, rc, epoch 3 | **126.94 / 38.41 / 14.96** | 5.03 / 24.36 / 13.74 | 25.71 / 27.27 / 13.21 |
-| finetuned, glb, epoch 3 | 125.21 / 38.19 / 14.73 | 6.27 / 24.48 / 13.91 | 26.97 / 27.14 / 13.44 |
+| zero-shot, rc | 79.08 / 28.25 / 9.63 (78.44) | 1.86 / 17.70 / 8.90 | 8.12 / 19.16 / 8.72 |
+| zero-shot, glb | 77.61 / 27.91 / 9.43 (77.67) | 2.22 / 17.91 / 8.77 | 8.16 / 19.43 / 8.63 |
+| finetuned, rc, epoch 3 | **126.27 / 38.49 / 14.92** (126.94) | 6.20 / 24.62 / 14.00 | 27.27 / 27.39 / 13.39 |
+| finetuned, glb, epoch 3 | 125.94 / 38.31 / 14.82 (125.21) | 5.53 / 24.52 / 13.89 | 26.49 / 27.06 / 13.45 |
 
 - **Captions: quote the `g3d_full` column (the middle one).** `special_token_filter` cuts
   predictions *and* references to 256 characters. Harmless for ScanQA / Scan2Cap, but XR
@@ -140,15 +143,25 @@ PTB tokenizer).
   item per answer; batch 32, peak lr 2e-4 (not tuned), 3 epochs (~7 min each on one GPU).
   The detector's queries are computed once per scene without training augmentations.
 - **Text normalisation moves QA scores a lot**: under LSceneLLM's raw-text scoring the
-  finetuned rc model gets 116.91 CIDEr, about what our Chat-Scene finetune gets (116.11),
-  while each model's own normalisation gives 126.94 vs ~98.
-- Placement barely matters: rc vs glb differ by ≤ 1.7 CIDEr on QA, with no consistent
-  order on captions. Finetuned QA on scenes with > 100 SceneVerse objects is 2–9 CIDEr
+  finetuned rc model gets 115.82 CIDEr, about what our Chat-Scene finetune gets (116.11),
+  while each model's own normalisation gives 126.27 vs ~98.
+- **Normals.** The detector does not read normals (`add_normals: false`); they only shape
+  the superpoints (ScanNet Segmentator) its masks are pooled over. `preprocess_xr.py` takes
+  them from the HM3D v0.2 meshes (`NORMALS=glb`, the default): regions are moved into the
+  glb frame by `region_offsets.json` and each point gets the normal of its nearest triangle;
+  points > 5 cm from the mesh fall back to the kNN estimate (0.11% of the points; median
+  point-to-mesh distance > 1 cm in 5 regions, `normals_stats.json`, 1,905 of 2,035 regions
+  recorded). The first run (`NORMALS=pca`, Open3D kNN normals oriented to the region
+  centre, wrong side for 5–25% of the points) is kept in
+  `extra_eval/results/xr/pca_normals/`. Every score moved by ≤ 2.2 CIDEr (QA ≤ 0.7 after
+  finetuning), within run-to-run spread.
+- Placement barely matters: rc vs glb differ by ≤ 1.5 CIDEr on QA, with no consistent
+  order on captions. Finetuned QA on scenes with > 100 SceneVerse objects is 1–2 CIDEr
   lower than on the rest.
 
 Per-epoch predictions and scores (all, ≤ 100 / > 100 objects, three normalisations):
 `extra_eval/results/xr/{zeroshot,finetune_rc/epoch<k>,finetune_glb/epoch<k>}/`, summary in
-`extra_eval/results/xr/summary.json`.
+`extra_eval/results/xr/summary.json`; the PCA-normal run in `extra_eval/results/xr/pca_normals/`.
 
 ### Read this before quoting the numbers
 
@@ -221,6 +234,7 @@ Per-epoch predictions and scores (all, ≤ 100 / > 100 objects, three normalisat
 | Beacon3D 3RScan / MultiScan | SceneVerse `scan_data/{3RScan,MultiScan}/`: `pcd_with_global_alignment/<scene>.pth` (+ `normal/<scene>.npy` for 3RScan) | [SceneVerse](https://scene-verse.github.io/) release | `SCENEVERSE_DIR` |
 | XR-QA / XR-SceneCaption | `XR-QA/`, `XR-SceneCaption/` | [HF `Hoyard/XR-Scene`](https://huggingface.co/datasets/Hoyard/XR-Scene) | `XR_DIR` |
 | XR-QA / XR-SceneCaption | SceneVerse HM3D `scan_data/` (`pcd_with_global_alignment/`, `instance_id_to_label/`) + `room_center/` | [SceneVerse](https://scene-verse.github.io/), [HF `Hoyard/HM3D_SceneVerse_RoomCenter`](https://huggingface.co/datasets/Hoyard/HM3D_SceneVerse_RoomCenter) | `XR_SCAN_DATA` |
+| XR-QA / XR-SceneCaption (normals) | HM3D v0.2 meshes `<scan>/<hash>.glb` | [HM3D](https://aihabitat.org/datasets/hm3d/) | `HM3D_GLB` |
 | Beacon3D QA scoring | an OpenAI API key | | `OPENAI_API_KEY` |
 | Scan2Cap / ScanQA scoring | Java ≥ 8 on `PATH` (pycocoevalcap's PTB tokenizer and METEOR) | | `JAVA_HOME` |
 
@@ -283,7 +297,7 @@ PREDS_DIR=outputs/extra_eval bash extra_eval/score.sh
 XR-QA / XR-SceneCaption (CPU preprocessing ~45 min for train + val, then GPU):
 
 ```shell
-SPLITS="train val" bash extra_eval/xr/preprocess_xr.sh   # -> $G3D_ROOT/pointcloud/xr/
+SPLITS="train val" bash extra_eval/xr/preprocess_xr.sh   # -> $XR_PC (mesh normals: HM3D_GLB)
 bash extra_eval/xr/run_xr.sh                              # zero-shot, rc + glb, scored (~13 min on 2 GPUs)
 PLACEMENT=rc bash extra_eval/xr/run_xr_finetune.sh        # cache detector queries, finetune, score every epoch (~1 h)
 ```

@@ -24,6 +24,7 @@ score_xr.py) and ``<out_dir>/trainable_epoch<k>.pt`` (the trained parameters onl
 
 import argparse
 import json
+import os
 import math
 import random
 import sys
@@ -89,6 +90,7 @@ def evaluate(model, items_file, feats, out_dir, placement):
                                                          pred=clean_generation(o["output_language"]))) + "\n")
     for f in files.values():
         f.close()
+    (out_dir / "EVAL_DONE").touch()
 
 
 def train(args):
@@ -109,7 +111,29 @@ def train(args):
     out = Path(args.out_dir)
     print(f"{len(items)} train items, {steps_per_epoch} steps/epoch x {args.epochs}, batch {args.batch_size}, "
           f"max lr {args.lr}", flush=True)
-    for epoch in range(args.epochs):
+    # resume (Slurm requeue): continue after the last finished epoch, evaluating it first if needed
+    start = 0
+    rp = out / "resume.pt"
+    if rp.exists():
+        r = torch.load(rp, map_location="cpu", weights_only=False)
+        done = r["epoch"]
+        state = torch.load(out / f"trainable_epoch{done}.pt", map_location="cpu")
+        named = dict(llm.named_parameters())
+        with torch.no_grad():
+            for n, v in state.items():
+                named[n].copy_(v.to(named[n].device, named[n].dtype))
+        opt.load_state_dict(r["opt"])
+        sched.load_state_dict(r["sched"])
+        random.setstate(r["py_rng"])
+        torch.set_rng_state(r["torch_rng"])
+        torch.cuda.set_rng_state(r["cuda_rng"])
+        items = r["items"]
+        start = done + 1
+        print(f"resumed after epoch {done}", flush=True)
+        if not (out / f"epoch{done}" / "EVAL_DONE").exists():
+            evaluate(model, args.val_items, feats, out / f"epoch{done}", args.placement)
+            print(f"EPOCH_DONE {done}", flush=True)
+    for epoch in range(start, args.epochs):
         llm.train()
         random.shuffle(items)
         t0 = time.time()
@@ -139,6 +163,10 @@ def train(args):
                       f"lr {sched.get_last_lr()[0]:.2e} {time.time() - t0:.0f}s", flush=True)
         torch.save({n: p.detach().cpu() for n, p in llm.named_parameters() if p.requires_grad},
                    out / f"trainable_epoch{epoch}.pt")
+        torch.save({"epoch": epoch, "opt": opt.state_dict(), "sched": sched.state_dict(), "items": items,
+                    "py_rng": random.getstate(), "torch_rng": torch.get_rng_state(),
+                    "cuda_rng": torch.cuda.get_rng_state()}, out / "resume.pt.tmp")
+        os.replace(out / "resume.pt.tmp", out / "resume.pt")
         evaluate(model, args.val_items, feats, out / f"epoch{epoch}", args.placement)
         print(f"EPOCH_DONE {epoch}", flush=True)
     print("FINETUNE_DONE")

@@ -8,7 +8,7 @@ set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 [ -f env.sh ] && source env.sh
 export OUT="${OUT:-outputs/xr_$(date +%Y%m%d_%H%M%S)}"
-P="${G3D_ROOT:?set G3D_ROOT}/pointcloud/xr"
+P="${XR_PC:-${G3D_ROOT:?set G3D_ROOT}/pointcloud/xr}"  # XR_PC: glb-normal cache (env.sh)
 rc=0
 for pl in ${PLACEMENTS:-rc glb}; do
     DOMAIN=xr_$pl PROCESSED_DIR="$P/xr_$pl/scannet200" XR_ITEMS="$P/xr_val_items.json" \
