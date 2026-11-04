@@ -20,6 +20,7 @@ import argparse
 import glob
 import json
 import os
+import shutil
 import subprocess
 import sys
 
@@ -189,21 +190,40 @@ def run_eval(name, cmd, beacon_root, bdir):
         raise SystemExit(f"{bdir.name} {name} evaluator failed")
 
 
-def score_beacon3d(pred_dir, out, beacon_root, qa_model, domain="scannet"):
+def score_beacon3d(pred_dir, out, beacon_root, qa_model, domain="scannet", qa_from=None):
     """One domain: infer files, the official evaluators (grounding for both variants, QA
     once with the GPT judge), then our re-derived metrics (checked against the official
     printout) incl. the chain analysis for the IoU >= 0.25 variant.
-    ``scannet_pcseg`` is the ScanNet control run under the point-cloud conditions."""
+    ``scannet_pcseg`` is the ScanNet control run under the point-cloud conditions.
+    ``qa_from``: a result dir whose QA of this domain (``infer_qa.json`` and the judged
+    ``infer_qa_processed.json``) is reused instead of QA rows in ``pred_dir`` (for a
+    grounding-only re-run); evaluate_qa.py then reads the judged file (no GPT calls) and
+    only the chain analysis changes."""
     data_domain = "scannet" if domain == "scannet_pcseg" else domain
     bdir = out / f"beacon3d_{domain}"
     bdir.mkdir(parents=True, exist_ok=True)
     res = {}
     src = {}
     for task in ["grounding", "qa"]:
+        src[task] = json.load(open(os.path.join(beacon_root, "data", data_domain, f"{data_domain}_{task}.json")))
+        if task == "qa" and qa_from:
+            old = Path(qa_from) / f"beacon3d_{domain}"
+            old_judge = json.load(open(old / "scores.json")).get("qa_judge")
+            assert old_judge == qa_model, f"{old}: QA judged by {old_judge}, not {qa_model}"
+            infer = json.load(open(old / "infer_qa.json"))
+            assert len(infer) == len(src[task]), f"{old}/infer_qa.json: {len(infer)} vs {len(src[task])}"
+            json.dump(infer, open(bdir / "infer_qa.json", "w"), indent=1)
+            shutil.copyfile(old / "infer_qa_processed.json", bdir / "infer_qa_processed.json")
+            res["qa_em"] = em_scores(infer)
+            res["qa_reused_from"] = rel(str(old))
+            run_eval("qa", [sys.executable, "evaluate_qa.py", "--infer", str(bdir / "infer_qa.json"),
+                            "--domain", data_domain, "--model", qa_model,
+                            "--output", str(bdir / "infer_qa_processed.json"),
+                            "--grounding", str(bdir / "infer_grounding_processed.json")], beacon_root, bdir)
+            continue
         rows = load(pred_dir, f"beacon3d_{domain}_{task}")
         if not rows:
             return None
-        src[task] = json.load(open(os.path.join(beacon_root, "data", data_domain, f"{data_domain}_{task}.json")))
         rows = sorted(rows, key=lambda r: r["idx"])
         assert [r["idx"] for r in rows] == list(range(len(src[task]))), f"{domain}/{task}: {len(rows)} vs {len(src[task])}"
         if task == "grounding":
@@ -266,7 +286,9 @@ def beacon3d_overall(out, beacon_root, pred_dir):
                 for t in ["grounding", "qa"]}
         res[f"pooled{tag or '_best'}"] = beacon_metrics(pooled)
         res[f"mean{tag or '_best'}"] = mean
-    rows = {d: load(pred_dir, f"beacon3d_{d}_qa") for d in BEACON_DOMAINS}
+    # QA rows from pred_dir, or the infer_qa.json reused with --beacon_qa_from
+    rows = {d: load(pred_dir, f"beacon3d_{d}_qa") or json.load(open(out / f"beacon3d_{d}" / "infer_qa.json"))
+            for d in BEACON_DOMAINS}
     res["qa_em_pooled"] = em_scores(sum(rows.values(), []))
     res["qa_em_mean"] = {k: float(np.mean([em_scores(rows[d])[k] for d in BEACON_DOMAINS])) for k in ["EM", "EM-R"]}
     (out / "beacon3d_overall").mkdir(exist_ok=True)
@@ -301,10 +323,13 @@ def main():
                     help="Beacon3D QA judge (upstream default is gpt-4o-2024-11-20)")
     ap.add_argument("--beacon_domains", default="scannet,3rscan,multiscan,scannet_pcseg",
                     help="Beacon3D domains to (re)score; the overall score reads all three from result_dir")
+    ap.add_argument("--beacon_qa_from", default=None,
+                    help="result dir whose judged Beacon3D QA is reused (grounding-only re-runs)")
     args = ap.parse_args()
     out = Path(args.result_dir).resolve()
     for d in ["sqa3d", "real3dqa"]:
-        (out / d).mkdir(parents=True, exist_ok=True)
+        if d in args.benches.split(","):
+            (out / d).mkdir(parents=True, exist_ok=True)
     summary_path = out / "summary.json"
     summary = json.load(open(summary_path)) if summary_path.exists() else {}
     native = [b for b in NATIVE if b in args.benches.split(",")]
@@ -319,7 +344,8 @@ def main():
         summary["real3dqa"] = score_real3dqa(args.pred_dir, out)
     if "beacon3d" in args.benches:
         for d in [d for d in args.beacon_domains.split(",") if d]:
-            summary[f"beacon3d_{d}"] = score_beacon3d(args.pred_dir, out, args.beacon_root, args.qa_model, d)
+            summary[f"beacon3d_{d}"] = score_beacon3d(args.pred_dir, out, args.beacon_root, args.qa_model, d,
+                                                          args.beacon_qa_from)
         if all((out / f"beacon3d_{d}" / "infer_qa_processed.json").exists() for d in BEACON_DOMAINS):
             summary["beacon3d_overall"] = beacon3d_overall(out, args.beacon_root, args.pred_dir)
     json.dump(summary, open(out / "summary.json", "w"), indent=1)

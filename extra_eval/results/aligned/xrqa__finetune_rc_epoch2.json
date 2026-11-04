@@ -1,0 +1,30 @@
+{
+ "bench": "xrqa",
+ "variant": "finetune_rc_epoch2",
+ "n": 2994,
+ "metrics": {
+  "clean_ptb": {
+   "CIDEr": 126.11728732784432,
+   "BLEU-1": 32.79087336930135,
+   "BLEU-4": 12.716293979547741,
+   "METEOR": 15.439562238645282,
+   "ROUGE-L": 38.409169462807306,
+   "EM": 22.344689378757515,
+   "EM-R": 26.31930527722111
+  },
+  "raw": {
+   "CIDEr": 116.2191704382084,
+   "BLEU-1": 37.98352654790738,
+   "BLEU-4": 16.644970580034464,
+   "METEOR": 19.26818248173172,
+   "ROUGE-L": 37.51506997482814,
+   "EM": 22.344689378757515,
+   "EM-R": 26.31930527722111
+  }
+ },
+ "source": "extra_eval/results/xr/finetune_rc/epoch2/xrqa_rc.jsonl",
+ "n_unique_episodes": 2981,
+ "placement": "rc",
+ "epoch": 2,
+ "headline": false
+}

@@ -18,8 +18,14 @@ through ``llama_model.evaluate`` with the official decoding (beam 3, repetition 
   room.") as is, with ``lang_type="globalscenecap:extra:text_only"`` (no suffix).
 * Grounding (Beacon3D grounding): ``lang_type="scanrefer:...:with_grounding"`` with the
   first ScanRefer template + `` (with grounding)``; the first ``<ref>`` token is matched
-  to a proposal as in ``LLama3d.evaluate`` and the proposal mask is mapped to the ScanNet
-  object with the highest point IoU.
+  to proposals as in ``LLama3d.evaluate`` (every proposal with sigmoid probability > 0.5,
+  else the arg-max) and, of those, the proposal with the HIGHEST probability (top-1) is
+  taken; its mask is mapped to the ScanNet object with the highest point IoU. The record
+  keeps all matched proposal ids and probabilities (``match_ids`` / ``match_probs``).
+  Changed 2026-11: earlier runs (``extra_eval/results/beacon3d_{scannet,3rscan,multiscan,
+  scannet_pcseg}``) took the first matched proposal, i.e. the LOWEST query index among those
+  above 0.5, not the most probable one; the top-1 re-run is in
+  ``extra_eval/results/beacon3d_top1/`` (``extra_eval/beacon3d/run_beacon_top1.sh``).
 
 * Native benchmarks (ScanRefer, Multi3DRefer, Scan2Cap, ScanQA, all ScanNet val): the
   model's own test pass (``ModelingGrounded3DLLM.eval_step``) minus the detection prompts:
@@ -271,6 +277,8 @@ def main():
     ap.add_argument("--xr_items", default=None, help="xr_<split>_items.json of preprocess_xr.py (xr_* domains)")
     ap.add_argument("--prefix_cache", type=int, default=0,
                     help="1: reuse the KV cache of the scene prefix shared by all its questions")
+    ap.add_argument("--beacon_tasks", default="grounding,qa",
+                    help="Beacon3D tasks to ask (grounding,qa); e.g. grounding to re-run grounding only")
     ap.add_argument("--max_scenes", type=int, default=None, help="debug: first N scenes only")
     ap.add_argument("--shard", default="0/1", help="i/n: this process takes scenes i::n")
     args = ap.parse_args()
@@ -285,14 +293,16 @@ def main():
     elif args.domain != "scannet":
         for it in load_beacon3d(args.beacon3d_dir, "scannet" if args.domain == "scannet_pcseg" else args.domain):
             it["bench"] = it["bench"].replace("beacon3d_scannet_", f"beacon3d_{args.domain}_")
-            items.append(it)
+            if it["task"] in args.beacon_tasks.split(","):
+                items.append(it)
     else:
         if "sqa3d" in benches:
             items += list(load_sqa3d(args.sqa3d_dir))
         if "real3dqa" in benches:
             items += list(load_real3dqa(args.real3dqa_dir))
         if "beacon3d" in benches:
-            items += list(load_beacon3d(args.beacon3d_dir, "scannet"))
+            items += [it for it in load_beacon3d(args.beacon3d_dir, "scannet")
+                      if it["task"] in args.beacon_tasks.split(",")]
     by_scene = defaultdict(list)
     for it in items:
         by_scene[it["scene_id"]].append(it)
@@ -358,12 +368,15 @@ def main():
                 o = gen[(it["task"], it["text"])]
                 rec = dict(it, raw=o["output_language"], pred=clean_generation(o["output_language"]))
                 if it["task"] == "grounding":
-                    q = None
-                    for r in (o["grounding_result"] or []):
+                    # first <ref> interval with a match; its most probable proposal (top-1)
+                    q, ids, probs = None, None, None
+                    for r, pr in zip(o["grounding_result"] or [], o["score"] or []):
                         if r:
-                            q = int(r[0])
+                            ids, probs = [int(x) for x in r], [float(x) for x in pr]
+                            assert len(ids) == len(probs), (ids, probs)
+                            q = ids[int(np.argmax(probs))]
                             break
-                    rec["pred_query"] = q
+                    rec["pred_query"], rec["match_ids"], rec["match_probs"] = q, ids, probs
                     rec["pred_object_id"], rec["pred_iou"] = (
                         best_gt_object(masks_np[:, q], inst_ids) if q is not None else (None, 0.0))
                 if it["bench"] not in files:

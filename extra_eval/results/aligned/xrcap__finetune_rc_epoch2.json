@@ -1,0 +1,26 @@
+{
+ "bench": "xrcap",
+ "variant": "finetune_rc_epoch2",
+ "n": 283,
+ "metrics": {
+  "ptb": {
+   "CIDEr": 5.307900160259558,
+   "BLEU-1": 37.39863007352676,
+   "BLEU-4": 5.010301170429246,
+   "METEOR": 14.952537602836491,
+   "ROUGE-L": 24.788144081982697
+  },
+  "raw": {
+   "CIDEr": 4.439894660475257,
+   "BLEU-1": 33.422860000509644,
+   "BLEU-4": 4.439849086755323,
+   "METEOR": 16.538923282617283,
+   "ROUGE-L": 22.84579535501266
+  }
+ },
+ "source": "extra_eval/results/xr/finetune_rc/epoch2/xrcap_rc.jsonl",
+ "n_unique_episodes": 283,
+ "placement": "rc",
+ "epoch": 2,
+ "headline": false
+}

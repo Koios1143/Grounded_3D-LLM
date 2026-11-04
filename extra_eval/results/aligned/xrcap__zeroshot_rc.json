@@ -1,0 +1,24 @@
+{
+ "bench": "xrcap",
+ "variant": "zeroshot_rc",
+ "n": 283,
+ "metrics": {
+  "ptb": {
+   "CIDEr": 1.8626490943758691,
+   "BLEU-1": 25.62652254141804,
+   "BLEU-4": 1.7518333794586463,
+   "METEOR": 9.757467212487718,
+   "ROUGE-L": 17.69633984079365
+  },
+  "raw": {
+   "CIDEr": 1.3459280127806073,
+   "BLEU-1": 21.006746539239796,
+   "BLEU-4": 1.4377158539222428,
+   "METEOR": 10.840815757799696,
+   "ROUGE-L": 14.882864887553307
+  }
+ },
+ "source": "extra_eval/results/xr/zeroshot/xrcap_rc.jsonl",
+ "n_unique_episodes": 283,
+ "placement": "rc"
+}

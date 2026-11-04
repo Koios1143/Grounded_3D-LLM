@@ -1,0 +1,20 @@
+{
+ "bench": "scan2cap",
+ "variant": "iou0.25",
+ "n": 2068,
+ "metrics": {
+  "s2c": {
+   "CIDEr": 74.35637517568198,
+   "BLEU-1": 73.74269105313186,
+   "BLEU-4": 37.37744612538501,
+   "METEOR": 27.183330952811236,
+   "ROUGE-L": 59.262727528263056
+  }
+ },
+ "n_rows": 9503,
+ "n_model_objects": 2068,
+ "n_corpus_objects_missing": 0,
+ "n_matched": 1934,
+ "iou_threshold": 0.25,
+ "source": "outputs/native_nocache/native"
+}

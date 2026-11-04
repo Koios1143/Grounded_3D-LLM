@@ -7,7 +7,8 @@ be compared with other models on equal footing. Wired in so far: the paper's own
 ScanNet benchmarks ScanRefer, Multi3DRefer, Scan2Cap and ScanQA (re-run as a check on the
 setup), [SQA3D](https://sqa3d.github.io/) (ICLR 2023), [Real-3DQA](https://real-3dqa.github.io/)
 (ICLR 2026, a debiased SQA3D subset with viewpoint rotations) and
-[Beacon3D](https://beacon-3d.github.io/) (CVPR 2025; ScanNet, 3RScan, MultiScan). The upstream model,
+[Beacon3D](https://beacon-3d.github.io/) (CVPR 2025; ScanNet, 3RScan, MultiScan) and LSceneLLM's
+XR-QA / XR-SceneCaption (zero-shot and XR-only finetuned). The upstream model,
 training and data code are untouched apart from a torch-2 compatibility fix in the
 pointnet2 ops and an optional per-scene prefix cache for decoding (`PREFIX_CACHE=1`, off by
 default; see [Running](#running)); everything this fork adds lives under [`extra_eval/`](extra_eval/), and
@@ -107,6 +108,22 @@ correctly; R2 = among correct answers, the share whose object was not grounded);
 column of the overall rows is ScanNet's. Per-domain files:
 `extra_eval/results/beacon3d_<domain>/`, overall: `extra_eval/results/beacon3d_overall/`.
 
+**Top-1 proposal re-run (grounding only).** The tables above pick, among the proposals
+matched to the first `<ref>` (sigmoid probability > 0.5, else the arg-max), the one with
+the *lowest query index*. `infer.py` now takes the *most probable* one (top-1) and also saves
+all matched ids / probabilities (`match_ids`, `match_probs`). Grounding was re-run that way
+(`extra_eval/beacon3d/run_beacon_top1.sh`, results in `extra_eval/results/beacon3d_top1/`);
+QA is not re-asked, its judged GPT-4o-mini results are reused (`score.py --beacon_qa_from`),
+so only grounding and R1 / R2 change. The choice barely matters (case / object, first
+grounding variant):
+
+| | ScanNet | 3RScan | MultiScan | Overall, pooled | Overall, mean |
+| --- | --- | --- | --- | --- | --- |
+| lowest index (tables above) | 57.37 / 44.42 | 36.79 / 27.21 | 32.12 / 22.01 | 45.26 / 34.31 | 42.09 / 31.21 |
+| top-1 | 57.31 / 44.68 | 36.71 / 27.21 | 32.12 / 22.01 | 45.20 / 34.44 | 42.05 / 31.30 |
+
+The *ScanNet control* was not re-run.
+
 ### XR-QA / XR-SceneCaption (LSceneLLM, val)
 
 [LSceneLLM](https://arxiv.org/abs/2412.01292)'s large-scene benchmarks: an XR scene is the
@@ -163,6 +180,39 @@ Per-epoch predictions and scores (all, ≤ 100 / > 100 objects, three normalisat
 `extra_eval/results/xr/{zeroshot,finetune_rc/epoch<k>,finetune_glb/epoch<k>}/`, summary in
 `extra_eval/results/xr/summary.json`; the PCA-normal run in `extra_eval/results/xr/pca_normals/`.
 
+### Aligned scoring
+
+`extra_eval/aligned/` re-scores the saved predictions (no re-inference) with one text
+normalisation shared by all baselines in this project (`aligned_eval.py`, identical in every
+repo), so numbers are comparable across baselines. The paper-protocol scores above stay as
+they are; the aligned ones are additional.
+
+- Model special tokens are stripped (those of `special_token_filter`), with **no 256-character
+  truncation**.
+- Scan2Cap: PTB tokenizer + `sos … eos` on both sides, references from one untruncated
+  ScanRefer corpus (`deps/aligned/scan2cap_val_corpus.json`); the model's own proposal
+  matching / IoU is kept.
+- ScanQA, XR-QA: LEO's `clean_answer` on both sides, then PTB, for CIDEr / BLEU / METEOR /
+  ROUGE; EM / EM-R = `clean_answer` on both sides, and a matcher that checks exact match
+  over all references before the substring (refined) match. SQA3D: EM / EM-R the same way.
+- XR-SceneCaption: PTB on both sides (no `clean_answer`, no `sos/eos`). XR is scored per item
+  (2,994 QA / 283 captions, no episode dedup); a `raw` block (LSceneLLM's protocol, no PTB) is
+  kept too.
+- Real-3DQA and Beacon3D are unchanged.
+
+| | Scan2Cap C@0.5 | ScanQA CIDEr | EM | EM-R | SQA3D EM | XR-QA CIDEr | XR-QA EM | XR-Cap CIDEr |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| tables above | 70.39 | 75.98 | 19.94 | 35.51 | 33.70 | | – | |
+| aligned | 70.39 | 75.98 | 19.94 | 34.31 | 33.70 | | | |
+| XR zero-shot, rc: above / aligned | | | | | | 79.08 / 79.39 | – / 15.40 | 1.86 / 1.86 |
+| XR zero-shot, glb: above / aligned | | | | | | 77.61 / 77.93 | – / 15.26 | 2.22 / 2.22 |
+| XR finetuned rc, ep. 3: above / aligned | | | | | | 126.27 / 126.93 | – / 22.75 | 6.20 / 6.20 |
+| XR finetuned glb, ep. 3: above / aligned | | | | | | 125.94 / 126.34 | – / 22.61 | 5.53 / 5.53 |
+
+XR-QA CIDEr / EM are the `clean_ptb` variant, XR-Cap CIDEr the `ptb` one; the "above" caption
+numbers are the `g3d_full` column. Per-variant files (incl. XR epochs 1–2 and the `raw`
+blocks): `extra_eval/results/aligned/<bench>__<variant>.json`, `summary.json`.
+
 ### Read this before quoting the numbers
 
 - **The four paper benchmarks follow the repository's test pass, including its quirks.**
@@ -216,6 +266,8 @@ Per-epoch predictions and scores (all, ≤ 100 / > 100 objects, three normalisat
 | `models/LLM/LLama3d.py`, `modeling_llama.py` | Upstream, plus the opt-in per-scene prefix cache (`_use_scene_prefix_cache` and the first-step branch of `prepare_inputs_for_generation`). |
 | `extra_eval/real3dqa/` | The two official Real-3DQA evaluators, vendored unmodified (CC BY-SA 4.0, see `VENDORED.md`). |
 | `extra_eval/beacon3d/Beacon3D/` | Vendored Beacon3D repo at `bda1203` (Apache-2.0): evaluators, `utils.py`, annotations, metadata and GPT system prompt. Unmodified; see `VENDORED.md`. `beacon_grounding_shim.py` only skips knowledge tags with zero cases. |
+| `extra_eval/beacon3d/run_beacon_top1.sh` | Beacon3D grounding re-run with the top-1 proposal, QA reused (see [Beacon3D](#beacon3d)). |
+| `extra_eval/aligned/` | Aligned re-scoring: `aligned_eval.py` (shared scorer), `score_aligned.py`, `run_score_aligned.sh`; writes `extra_eval/results/aligned/`. |
 | `extra_eval/xr/` | XR-QA / XR-SceneCaption: `preprocess_xr.py` (SceneVerse HM3D regions → scenes, both placements; `region_offsets.json` = glb offsets), `run_xr.sh` (zero-shot), `finetune_xr.py` + `run_xr_finetune.sh`, `score_xr.py`; `capeval/` vendored from LSceneLLM (see `VENDORED.md`). |
 | `extra_eval/results/` | Per-question predictions, the official evaluators' reports and `summary.json` for the run in the tables. |
 
@@ -236,6 +288,7 @@ Per-epoch predictions and scores (all, ≤ 100 / > 100 objects, three normalisat
 | XR-QA / XR-SceneCaption | SceneVerse HM3D `scan_data/` (`pcd_with_global_alignment/`, `instance_id_to_label/`) + `room_center/` | [SceneVerse](https://scene-verse.github.io/), [HF `Hoyard/HM3D_SceneVerse_RoomCenter`](https://huggingface.co/datasets/Hoyard/HM3D_SceneVerse_RoomCenter) | `XR_SCAN_DATA` |
 | XR-QA / XR-SceneCaption (normals) | HM3D v0.2 meshes `<scan>/<hash>.glb` | [HM3D](https://aihabitat.org/datasets/hm3d/) | `HM3D_GLB` |
 | Beacon3D QA scoring | an OpenAI API key | | `OPENAI_API_KEY` |
+| aligned Scan2Cap scoring | `scan2cap_val_corpus.json`: all ScanRefer val sentences per object (2,068 objects, keys `scene\|objid`), untruncated; the common file of all baselines, not built here | `deps/aligned/` | `--corpus` of `score_aligned.py` |
 | Scan2Cap / ScanQA scoring | Java ≥ 8 on `PATH` (pycocoevalcap's PTB tokenizer and METEOR) | | `JAVA_HOME` |
 
 Keep a private copy of all of these: `env.sh.example` points every variable into a
@@ -300,6 +353,24 @@ XR-QA / XR-SceneCaption (CPU preprocessing ~45 min for train + val, then GPU):
 SPLITS="train val" bash extra_eval/xr/preprocess_xr.sh   # -> $XR_PC (mesh normals: HM3D_GLB)
 bash extra_eval/xr/run_xr.sh                              # zero-shot, rc + glb, scored (~13 min on 2 GPUs)
 PLACEMENT=rc bash extra_eval/xr/run_xr_finetune.sh        # cache detector queries, finetune, score every epoch (~1 h)
+PLACEMENT=glb bash extra_eval/xr/run_xr_finetune.sh       # same for glb (the default PLACEMENT)
+```
+The zero-shot / finetune runs score themselves (`score_xr.py`) into `extra_eval/results/xr/`.
+
+Beacon3D grounding with the top-1 proposal (one GPU; reuses the judged QA in
+`extra_eval/results/beacon3d_<domain>/`, so no GPT calls):
+
+```shell
+bash extra_eval/beacon3d/run_beacon_top1.sh   # -> extra_eval/results/beacon3d_top1/ (OUT, RESULT_DIR, DOMAINS)
+```
+
+Aligned re-scoring of the saved predictions (CPU only; needs Java, `deps/jre11` is used if
+present, else `JAVA_HOME`). Scan2Cap / ScanQA are read from the native test pass of
+`run_infer.sh` (`NATIVE_DIR`, i.e. its `OUT`; default `outputs/native_nocache`), SQA3D and XR
+from the committed `extra_eval/results/`:
+
+```shell
+NATIVE_DIR=outputs/extra_eval bash extra_eval/aligned/run_score_aligned.sh   # -> extra_eval/results/aligned/
 ```
 
 **Prefix cache (`PREFIX_CACHE=1`).** All questions about a scene are asked in one pass over
@@ -334,7 +405,9 @@ dominates. The committed results are from the default path.
   (`lang_type` `scanqa:…:text_only`; no situation for Beacon3D). Grounding: the first
   ScanRefer template, `Can you help me find what's described here: <utterance>?` +
   ` (with grounding)` (`scanrefer:…:with_grounding`). The first `<ref>` token is matched to
-  a proposal as in `LLama3d.evaluate`; every one of the 1,611 Beacon3D items produced one.
+  proposals as in `LLama3d.evaluate`; every one of the 1,611 Beacon3D items produced one.
+  The committed Beacon3D tables take the lowest-index matched proposal, the current
+  `infer.py` the most probable one (see [Beacon3D](#beacon3d)).
 - **Empty generations** (the model emitting only `</s>`; 46 on SQA3D, 25 on the Real-3DQA
   debiased set, 10 on Beacon3D QA) are scored as wrong. Under the refined / relaxed match
   an empty string is a substring of every answer, so the official Real-3DQA scripts would

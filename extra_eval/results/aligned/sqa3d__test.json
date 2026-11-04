@@ -1,0 +1,20 @@
+{
+ "bench": "sqa3d",
+ "variant": "test",
+ "n": 3519,
+ "metrics": {
+  "em": {
+   "EM": 33.7027564649048,
+   "EM-R": 36.74339300937766
+  }
+ },
+ "source": "extra_eval/results/sqa3d/preds.json",
+ "existing": {
+  "EM": 33.7027564649048,
+  "EM-R": 36.74339300937766
+ },
+ "delta_vs_existing": {
+  "EM": 0.0,
+  "EM-R": 0.0
+ }
+}
