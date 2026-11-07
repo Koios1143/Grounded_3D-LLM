@@ -1,0 +1,189 @@
+{
+ "note": "Grounded 3D-LLM release checkpoint, native test pass. 'asked' = upstream protocol (mean over the items its test pass asks; matches the paper). 'official_val' = every official val item, items not asked score 0. Not asked: sentences beyond the detector's 48 x 256-token text input, wall / floor targets, and official items absent from the release langdata (listed below).",
+ "native_dir": "outputs/native_nocache",
+ "scanrefer": {
+  "unique": {
+   "n_asked": 1845,
+   "n_official": 1845,
+   "asked": {
+    "Acc@0.25": 84.33604336043359,
+    "Acc@0.5": 76.80216802168022
+   },
+   "official_val": {
+    "Acc@0.25": 84.3360433604336,
+    "Acc@0.5": 76.80216802168022
+   }
+  },
+  "multiple": {
+   "n_asked": 7412,
+   "n_official": 7663,
+   "asked": {
+    "Acc@0.25": 39.73286562331354,
+    "Acc@0.5": 36.225040474905555
+   },
+   "official_val": {
+    "Acc@0.25": 38.43142372438992,
+    "Acc@0.5": 35.03849667232154
+   }
+  },
+  "overall": {
+   "n_asked": 9257,
+   "n_official": 9508,
+   "asked": {
+    "Acc@0.25": 48.62266392999892,
+    "Acc@0.5": 44.312412228583774
+   },
+   "official_val": {
+    "Acc@0.25": 47.33908287757678,
+    "Acc@0.5": 43.1426167437947
+   }
+  }
+ },
+ "m3dref": {
+  "zt_wo_d": {
+   "n_asked": 528,
+   "n_official": 528,
+   "asked": {
+    "F1@0.25": 0.0,
+    "F1@0.5": 0.0
+   },
+   "official_val": {
+    "F1@0.25": 0.0,
+    "F1@0.5": 0.0
+   }
+  },
+  "zt_w_d": {
+   "n_asked": 378,
+   "n_official": 378,
+   "asked": {
+    "F1@0.25": 0.0,
+    "F1@0.5": 0.0
+   },
+   "official_val": {
+    "F1@0.25": 0.0,
+    "F1@0.5": 0.0
+   }
+  },
+  "st_wo_d": {
+   "n_asked": 2059,
+   "n_official": 2099,
+   "asked": {
+    "F1@0.25": 80.84830824024607,
+    "F1@0.5": 73.85462198478227
+   },
+   "official_val": {
+    "F1@0.25": 79.3076067968874,
+    "F1@0.5": 72.44719707797364
+   }
+  },
+  "st_w_d": {
+   "n_asked": 5169,
+   "n_official": 5358,
+   "asked": {
+    "F1@0.25": 43.502934158767005,
+    "F1@0.5": 39.962597536596384
+   },
+   "official_val": {
+    "F1@0.25": 41.96839616772427,
+    "F1@0.5": 38.55294264028867
+   }
+  },
+  "mt": {
+   "n_asked": 2721,
+   "n_official": 2757,
+   "asked": {
+    "F1@0.25": 34.01296568586879,
+    "F1@0.5": 31.454484618567434
+   },
+   "official_val": {
+    "F1@0.25": 33.56883555721762,
+    "F1@0.5": 31.04376229492999
+   }
+  },
+  "overall": {
+   "n_asked": 10855,
+   "n_official": 11120,
+   "asked": {
+    "F1@0.25": 44.57693348360961,
+    "F1@0.5": 40.92316775499358
+   },
+   "official_val": {
+    "F1@0.25": 43.51462346803798,
+    "F1@0.5": 39.94793039392584
+   }
+  }
+ },
+ "not_in_langdata": {
+  "scanrefer": [
+   [
+    "scene0221_00",
+    51,
+    1
+   ],
+   [
+    "scene0221_00",
+    51,
+    3
+   ],
+   [
+    "scene0328_00",
+    13,
+    2
+   ],
+   [
+    "scene0343_00",
+    4,
+    1
+   ],
+   [
+    "scene0643_00",
+    13,
+    3
+   ]
+  ],
+  "m3dref": [
+   [
+    "scene0328_00",
+    "kitchen_cabinet",
+    16,
+    "st_w_d"
+   ],
+   [
+    "scene0139_00",
+    "clothes_dryer",
+    27,
+    "st_w_d"
+   ],
+   [
+    "scene0086_00",
+    "toilet_seat_cover_dispenser",
+    47,
+    "st_w_d"
+   ],
+   [
+    "scene0653_00",
+    "office_chair",
+    110,
+    "mt"
+   ],
+   [
+    "scene0095_00",
+    "cabinet",
+    80,
+    "st_wo_d"
+   ],
+   [
+    "scene0231_00",
+    "breakfast_bar",
+    169,
+    "mt"
+   ],
+   [
+    "scene0357_00",
+    "closet_doors",
+    40,
+    "st_w_d"
+   ]
+  ]
+ }
+}

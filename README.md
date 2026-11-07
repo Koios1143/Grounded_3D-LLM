@@ -36,11 +36,17 @@ evaluator. They reproduce the paper's Table III (generalist model) to within 0.3
 | this run, `PREFIX_CACHE=1` | 48.63 | 44.32 | 44.61 | 40.96 | 13.29 | 75.99 | 35.22 | 70.44 |
 
 - **ScanRefer** (9,257 of the 9,503 val sentences asked, see below): unique 84.34 / 76.80,
-  multiple 39.73 / 36.23. Counting the 246 unasked sentences as misses: 47.36 / 43.17.
+  multiple 39.73 / 36.23.
 - **Multi3DRefer** (10,855 of 11,113 asked), F1@0.25 / @0.5 per type: single target with /
   without distractors 43.50 / 40.00 and 80.85 / 73.85, multiple targets 34.01 / 31.45, zero
-  target 0 / 0 (the model always outputs at least one object). Unasked queries as F1 = 0:
-  43.54 / 39.97.
+  target 0 / 0 (the model always outputs at least one object).
+- **Over the official val sets** (what the cross-baseline tables use): the paper's protocol
+  divides by the asked items only. Counting every official val item (ScanRefer 9,508,
+  Multi3DRefer 11,120; the release langdata also lacks 5 / 7 of them) and scoring the unasked
+  ones 0: ScanRefer 47.34 / 43.14 (unique 84.34 / 76.80, multiple 38.43 / 35.04),
+  Multi3DRefer 43.51 / 39.95 (single w/ / w/o distractors 41.97 / 38.55 and 79.31 / 72.45,
+  multiple 33.57 / 31.04, zero 0 / 0). Both protocols are in
+  `extra_eval/results/official_val/scanrefer_m3dref.json` (`score_official_val.py`).
 - **ScanQA** (4,675 questions): BLEU-1 39.38, METEOR 15.33, ROUGE-L 37.06, EM 19.94, EM-R
   35.51.
 - **Scan2Cap** (2,068 objects): @0.25 BLEU-4 37.36, METEOR 27.18, ROUGE-L 59.25, CIDEr
@@ -227,7 +233,8 @@ blocks): `extra_eval/results/aligned/<bench>__<variant>.json`, `summary.json`.
   scene here so runs repeat). Not every val item is asked: the detector's text input holds
   the scene's ScanRefer / Multi3DRefer sentences up to 48 × 256 tokens, and items whose
   target is a wall or floor are skipped; the tables count asked items, as the paper's code
-  does. Mini-batches are right-padded, so an item's answer can depend on its batch-mates;
+  does (official-val numbers with unasked items as 0: see the ScanRefer / Multi3DRefer
+  results above). Mini-batches are right-padded, so an item's answer can depend on its batch-mates;
   batches are formed exactly as upstream. The detection prompts of the test pass (198 per
   scene, not a benchmark asked for here) are left out. SPICE is not computed. Scan2Cap is
   scored as `evaluate_LLM.py` does (one caption per object, box IoU of the object's
@@ -271,6 +278,7 @@ blocks): `extra_eval/results/aligned/<bench>__<variant>.json`, `summary.json`.
 | `extra_eval/infer.py`, `run_infer.sh` | Inference on all seven benchmarks, one scene at a time (one process per GPU, scenes sharded); `DOMAIN=3rscan|multiscan|scannet_pcseg` for the other Beacon3D domains. |
 | `extra_eval/score.py`, `score_native.py`, `score.sh` | Scoring with the official scripts / the repository's metric code; writes `extra_eval/results/`. |
 | `models/LLM/LLama3d.py`, `modeling_llama.py` | Upstream, plus the opt-in per-scene prefix cache (`_use_scene_prefix_cache` and the first-step branch of `prepare_inputs_for_generation`). |
+| `extra_eval/score_official_val.py`, `run_score_official_val.sh` | ScanRefer / Multi3DRefer of the native test pass over the official val sets (unasked items = 0), next to the asked-only numbers; writes `extra_eval/results/official_val/`. |
 | `extra_eval/real3dqa/` | The two official Real-3DQA evaluators, vendored unmodified (CC BY-SA 4.0, see `VENDORED.md`). |
 | `extra_eval/beacon3d/Beacon3D/` | Vendored Beacon3D repo at `bda1203` (Apache-2.0): evaluators, `utils.py`, annotations, metadata and GPT system prompt. Unmodified; see `VENDORED.md`. `beacon_grounding_shim.py` only skips knowledge tags with zero cases. |
 | `extra_eval/beacon3d/run_beacon_top1.sh` | Beacon3D grounding re-run with the top-1 proposal, QA reused (see [Beacon3D](#beacon3d)). |
@@ -296,6 +304,7 @@ blocks): `extra_eval/results/aligned/<bench>__<variant>.json`, `summary.json`.
 | XR-QA / XR-SceneCaption (normals) | HM3D v0.2 meshes `<scan>/<hash>.glb` | [HM3D](https://aihabitat.org/datasets/hm3d/) | `HM3D_GLB` |
 | Beacon3D QA scoring | an OpenAI API key | | `OPENAI_API_KEY` |
 | aligned Scan2Cap scoring | `scan2cap_val_corpus.json`: all ScanRefer val sentences per object (2,068 objects, keys `scene\|objid`), untruncated; the common file of all baselines, not built here | `deps/aligned/` | `--corpus` of `score_aligned.py` |
+| official-val ScanRefer / Multi3DRefer scoring | `ScanRefer_filtered_val.json` (9,508), `multi3drefer_val.json` (11,120), Chat-Scene's `scanrefer_unique_multiple_lookup.json` | [ScanRefer](https://github.com/daveredrum/ScanRefer), [Multi3DRefer](https://github.com/3dlg-hcvc/M3DRef-CLIP), [HF `ZzZZCHS/Chat-Scene`](https://huggingface.co/datasets/ZzZZCHS/Chat-Scene) | `deps/official_val/` (or `SCANREFER_VAL_JSON`, `M3DREF_VAL_JSON`, `SCANREFER_LOOKUP_JSON`) |
 | Scan2Cap / ScanQA scoring | Java ≥ 8 on `PATH` (pycocoevalcap's PTB tokenizer and METEOR) | | `JAVA_HOME` |
 
 Keep a private copy of all of these: `env.sh.example` points every variable into a
@@ -363,6 +372,13 @@ PLACEMENT=rc bash extra_eval/xr/run_xr_finetune.sh        # cache detector queri
 PLACEMENT=glb bash extra_eval/xr/run_xr_finetune.sh       # same for glb (the default PLACEMENT)
 ```
 The zero-shot / finetune runs score themselves (`score_xr.py`) into `extra_eval/results/xr/`.
+
+ScanRefer / Multi3DRefer over the official val sets (CPU, seconds; reads the native test pass
+in `NATIVE_DIR`, default `outputs/native_nocache`):
+
+```shell
+bash extra_eval/run_score_official_val.sh   # -> extra_eval/results/official_val/scanrefer_m3dref.json
+```
 
 Beacon3D grounding with the top-1 proposal (one GPU; reuses the judged QA in
 `extra_eval/results/beacon3d_<domain>/`, so no GPT calls):
