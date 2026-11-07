@@ -10,10 +10,10 @@ only asks part of the val items, and its tables divide by the asked items, as th
 
 Here every official val item counts (ScanRefer_filtered_val: 9508, Multi3DRefer val: 11120):
 an item that was never asked scores 0 (Acc / F1). The asked-only numbers are written next to
-them, so both protocols stay on record. Per-type denominators: Multi3DRefer ``eval_type`` of
-the official file; ScanRefer unique / multiple as the release langdata labels them (the asked
-items carry those labels), with scanrefer_unique_multiple_lookup.json only for the official
-items absent from the langdata.
+them, so both protocols stay on record. Per-type labels: Multi3DRefer ``eval_type`` of the
+official file; ScanRefer unique / multiple from scanrefer_unique_multiple_lookup.json
+(ScanRefer's lib/dataset.py definition, as for the other baselines) in ``scanrefer``, and the
+release langdata's own labels in ``scanrefer_repo_labels`` (what score_native.py reports).
 
     python extra_eval/score_official_val.py --native_dir outputs/native_nocache \
         --scanrefer_val ... --m3dref_val ... --scanrefer_lookup ...
@@ -23,6 +23,7 @@ import argparse
 import glob
 import json
 import os
+import re
 from collections import Counter, defaultdict
 
 import numpy as np
@@ -34,15 +35,16 @@ THR_M3D = (("F1@0.25", "bbox_iou_25_f1_score"), ("F1@0.5", "bbox_iou_50_f1_score
 
 
 def load_asked(native_dir):
-    """Per-item scores of the asked items, grouped by type."""
-    sr, m3d = defaultdict(list), defaultdict(lambda: defaultdict(list))
+    """Asked items: ScanRefer as (scene, prompt, repo label, top-1 IoU); Multi3DRefer F1 by type."""
+    sr, m3d = [], defaultdict(lambda: defaultdict(list))
     files = sorted(glob.glob(os.path.join(native_dir, "native", "scene*.json")))
     assert files, f"no native predictions under {native_dir}/native"
     for p in files:
         for q in json.load(open(p))["prediction"]:
             t = q["type"]
             if t.startswith("scanrefer:"):
-                sr[t.split(":")[1]].append(q.get("top_1_bbox_iou") or 0.0)
+                scene = os.path.basename(p)[:-len(".json")]
+                sr.append((scene, q["input_language"], t.split(":")[1], q.get("top_1_bbox_iou") or 0.0))
             elif t.startswith("m3dref:"):
                 for name, key in THR_M3D:
                     m3d[name][t.split(":")[1]].append(q.get(key) or 0.0)
@@ -72,24 +74,66 @@ def block(n_asked, n_official, asked, official):
     return {"n_asked": n_asked, "n_official": n_official, "asked": asked, "official_val": official}
 
 
-def score_scanrefer(sr, official, lookup, langdata_file, missing):
-    # unique / multiple as the repository labels them (its langdata ``eval_type``; Chat-Scene's
-    # lookup labels 86 more val items multiple), so numerator and denominator agree; only the
-    # official items absent from the langdata take their label from the lookup.
+def norm_text(t):
+    return re.sub(r"[\s.?!;,]+$", "", t.strip()).lower()
+
+
+def official_labels(sr, langdata_file, lookup):
+    """ScanRefer's own unique / multiple label (scanrefer_unique_multiple_lookup.json, the
+    lib/dataset.py definition used by every other baseline) for each asked item. The native
+    predictions carry no ScanNet object id (``gt_inst_ids`` are the repository's instance
+    indices), so an item is matched to its langdata sentence by scene + text (the prompt wraps
+    the description and changes its final punctuation). Sentences repeated in a scene all
+    resolve to the same label (checked)."""
     scenes = val_scenes()
-    n_off = Counter(x["eval_type"] for x in json.load(open(langdata_file)) if x["scene_id"] in scenes)
-    n_off.update("multiple" if lookup[s][str(o)] else "unique" for s, o, _ in missing)
-    assert sum(n_off.values()) == len(official), (n_off, len(official))
+    by_scene = defaultdict(lambda: defaultdict(set))
+    for x in json.load(open(langdata_file)):
+        if x["scene_id"] in scenes:
+            by_scene[x["scene_id"]][norm_text(x["description"])].add(
+                "multiple" if lookup[x["scene_id"]][str(x["object_ids"][0][0])] else "unique")
+    labels = []
+    for scene, prompt, _, _ in sr:
+        m = re.search(r"search for: (.*) \(with grounding\)$", prompt, re.S)
+        cand = by_scene[scene].get(norm_text(m.group(1))) if m else None
+        if not cand:  # other instruction templates: the sentence is a substring of the prompt
+            low = prompt.lower()
+            cand = set().union(*[v for k, v in by_scene[scene].items() if k and k in low] or [set()])
+        assert len(cand) == 1, (scene, prompt, cand)
+        labels.append(next(iter(cand)))
+    return labels
+
+
+def acc_block(groups, n_off):
     out, all_iou = {}, []
     for t in SR_TYPES:
-        v = np.asarray(sr[t], dtype=float)
+        v = np.asarray(groups[t], dtype=float)
         all_iou.append(v)
         out[t] = block(len(v), n_off[t], {m: 100 * float((v > th).mean()) for m, th in THR_SR},
                        {m: 100 * float((v > th).sum()) / n_off[t] for m, th in THR_SR})
     v = np.concatenate(all_iou)
-    out["overall"] = block(len(v), len(official), {m: 100 * float((v > th).mean()) for m, th in THR_SR},
-                           {m: 100 * float((v > th).sum()) / len(official) for m, th in THR_SR})
+    n = sum(n_off.values())
+    out["overall"] = block(len(v), n, {m: 100 * float((v > th).mean()) for m, th in THR_SR},
+                           {m: 100 * float((v > th).sum()) / n for m, th in THR_SR})
     return out
+
+
+def score_scanrefer(sr, official, lookup, langdata_file, missing):
+    """Two unique / multiple splits (overall is the same):
+    ``official``: ScanRefer's lookup for numerator and denominator (comparable to the other
+    baselines); ``repo_labels``: the release langdata ``eval_type`` (what score_native.py
+    reports; it labels 86 val items unique that the lookup calls multiple), with the lookup
+    only for the official items absent from the langdata."""
+    n_lookup = Counter("multiple" if lookup[x["scene_id"]][str(x["object_id"])] else "unique" for x in official)
+    lab = official_labels(sr, langdata_file, lookup)
+    g_off, g_repo = defaultdict(list), defaultdict(list)
+    for (_, _, repo_t, iou), t in zip(sr, lab):
+        g_off[t].append(iou)
+        g_repo[repo_t].append(iou)
+    scenes = val_scenes()
+    n_repo = Counter(x["eval_type"] for x in json.load(open(langdata_file)) if x["scene_id"] in scenes)
+    n_repo.update("multiple" if lookup[s][str(o)] else "unique" for s, o, _ in missing)
+    assert sum(n_lookup.values()) == sum(n_repo.values()) == len(official)
+    return acc_block(g_off, n_lookup), acc_block(g_repo, n_repo)
 
 
 def score_m3dref(m3d, official):
@@ -128,6 +172,7 @@ def main():
     m3d_miss = langdata_missing(m3d_off, os.path.join(args.langdata, "m3dref_format.json"),
                                 lambda x: (x["scene_id"], x["object_name"], int(x["ann_id"]), x["eval_type"]),
                                 lambda x: (x["scene_id"], x["object_name"], int(x["ann_id"]), x["eval_type"]))
+    sr_official, sr_repo = score_scanrefer(sr, sr_off, lookup, os.path.join(args.langdata, "scanrefer_format.json"), sr_miss)
     res = {
         "note": "Grounded 3D-LLM release checkpoint, native test pass. 'asked' = upstream protocol "
                 "(mean over the items its test pass asks; matches the paper). 'official_val' = every "
@@ -135,16 +180,17 @@ def main():
                 "48 x 256-token text input, wall / floor targets, and official items absent from the "
                 "release langdata (listed below).",
         "native_dir": args.native_dir,
-        "scanrefer": score_scanrefer(sr, sr_off, lookup, os.path.join(args.langdata, "scanrefer_format.json"), sr_miss),
+        "scanrefer": sr_official,
+        "scanrefer_repo_labels": sr_repo,
         "m3dref": score_m3dref(m3d, m3d_off),
         "not_in_langdata": {"scanrefer": [list(k) for k in sr_miss], "m3dref": [list(k) for k in m3d_miss]},
     }
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     json.dump(res, open(args.out, "w"), indent=1)
-    for bench in ("scanrefer", "m3dref"):
+    for bench in ("scanrefer", "scanrefer_repo_labels", "m3dref"):
         for k, v in res[bench].items():
             fmt = lambda d: " / ".join(f"{x:.2f}" for x in d.values())
-            print(f"{bench:9s} {k:8s} asked {v['n_asked']:5d}: {fmt(v['asked'])}   "
+            print(f"{bench:21s} {k:8s} asked {v['n_asked']:5d}: {fmt(v['asked'])}   "
                   f"official {v['n_official']:5d}: {fmt(v['official_val'])}")
     print(f"not in langdata: scanrefer {len(sr_miss)}, m3dref {len(m3d_miss)} -> {args.out}")
 

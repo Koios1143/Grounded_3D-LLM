@@ -43,10 +43,15 @@ evaluator. They reproduce the paper's Table III (generalist model) to within 0.3
 - **Over the official val sets** (what the cross-baseline tables use): the paper's protocol
   divides by the asked items only. Counting every official val item (ScanRefer 9,508,
   Multi3DRefer 11,120; the release langdata also lacks 5 / 7 of them) and scoring the unasked
-  ones 0: ScanRefer 47.34 / 43.14 (unique 84.34 / 76.80, multiple 38.43 / 35.04),
+  ones 0: ScanRefer 47.34 / 43.14 (unique 85.33 / 77.94, multiple 38.71 / 35.24),
   Multi3DRefer 43.51 / 39.95 (single w/ / w/o distractors 41.97 / 38.55 and 79.31 / 72.45,
   multiple 33.57 / 31.04, zero 0 / 0). Both protocols are in
   `extra_eval/results/official_val/scanrefer_m3dref.json` (`score_official_val.py`).
+  Unique / multiple there follow ScanRefer's own split (`scanrefer_unique_multiple_lookup.json`,
+  1,759 / 7,749 val sentences, as for the other baselines). The release langdata labels 86
+  more sentences unique (1,845): refrigerators and mini fridges, which ScanRefer files under
+  *others* because the official ScanNet label table spells the NYU40 class "refridgerator";
+  the per-type numbers above use the langdata labels (`scanrefer_repo_labels` in the JSON).
 - **ScanQA** (4,675 questions): BLEU-1 39.38, METEOR 15.33, ROUGE-L 37.06, EM 19.94, EM-R
   35.51.
 - **Scan2Cap** (2,068 objects): @0.25 BLEU-4 37.36, METEOR 27.18, ROUGE-L 59.25, CIDEr
