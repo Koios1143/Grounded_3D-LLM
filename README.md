@@ -43,15 +43,16 @@ evaluator. They reproduce the paper's Table III (generalist model) to within 0.3
 - **Over the official val sets** (what the cross-baseline tables use): the paper's protocol
   divides by the asked items only. Counting every official val item (ScanRefer 9,508,
   Multi3DRefer 11,120; the release langdata also lacks 5 / 7 of them) and scoring the unasked
-  ones 0: ScanRefer 47.34 / 43.14 (unique 85.33 / 77.94, multiple 38.71 / 35.24),
+  ones 0: ScanRefer 47.34 / 43.14 (unique 84.34 / 76.80, multiple 38.43 / 35.04),
   Multi3DRefer 43.51 / 39.95 (single w/ / w/o distractors 41.97 / 38.55 and 79.31 / 72.45,
   multiple 33.57 / 31.04, zero 0 / 0). Both protocols are in
   `extra_eval/results/official_val/scanrefer_m3dref.json` (`score_official_val.py`).
-  Unique / multiple there follow ScanRefer's own split (`scanrefer_unique_multiple_lookup.json`,
-  1,759 / 7,749 val sentences, as for the other baselines). The release langdata labels 86
-  more sentences unique (1,845): refrigerators and mini fridges, which ScanRefer files under
-  *others* because the official ScanNet label table spells the NYU40 class "refridgerator";
-  the per-type numbers above use the langdata labels (`scanrefer_repo_labels` in the JSON).
+  Unique / multiple follow ScanRefer's own split (1,845 / 7,663 val sentences; lookup built by
+  `extra_eval/build_scanrefer_lookup.py` from ScanRefer's label table, as its `lib/dataset.py`
+  does, the same file used for the other baselines); the release langdata labels agree on
+  every sentence. The `scanrefer_unique_multiple_lookup.json` shipped with Chat-Scene was built
+  from ScanNet's own table, which spells the NYU40 class "refridgerator", and labels 86 of these
+  sentences multiple.
 - **ScanQA** (4,675 questions): BLEU-1 39.38, METEOR 15.33, ROUGE-L 37.06, EM 19.94, EM-R
   35.51.
 - **Scan2Cap** (2,068 objects): @0.25 BLEU-4 37.36, METEOR 27.18, ROUGE-L 59.25, CIDEr
@@ -283,6 +284,7 @@ blocks): `extra_eval/results/aligned/<bench>__<variant>.json`, `summary.json`.
 | `extra_eval/infer.py`, `run_infer.sh` | Inference on all seven benchmarks, one scene at a time (one process per GPU, scenes sharded); `DOMAIN=3rscan|multiscan|scannet_pcseg` for the other Beacon3D domains. |
 | `extra_eval/score.py`, `score_native.py`, `score.sh` | Scoring with the official scripts / the repository's metric code; writes `extra_eval/results/`. |
 | `models/LLM/LLama3d.py`, `modeling_llama.py` | Upstream, plus the opt-in per-scene prefix cache (`_use_scene_prefix_cache` and the first-step branch of `prepare_inputs_for_generation`). |
+| `extra_eval/build_scanrefer_lookup.py` | ScanRefer's unique / multiple lookup from ScanRefer's own label table (the same script in every baseline repo). |
 | `extra_eval/score_official_val.py`, `run_score_official_val.sh` | ScanRefer / Multi3DRefer of the native test pass over the official val sets (unasked items = 0), next to the asked-only numbers; writes `extra_eval/results/official_val/`. |
 | `extra_eval/real3dqa/` | The two official Real-3DQA evaluators, vendored unmodified (CC BY-SA 4.0, see `VENDORED.md`). |
 | `extra_eval/beacon3d/Beacon3D/` | Vendored Beacon3D repo at `bda1203` (Apache-2.0): evaluators, `utils.py`, annotations, metadata and GPT system prompt. Unmodified; see `VENDORED.md`. `beacon_grounding_shim.py` only skips knowledge tags with zero cases. |
@@ -309,7 +311,8 @@ blocks): `extra_eval/results/aligned/<bench>__<variant>.json`, `summary.json`.
 | XR-QA / XR-SceneCaption (normals) | HM3D v0.2 meshes `<scan>/<hash>.glb` | [HM3D](https://aihabitat.org/datasets/hm3d/) | `HM3D_GLB` |
 | Beacon3D QA scoring | an OpenAI API key | | `OPENAI_API_KEY` |
 | aligned Scan2Cap scoring | `scan2cap_val_corpus.json`: all ScanRefer val sentences per object (2,068 objects, keys `scene\|objid`), untruncated; the common file of all baselines, not built here | `deps/aligned/` | `--corpus` of `score_aligned.py` |
-| official-val ScanRefer / Multi3DRefer scoring | `ScanRefer_filtered_val.json` (9,508), `multi3drefer_val.json` (11,120), Chat-Scene's `scanrefer_unique_multiple_lookup.json` | [ScanRefer](https://github.com/daveredrum/ScanRefer), [Multi3DRefer](https://github.com/3dlg-hcvc/M3DRef-CLIP), [HF `ZzZZCHS/Chat-Scene`](https://huggingface.co/datasets/ZzZZCHS/Chat-Scene) | `deps/official_val/` (or `SCANREFER_VAL_JSON`, `M3DREF_VAL_JSON`, `SCANREFER_LOOKUP_JSON`) |
+| official-val ScanRefer / Multi3DRefer scoring | `ScanRefer_filtered_val.json` (9,508), `multi3drefer_val.json` (11,120) | [ScanRefer](https://github.com/daveredrum/ScanRefer), [Multi3DRefer](https://github.com/3dlg-hcvc/M3DRef-CLIP) | `deps/official_val/` (or `SCANREFER_VAL_JSON`, `M3DREF_VAL_JSON`) |
+| ScanRefer unique / multiple split | `ScanRefer_filtered.json` + ScanRefer's own `data/scannet/meta_data/scannetv2-labels.combined.tsv` (not ScanNet's: it spells "refridgerator") → `extra_eval/build_scanrefer_lookup.py` → `scanrefer_unique_multiple_lookup.json` | [ScanRefer](https://github.com/daveredrum/ScanRefer) | `deps/scanrefer_official/` (or `SCANREFER_LOOKUP_JSON`) |
 | Scan2Cap / ScanQA scoring | Java ≥ 8 on `PATH` (pycocoevalcap's PTB tokenizer and METEOR) | | `JAVA_HOME` |
 
 Keep a private copy of all of these: `env.sh.example` points every variable into a

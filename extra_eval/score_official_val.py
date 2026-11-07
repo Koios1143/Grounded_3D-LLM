@@ -11,9 +11,11 @@ only asks part of the val items, and its tables divide by the asked items, as th
 Here every official val item counts (ScanRefer_filtered_val: 9508, Multi3DRefer val: 11120):
 an item that was never asked scores 0 (Acc / F1). The asked-only numbers are written next to
 them, so both protocols stay on record. Per-type labels: Multi3DRefer ``eval_type`` of the
-official file; ScanRefer unique / multiple from scanrefer_unique_multiple_lookup.json
-(ScanRefer's lib/dataset.py definition, as for the other baselines) in ``scanrefer``, and the
-release langdata's own labels in ``scanrefer_repo_labels`` (what score_native.py reports).
+official file; ScanRefer unique / multiple from ScanRefer's own split in ``scanrefer``
+(lookup built by build_scanrefer_lookup.py from ScanRefer's label table, as its lib/dataset.py
+does; the other baselines are scored with the same file), and the release langdata's labels in
+``scanrefer_repo_labels`` (what score_native.py reports). The two agree on every item; a
+lookup built from ScanNet's own table ("refridgerator") would label 86 val sentences multiple.
 
     python extra_eval/score_official_val.py --native_dir outputs/native_nocache \
         --scanrefer_val ... --m3dref_val ... --scanrefer_lookup ...
@@ -79,8 +81,8 @@ def norm_text(t):
 
 
 def official_labels(sr, langdata_file, lookup):
-    """ScanRefer's own unique / multiple label (scanrefer_unique_multiple_lookup.json, the
-    lib/dataset.py definition used by every other baseline) for each asked item. The native
+    """ScanRefer's own unique / multiple label (the lookup of build_scanrefer_lookup.py, the
+    lib/dataset.py definition, used for every baseline) for each asked item. The native
     predictions carry no ScanNet object id (``gt_inst_ids`` are the repository's instance
     indices), so an item is matched to its langdata sentence by scene + text (the prompt wraps
     the description and changes its final punctuation). Sentences repeated in a scene all
@@ -121,8 +123,7 @@ def score_scanrefer(sr, official, lookup, langdata_file, missing):
     """Two unique / multiple splits (overall is the same):
     ``official``: ScanRefer's lookup for numerator and denominator (comparable to the other
     baselines); ``repo_labels``: the release langdata ``eval_type`` (what score_native.py
-    reports; it labels 86 val items unique that the lookup calls multiple), with the lookup
-    only for the official items absent from the langdata."""
+    reports), with the lookup only for the official items absent from the langdata."""
     n_lookup = Counter("multiple" if lookup[x["scene_id"]][str(x["object_id"])] else "unique" for x in official)
     lab = official_labels(sr, langdata_file, lookup)
     g_off, g_repo = defaultdict(list), defaultdict(list)
@@ -155,7 +156,7 @@ def main():
     ap.add_argument("--native_dir", default="outputs/native_nocache")
     ap.add_argument("--scanrefer_val", required=True, help="ScanRefer_filtered_val.json (9508)")
     ap.add_argument("--m3dref_val", required=True, help="multi3drefer_val.json (11120)")
-    ap.add_argument("--scanrefer_lookup", required=True, help="scanrefer_unique_multiple_lookup.json")
+    ap.add_argument("--scanrefer_lookup", required=True, help="ScanRefer's unique / multiple lookup (build_scanrefer_lookup.py)")
     ap.add_argument("--langdata", default="data/langdata")
     ap.add_argument("--out", default="extra_eval/results/official_val/scanrefer_m3dref.json")
     args = ap.parse_args()
