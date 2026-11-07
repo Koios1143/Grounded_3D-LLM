@@ -290,7 +290,7 @@ blocks): `extra_eval/results/aligned/<bench>__<variant>.json`, `summary.json`.
 | `extra_eval/beacon3d/Beacon3D/` | Vendored Beacon3D repo at `bda1203` (Apache-2.0): evaluators, `utils.py`, annotations, metadata and GPT system prompt. Unmodified; see `VENDORED.md`. `beacon_grounding_shim.py` only skips knowledge tags with zero cases. |
 | `extra_eval/beacon3d/run_beacon_top1.sh` | Beacon3D grounding re-run with the top-1 proposal, QA reused (see [Beacon3D](#beacon3d)). |
 | `extra_eval/aligned/` | Aligned re-scoring: `aligned_eval.py` (shared scorer), `score_aligned.py`, `run_score_aligned.sh`; writes `extra_eval/results/aligned/`. |
-| `extra_eval/xr/` | XR-QA / XR-SceneCaption: `preprocess_xr.py` (SceneVerse HM3D regions → scenes, both placements; `region_offsets.json` = glb offsets), `run_xr.sh` (zero-shot), `finetune_xr.py` + `run_xr_finetune.sh`, `score_xr.py`; `capeval/` vendored from LSceneLLM (see `VENDORED.md`). |
+| `extra_eval/xr/` | XR-QA / XR-SceneCaption: `preprocess_xr.py` (SceneVerse HM3D regions → scenes, both placements; `region_offsets.json` = glb offsets), `run_xr.sh` (zero-shot), `finetune_xr.py` + `run_xr_finetune.sh`, `score_xr.py`, `dump_proposals.py` (top-100 CLASP masks per val scene, for just3d's XR scenes); `capeval/` vendored from LSceneLLM (see `VENDORED.md`). |
 | `extra_eval/results/` | Per-question predictions, the official evaluators' reports and `summary.json` for the run in the tables. |
 
 ## Setup
@@ -378,6 +378,9 @@ SPLITS="train val" bash extra_eval/xr/preprocess_xr.sh   # -> $XR_PC (mesh norma
 bash extra_eval/xr/run_xr.sh                              # zero-shot, rc + glb, scored (~13 min on 2 GPUs)
 PLACEMENT=rc bash extra_eval/xr/run_xr_finetune.sh        # cache detector queries, finetune, score every epoch (~1 h)
 PLACEMENT=glb bash extra_eval/xr/run_xr_finetune.sh       # same for glb (the default PLACEMENT)
+# top-100 CLASP proposal masks of the rc val scenes (input to just3d's convert_hm3d_xr.py)
+$G3D_ENV/bin/python extra_eval/xr/dump_proposals.py --placement rc --processed_dir "$XR_PC/xr_rc/scannet200" \
+    --out_dir <dir> --scenes "$(python -c 'import json,sys;print(",".join(json.load(open(sys.argv[1]))))' "$XR_PC/xr_val_scene_map.json")"
 ```
 The zero-shot / finetune runs score themselves (`score_xr.py`) into `extra_eval/results/xr/`.
 
